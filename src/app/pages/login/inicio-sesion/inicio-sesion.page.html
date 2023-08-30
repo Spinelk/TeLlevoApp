@@ -1,17 +1,29 @@
 <ion-content [fullscreen]="true" scrollY="false">
-  <ion-card style="margin: 0px; border-radius: 0px;">
-    <div>
-      <h1>Ingresar</h1>
-      <h2>Inicia sesión para continuar</h2>
-    </div>
-    <ion-card-header>
-      <ion-card-title>Card Title</ion-card-title>
-      <ion-card-subtitle>Card Subtitle</ion-card-subtitle>
-    </ion-card-header>
+  <div style="padding: 64px; text-align: center" class="gradiente">
+    <h1 style="font-weight: bold;">Ingresar</h1>
+    <h2 style="font-weight: lighter;">Inicia sesión para continuar</h2>
+  </div>
+  <div style="margin: 0px; border-radius: 0px">
+    <div style="padding: 32px;">
+      <ion-list lines="none">
+        <ion-item style="padding-bottom: 16px;">
+          <ion-input
+            label="Usuario:"
+            placeholder="Ingresa tu correo electrónico"
+          ></ion-input>
+        </ion-item>
 
-    <ion-card-content>
-      Here's a small text description for the card content. Nothing more,
-      nothing less.
-    </ion-card-content>
-  </ion-card>
+        <ion-item style="padding-bottom: 16px;">
+          <ion-input
+            label="Contrasena:"
+            placeholder="Introduce tu contraseña"
+            type="password"
+          ></ion-input>
+        </ion-item>
+        
+        <ion-button expand="block">Block</ion-button>
+        <button class="gradiente"></button>
+      </ion-list>
+    </div>
+  </div>
 </ion-content>
