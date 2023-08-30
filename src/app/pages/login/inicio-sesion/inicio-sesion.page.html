@@ -1,29 +1,49 @@
 <ion-content [fullscreen]="true" scrollY="false">
-  <div style="padding: 64px; text-align: center" class="gradiente">
-    <h1 style="font-weight: bold;">Ingresar</h1>
-    <h2 style="font-weight: lighter;">Inicia sesión para continuar</h2>
+  <div
+    style="
+      padding-top: 72px;
+      padding-bottom: 72px;
+      padding-left: 16px;
+      padding-right: 16px;
+      text-align: center;
+    "
+    class="gradiente"
+  >
+    <h1 style="font-weight: bold; color: white">INGRESAR</h1>
+    <h3 style="font-weight: lighter; color: white">
+      ¿Aun no tienes cuenta?
+      <span (click)="registro()" style="font-weight: bold">Registrate</span>
+    </h3>
   </div>
   <div style="margin: 0px; border-radius: 0px">
-    <div style="padding: 32px;">
-      <ion-list lines="none">
-        <ion-item style="padding-bottom: 16px;">
-          <ion-input
-            label="Usuario:"
-            placeholder="Ingresa tu correo electrónico"
-          ></ion-input>
-        </ion-item>
+    <div style="padding: 48px">
+      <h4 style="font-size: small; font-weight: bold">
+        INGRESA TU CORREO ELECTRÓNICO
+      </h4>
+      <ion-item style="padding-bottom: 16px">
+        <ion-input placeholder="correo"></ion-input>
+      </ion-item>
 
-        <ion-item style="padding-bottom: 16px;">
-          <ion-input
-            label="Contrasena:"
-            placeholder="Introduce tu contraseña"
-            type="password"
-          ></ion-input>
-        </ion-item>
-        
-        <ion-button expand="block">Block</ion-button>
-        <button class="gradiente"></button>
-      </ion-list>
+      <h4 style="font-size: smaller; font-weight: bold">
+        INTRODUCE TU CONTRASEÑA:
+      </h4>
+      <ion-item style="padding-bottom: 16px">
+        <ion-input placeholder="contraseña" type="password"></ion-input>
+      </ion-item>
+
+      <ion-button
+        (click)="login()"
+        expand="block"
+        size="large"
+        color="danger"
+        style="font-weight: bold"
+        >Ingresar</ion-button
+      >
     </div>
   </div>
+
+  <!-- <h5 style="font-weight: lighter; text-align: center">
+    ¿Aun no tienes cuenta?
+    <span (click)="registro()" style="font-weight: bold">Registrate</span>
+  </h5> -->
 </ion-content>
