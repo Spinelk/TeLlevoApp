@@ -51,4 +51,8 @@ export class InicioSesionPage implements OnInit {
   registro(){
     this.router.navigateByUrl("registro");
   }
+
+  recuperar(){
+    this.router.navigateByUrl("recuperar");
+  }
 }

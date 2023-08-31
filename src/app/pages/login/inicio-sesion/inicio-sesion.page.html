@@ -21,15 +21,12 @@
       <ion-item>
         <ion-input [(ngModel)]="contrasena" placeholder="Introduce tu contraseña" type="password"></ion-input>
       </ion-item>
+      <p style="text-align: end; font-size: small;">
+          ¿Olvidaste tu contraseña?
+          <span (click)="recuperar()" class="fs-bold">Recupérala</span>
+      </p>
 
-      <ion-button
-        (click)="iniciar()"
-        expand="block"
-        size="large"
-        color="danger"
-        class="f-bold"
-        >Ingresar</ion-button
-      >
+      <ion-button (click)="iniciar()" expand="block" size="large" color="danger" class="f-bold">Ingresar</ion-button>
     </div>
   </div>
 

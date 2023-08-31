@@ -22,7 +22,11 @@ const routes: Routes = [
   {
     path: 'principal/:correo',
     loadChildren: () => import('./pages/menu/principal/principal.module').then( m => m.PrincipalPageModule)
+  },  {
+    path: 'recuperar',
+    loadChildren: () => import('./pages/login/recuperar/recuperar.module').then( m => m.RecuperarPageModule)
   },
+
 ];
 
 @NgModule({
