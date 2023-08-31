@@ -31,5 +31,9 @@ export class UsuariosService {
     return this.usuarios.find(usuario => usuario.correo === correo);
   }
 
+  getUsuarioPorId(id: number) {
+    return this.usuarios.find(usuario => usuario.id === id);
+  }
+
   constructor() { }
 }

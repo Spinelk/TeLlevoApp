@@ -35,9 +35,7 @@ export class InicioSesionPage implements OnInit {
     let usuario = this.usuarioService.getUsuarioPorCorreo(this.correo);
 
     if (this.correo == usuario?.correo && this.contrasena == usuario.contrasena) {
-      console.log("Usuario: ", this.correo);
-      console.log("Contraseña: ", this.contrasena);
-      this.router.navigateByUrl("principal");
+      this.router.navigate(['/principal', usuario.correo]);
       return;
     }
     

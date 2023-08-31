@@ -54,14 +54,9 @@ export class RegistroPage implements OnInit {
     // console.table(usuario);
 
 
-    console.log("Usuarios");
-    console.table(this.usuarioService.usuarios);
-
     if (!this.usuarioService.getUsuarioPorCorreo(this.correo)) {
       this.usuarioService.usuarios.push(usuario);
 
-      console.log("Nuevos Usuarios");
-      console.table(this.usuarioService.usuarios);
 
       alert("Usuario registrado con éxito.");
       this.inicio();
