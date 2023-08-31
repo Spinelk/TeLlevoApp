@@ -1,34 +1,25 @@
 <ion-content [fullscreen]="true" scrollY="false">
-  <div
-    style="
-      padding-top: 72px;
-      padding-bottom: 72px;
-      padding-left: 16px;
-      padding-right: 16px;
-      text-align: center;
-    "
-    class="gradiente"
-  >
-    <h1 style="font-weight: bold; color: white">INGRESAR</h1>
-    <h3 style="font-weight: lighter; color: white">
+  <div class="banner gradiente">
+    <h1 class="f-bold">INGRESAR</h1>
+    <h3 class="f-light">
       ¿Aun no tienes cuenta?
-      <span (click)="registro()" style="font-weight: bold">Registrate</span>
+      <span (click)="registro()" class="f-bold">Regístrate</span>
     </h3>
   </div>
-  <div style="margin: 0px; border-radius: 0px">
-    <div style="padding: 48px">
-      <h4 style="font-size: small; font-weight: bold">
-        INGRESA TU CORREO ELECTRÓNICO
+  <div id="contenedor">
+    <div>
+      <h4 class="fs-bold">
+        CORREO ELECTRÓNICO
       </h4>
-      <ion-item style="padding-bottom: 16px">
-        <ion-input [(ngModel)]="correo" placeholder="correo" type="text"></ion-input>
+      <ion-item>
+        <ion-input [(ngModel)]="correo" placeholder="Ingresa tu correo" type="text"></ion-input>
       </ion-item>
 
-      <h4 style="font-size: smaller; font-weight: bold">
-        INTRODUCE TU CONTRASEÑA:
+      <h4 class="fs-bold">
+        CONTRASEÑA:
       </h4>
-      <ion-item style="padding-bottom: 16px">
-        <ion-input [(ngModel)]="contrasena" placeholder="contraseña" type="password"></ion-input>
+      <ion-item>
+        <ion-input [(ngModel)]="contrasena" placeholder="Introduce tu contraseña" type="password"></ion-input>
       </ion-item>
 
       <ion-button
@@ -36,7 +27,7 @@
         expand="block"
         size="large"
         color="danger"
-        style="font-weight: bold"
+        class="f-bold"
         >Ingresar</ion-button
       >
     </div>

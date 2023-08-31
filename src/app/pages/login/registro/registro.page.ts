@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario';
+import { AlertService } from 'src/app/services/global/alert.service';
 import { UsuariosService } from 'src/app/services/login/usuarios.service';
 
 
@@ -18,7 +19,8 @@ export class RegistroPage implements OnInit {
 
   constructor(
     private router: Router,
-    private usuarioService: UsuariosService
+    private usuarioService: UsuariosService,
+    private alertService:AlertService
   ) { }
 
   ngOnInit() {
@@ -26,19 +28,19 @@ export class RegistroPage implements OnInit {
 
   registrar() {
     if (this.nombre == "") {
-      alert("Debe ingresar un nombre.");
+      this.alertService.showAlert("Debe ingresar un nombre.", "Ingrese nombre");
       return;
     }
     if (this.apellido == "") {
-      alert("Debe ingresar un apellido.")
+      this.alertService.showAlert("Debe ingresar un apellido.", "Ingrese apellido")
       return;
     }
     if (this.correo == "") {
-      alert("Debe ingresar un correo.");
+      this.alertService.showAlert("Debe ingresar un correo.", "Ingrese correo");
       return;
     }
     if (this.contrasena == "") {
-      alert("Debe ingresar una contraseña.")
+      this.alertService.showAlert("Debe ingresar una contraseña.", "Ingrese contraseña")
       return;
     }
 
@@ -58,11 +60,11 @@ export class RegistroPage implements OnInit {
       this.usuarioService.ingresarUsuario(nuevoUsuario);
 
 
-      alert("Usuario registrado con éxito.");
+      this.alertService.showAlert("Usuario registrado con éxito.", "Registro exitoso");
       this.inicio();
     }
     else {
-      alert("El correo ingresado ya existe.");
+      this.alertService.showAlert("El correo ingresado ya existe.", "Error de registro");
       return;
     }
   }

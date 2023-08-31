@@ -13,7 +13,7 @@ export class InicioSesionPage implements OnInit {
 
   correo:string = "";
   contrasena:string = "";
-  
+
   constructor(
     private router:Router,
     private usuarioService:UsuariosService,
@@ -26,13 +26,13 @@ export class InicioSesionPage implements OnInit {
   iniciar(){
     if (this.correo == "") {
       // alert("Debe ingresar un correo.");
-      
+
       this.alertService.showAlert("Debe ingresar un correo para iniciar sesión.", "Ingrese un correo");
       return;
     }
     if (this.contrasena == "") {
       // alert("Debe ingresar una contraseña.")
-      
+
       this.alertService.showAlert("Debe ingresar una contraseña para iniciar sesión.", "Ingrese una contraseña");
       return;
     }
@@ -43,7 +43,7 @@ export class InicioSesionPage implements OnInit {
       this.router.navigate(['/principal', usuario.correo]);
       return;
     }
-    
+
     // alert("Correo o contraseña incorrectos.");
     this.alertService.showAlert("El correo o la contraseña son invalidos.", "Credenciales invalidas");
   }
