@@ -21,7 +21,7 @@
         INGRESA TU CORREO ELECTRÓNICO
       </h4>
       <ion-item style="padding-bottom: 16px">
-        <ion-input [(ngModel)]="email" placeholder="correo" type="text"></ion-input>
+        <ion-input [(ngModel)]="correo" placeholder="correo" type="text"></ion-input>
       </ion-item>
 
       <h4 style="font-size: smaller; font-weight: bold">
@@ -32,7 +32,7 @@
       </ion-item>
 
       <ion-button
-        (click)="login()"
+        (click)="iniciar()"
         expand="block"
         size="large"
         color="danger"

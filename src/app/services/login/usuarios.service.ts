@@ -6,7 +6,7 @@ import { Usuario } from 'src/app/models/usuario';
 })
 export class UsuariosService {
 
-  private usuarios: Usuario[] = [
+  public usuarios: Usuario[] = [
     {
       id: 1,
       nombre: 'Juan',
@@ -23,9 +23,9 @@ export class UsuariosService {
     },
   ];
 
-  // getUsuarios() {
-  //   return this.usuarios;
-  // }
+  getNuevoId() {
+    return this.usuarios.length + 1;
+  }
 
   getUsuarioPorCorreo(correo: string) {
     return this.usuarios.find(usuario => usuario.correo === correo);

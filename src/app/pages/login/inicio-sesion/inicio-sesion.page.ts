@@ -10,7 +10,7 @@ import { UsuariosService } from 'src/app/services/login/usuarios.service';
 })
 export class InicioSesionPage implements OnInit {
 
-  email:string = "";
+  correo:string = "";
   contrasena:string = "";
   
   constructor(
@@ -21,9 +21,9 @@ export class InicioSesionPage implements OnInit {
   ngOnInit() {
   }
 
-  login(){
-    if (this.email == "") {
-      alert("Debe ingresar un email.");
+  iniciar(){
+    if (this.correo == "") {
+      alert("Debe ingresar un correo.");
       return;
     }
     if (this.contrasena == "") {
@@ -32,10 +32,10 @@ export class InicioSesionPage implements OnInit {
     }
     
 
-    let usuario = this.usuarioService.getUsuarioPorCorreo(this.email);
+    let usuario = this.usuarioService.getUsuarioPorCorreo(this.correo);
 
-    if (this.email == usuario?.correo && this.contrasena == usuario.contrasena) {
-      console.log("Usuario: ", this.email);
+    if (this.correo == usuario?.correo && this.contrasena == usuario.contrasena) {
+      console.log("Usuario: ", this.correo);
       console.log("Contraseña: ", this.contrasena);
       this.router.navigateByUrl("principal");
       return;

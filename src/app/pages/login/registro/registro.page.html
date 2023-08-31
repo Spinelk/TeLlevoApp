@@ -12,33 +12,37 @@
     <h1 style="font-weight: bold; color: white">CREA UNA NUEVA CUENTA</h1>
     <h3 style="font-weight: lighter; color: white">
       ¿Ya te has registrado?
-      <span (click)="Inicio()" style="font-weight: bold">Ingresar</span>
+      <span (click)="inicio()" style="font-weight: bold">Ingresar</span>
     </h3>
   </div>
   <div style="margin: 0px; border-radius: 0px">
     <div style="padding: 48px">
       <h4 style="font-size: small; font-weight: bold">INGRESA TU NOMBRE</h4>
       <ion-item style="padding-bottom: 16px">
-        <ion-input placeholder="nombre"></ion-input>
+        <ion-input [(ngModel)]="nombre" placeholder="nombre"></ion-input>
       </ion-item>
 
       <h4 style="font-size: small; font-weight: bold">INGRESA TU APELLIDO</h4>
       <ion-item style="padding-bottom: 16px">
-        <ion-input placeholder="apellido"></ion-input>
+        <ion-input [(ngModel)]="apellido" placeholder="apellido"></ion-input>
       </ion-item>
 
       <h4 style="font-size: small; font-weight: bold">
         INGRESA TU CORREO ELECTRÓNICO
       </h4>
       <ion-item style="padding-bottom: 16px">
-        <ion-input placeholder="correo"></ion-input>
+        <ion-input [(ngModel)]="correo" placeholder="correo"></ion-input>
       </ion-item>
 
       <h4 style="font-size: smaller; font-weight: bold">
         INTRODUCE TU CONTRASEÑA:
       </h4>
       <ion-item style="padding-bottom: 16px">
-        <ion-input placeholder="contraseña" type="password"></ion-input>
+        <ion-input
+          [(ngModel)]="contrasena"
+          placeholder="contraseña"
+          type="password"
+        ></ion-input>
       </ion-item>
 
       <!-- <h4 style="font-size: smaller; font-weight: bold">
@@ -49,6 +53,7 @@
       </ion-item> -->
 
       <ion-button
+        (click)="registrar()"
         expand="block"
         size="large"
         color="danger"
