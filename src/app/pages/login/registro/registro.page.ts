@@ -42,7 +42,7 @@ export class RegistroPage implements OnInit {
       return;
     }
 
-    let usuario: Usuario = {
+    let nuevoUsuario: Usuario = {
       id: this.usuarioService.getNuevoId(),
       nombre: this.nombre,
       apellido: this.apellido,
@@ -55,7 +55,7 @@ export class RegistroPage implements OnInit {
 
 
     if (!this.usuarioService.getUsuarioPorCorreo(this.correo)) {
-      this.usuarioService.usuarios.push(usuario);
+      this.usuarioService.ingresarUsuario(nuevoUsuario);
 
 
       alert("Usuario registrado con éxito.");
