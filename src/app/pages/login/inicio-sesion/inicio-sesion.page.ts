@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertService } from 'src/app/services/global/alert.service';
 import { UsuariosService } from 'src/app/services/login/usuarios.service';
@@ -9,21 +9,28 @@ import { UsuariosService } from 'src/app/services/login/usuarios.service';
   templateUrl: './inicio-sesion.page.html',
   styleUrls: ['./inicio-sesion.page.scss'],
 })
-export class InicioSesionPage implements OnInit {
+export class InicioSesionPage implements OnInit, OnDestroy {
 
-  correo:string = "";
-  contrasena:string = "";
+  correo: string = "";
+  contrasena: string = "";
 
   constructor(
-    private router:Router,
-    private usuarioService:UsuariosService,
-    private alertService:AlertService
-    ) { }
+    private router: Router,
+    private usuarioService: UsuariosService,
+    private alertService: AlertService
+  ) { }
 
   ngOnInit() {
   }
 
-  iniciar(){
+  // No funciona
+  ngOnDestroy() {
+    console.log("Se destruyo el componente InicioSesionPage");
+    console.log("Correo: " + this.correo);
+    console.log("Contraseña: " + this.contrasena);
+  }
+
+  iniciar() {
     if (this.correo == "") {
       // alert("Debe ingresar un correo.");
 
@@ -48,11 +55,11 @@ export class InicioSesionPage implements OnInit {
     this.alertService.showAlert("El correo o la contraseña son invalidos.", "Credenciales invalidas");
   }
 
-  registro(){
+  irARegistro() {
     this.router.navigateByUrl("registro");
   }
 
-  recuperar(){
+  irARecuperar() {
     this.router.navigateByUrl("recuperar");
   }
 }

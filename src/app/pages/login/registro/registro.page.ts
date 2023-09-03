@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { Usuario } from 'src/app/models/usuario';
 import { AlertService } from 'src/app/services/global/alert.service';
 import { UsuariosService } from 'src/app/services/login/usuarios.service';
@@ -16,11 +17,14 @@ export class RegistroPage implements OnInit {
   apellido: string = "";
   correo: string = "";
   contrasena: string = "";
+  contrasena2: string = "";
+
 
   constructor(
     private router: Router,
     private usuarioService: UsuariosService,
-    private alertService:AlertService
+    private alertService:AlertService,
+    private navController: NavController
   ) { }
 
   ngOnInit() {
@@ -28,19 +32,23 @@ export class RegistroPage implements OnInit {
 
   registrar() {
     if (this.nombre == "") {
-      this.alertService.showAlert("Debe ingresar un nombre.", "Ingrese nombre");
+      this.alertService.showAlert("Debe ingresar un nombre.", "Ingrese un nombre");
       return;
     }
     if (this.apellido == "") {
-      this.alertService.showAlert("Debe ingresar un apellido.", "Ingrese apellido")
+      this.alertService.showAlert("Debe ingresar un apellido.", "Ingrese un apellido")
       return;
     }
     if (this.correo == "") {
-      this.alertService.showAlert("Debe ingresar un correo.", "Ingrese correo");
+      this.alertService.showAlert("Debe ingresar un correo.", "Ingrese un correo");
       return;
     }
     if (this.contrasena == "") {
-      this.alertService.showAlert("Debe ingresar una contraseña.", "Ingrese contraseña")
+      this.alertService.showAlert("Debe ingresar una contraseña.", "Ingrese una contraseña")
+      return;
+    }
+    if (this.contrasena2 == "") {
+      this.alertService.showAlert("Debe ingresar la contraseña nuevamente.", "Verifique la contraseña")
       return;
     }
 
@@ -61,15 +69,15 @@ export class RegistroPage implements OnInit {
 
 
       this.alertService.showAlert("Usuario registrado con éxito.", "Registro exitoso");
-      this.inicio();
+      this.irAInicio();
     }
     else {
-      this.alertService.showAlert("El correo ingresado ya existe.", "Error de registro");
+      this.alertService.showAlert("El correo ingresado ya existe.", "Error al registrar");
       return;
     }
   }
 
-  inicio() {
-    this.router.navigateByUrl("inicio-sesion");
+  irAInicio() {
+    this.navController.back();
   }
 }

@@ -1,37 +1,75 @@
-<ion-content [fullscreen]="true" scrollY="false">
-  <div class="banner gradiente">
-    <h1 class="f-bold">INGRESAR</h1>
-    <h3 class="f-light">
-      ¿Aun no tienes cuenta?
-      <span (click)="registro()" class="f-bold">Regístrate</span>
-    </h3>
-  </div>
-  <div id="contenedor">
+<ion-content [fullscreen]="true">
+  <div class="h-full flex flex-col justify-between">
     <div>
-      <h4 class="fs-bold">
-        CORREO ELECTRÓNICO
-      </h4>
-      <ion-item>
-        <ion-input [(ngModel)]="correo" placeholder="Ingresa tu correo" type="text"></ion-input>
-      </ion-item>
+      <div
+        class="text-center py-16 min-[400px]:py-20 px-8 min-[400px]:px-12 gradiente"
+      >
+        <h1 class="font-bold text-3xl mb-4 uppercase text-white">INGRESAR</h1>
+        <h3 class="text-lg text-white">
+          ¿Aun no tienes cuenta?
+          <span (click)="irARegistro()" class="font-bold cursor-pointer"
+            >Regístrate</span
+          >
+        </h3>
+      </div>
+      <div
+        class="m-0 rounded-none p-8 min-[400px]:p-8 min-[400px]:px-12 max-w-2xl mx-auto"
+      >
+        <div class="mb-6 lg:mb-16">
+          <label
+            for="email"
+            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
+            >CORREO ELECTRÓNICO:</label
+          >
+          <input
+            [(ngModel)]="correo"
+            type="email"
+            class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
+            placeholder="Ingresa tu correo"
+            required
+          />
+        </div>
 
-      <h4 class="fs-bold">
-        CONTRASEÑA:
-      </h4>
-      <ion-item>
-        <ion-input [(ngModel)]="contrasena" placeholder="Introduce tu contraseña" type="password"></ion-input>
-      </ion-item>
-      <p style="text-align: end; font-size: small;">
-          ¿Olvidaste tu contraseña?
-          <span (click)="recuperar()" class="fs-bold">Recupérala</span>
+        <div class="mb-6 lg:mb-16">
+          <label
+            for="password"
+            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
+            >CONTRASEÑA:</label
+          >
+          <input
+            [(ngModel)]="contrasena"
+            type="password"
+            class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
+            placeholder="Ingresa tu contraseña"
+            required
+          />
+        </div>
+
+        <div>
+          <label
+            for="ingresar"
+            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white invisible"
+            >INGRESAR:</label
+          >
+          <button
+            (click)="iniciar()"
+            expand="block"
+            size="large"
+            class="w-full h-14 uppercase focus:outline-none text-white bg-rose-400 hover:bg-rose-500 focus:ring-4 focus:ring-rose-500 font-bold rounded-3xl text-xl px-5 py-2.5 mr-2 mb-2 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600"
+          >
+            INGRESAR
+          </button>
+        </div>
+      </div>
+    </div>
+
+    <div class="pb-6 px-8 min-[400px]:px-12">
+      <p class="text-end text-[13px] tracking-wider">
+        ¿Olvidaste tu contraseña?
+        <span (click)="irARecuperar()" class="font-bold cursor-pointer"
+          >recupérala</span
+        >
       </p>
-
-      <ion-button (click)="iniciar()" expand="block" size="large" color="danger" class="f-bold">Ingresar</ion-button>
     </div>
   </div>
-
-  <!-- <h5 style="font-weight: lighter; text-align: center">
-    ¿Aun no tienes cuenta?
-    <span (click)="registro()" style="font-weight: bold">Registrate</span>
-  </h5> -->
 </ion-content>

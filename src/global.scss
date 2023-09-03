@@ -26,3 +26,17 @@
 @import "@ionic/angular/css/text-alignment.css";
 @import "@ionic/angular/css/text-transformation.css";
 @import "@ionic/angular/css/flex-utils.css";
+
+
+/* TailwindCSS */
+/* Es posible que vscode lo marque como un 'error' pero funciona correctamente*/
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+/* Clases Globales */
+.gradiente {
+    background: rgb(255,157,174);
+    background: linear-gradient(45deg, rgba(255,157,174,1) 10%, rgba(255,42,110,1) 100%);
+}

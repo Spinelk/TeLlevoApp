@@ -1,58 +1,111 @@
 <ion-content [fullscreen]="true">
-  <div
-    class="banner gradiente"
-  >
-    <h1 class="f-bold">CREA UNA NUEVA CUENTA</h1>
-    <h3 class="f-light">
-      ¿Ya te has registrado?
-      <span (click)="inicio()" class="f-bold">Ingresar</span>
-    </h3>
-  </div>
-  <div id="contenedor">
-    <div>
-      <h4 class="fs-bold">NOMBRE</h4>
-      <ion-item>
-        <ion-input [(ngModel)]="nombre" placeholder="Ingresa tu nombre"></ion-input>
-      </ion-item>
-
-      <h4 class="fs-bold">APELLIDO</h4>
-      <ion-item>
-        <ion-input [(ngModel)]="apellido" placeholder="Ingresa tu apellido"></ion-input>
-      </ion-item>
-
-      <h4 class="fs-bold">
-        CORREO ELECTRÓNICO
-      </h4>
-      <ion-item>
-        <ion-input [(ngModel)]="correo" placeholder="Ingresa tu correo"></ion-input>
-      </ion-item>
-
-      <h4 class="fs-bold">
-        CONTRASEÑA
-      </h4>
-      <ion-item>
-        <ion-input
-          [(ngModel)]="contrasena"
-          placeholder="Introduce tu contraseña"
-          type="password"
-        ></ion-input>
-      </ion-item>
-
-      <!-- <h4 style="font-size: smaller; font-weight: bold">
-        REPITE TU CONTRASEÑA:
-      </h4>
-      <ion-item style="padding-bottom: 16px">
-        <ion-input placeholder="contraseña" type="password"></ion-input>
-      </ion-item> -->
-
-      <ion-button
-        (click)="registrar()"
-        expand="block"
-        size="large"
-        color="danger"
-        style="font-weight: bold"
-        >Registrate</ion-button
+  <div class="h-full flex flex-col justify-between">
+    <div class="">
+      <div
+        class="text-center py-16 min-[400px]:py-20 px-8 min-[400px]:px-12 gradiente"
       >
+        <h1 class="font-bold text-3xl mb-4 uppercase text-white">REGISTRATE</h1>
+        <h3 class="text-lg text-white">
+          ¿Ya te has registrado?
+          <span (click)="irAInicio()" class="font-bold cursor-pointer"
+            >Ingresar</span
+          >
+        </h3>
+      </div>
+      <div
+        class="m-0 rounded-none p-8 min-[400px]:p-8 min-[400px]:px-12 max-w-2xl mx-auto"
+      >
+        <div class="mb-6 lg:mb-16">
+          <label
+            for="email"
+            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
+            >NOMBRE:</label
+          >
+          <input
+            [(ngModel)]="nombre"
+            type="email"
+            class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
+            placeholder="Ingresa tu correo"
+            required
+          />
+        </div>
+
+        <div class="mb-6 lg:mb-16">
+          <label
+            for="email"
+            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
+            >APELLIDO:</label
+          >
+          <input
+            [(ngModel)]="apellido"
+            type="email"
+            class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
+            placeholder="Ingresa tu correo"
+            required
+          />
+        </div>
+
+        <div class="mb-6 lg:mb-16">
+          <label
+            for="email"
+            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
+            >CORREO INSTITUCIONAL:</label
+          >
+          <input
+            [(ngModel)]="correo"
+            type="email"
+            class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
+            placeholder="Ingresa tu correo Duoc UC"
+            required
+          />
+        </div>
+
+        <div class="mb-6 lg:mb-16">
+          <label
+            for="password"
+            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
+            >CONTRASEÑA:</label
+          >
+          <input
+            [(ngModel)]="contrasena"
+            type="password"
+            class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
+            placeholder="Ingresa tu contraseña"
+            required
+          />
+        </div>
+
+        <div class="mb-6 lg:mb-16">
+          <label
+            for="password"
+            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
+            >VERIFICAR CONTRASEÑA:</label
+          >
+          <input
+            [(ngModel)]="contrasena2"
+            type="password"
+            class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
+            placeholder="Verifica tu contraseña"
+            required
+          />
+        </div>
+
+        <div>
+          <label
+            for="registrar"
+            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white invisible"
+            >INGRESAR:</label
+          >
+          <button
+            (click)="registrar()"
+            expand="block"
+            size="large"
+            class="w-full h-14 uppercase focus:outline-none text-white bg-rose-400 hover:bg-rose-500 focus:ring-4 focus:ring-rose-500 font-bold rounded-3xl text-xl px-5 py-2.5 mr-2 mb-2 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600"
+          >
+            REGISTRAR
+          </button>
+        </div>
+      </div>
     </div>
   </div>
 </ion-content>
