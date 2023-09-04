@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { Usuario } from 'src/app/models/usuario';
+import { AlertService } from 'src/app/services/global/alert.service';
 import { UsuariosService } from 'src/app/services/login/usuarios.service';
 
 @Component({
@@ -12,8 +14,11 @@ export class PrincipalPage implements OnInit {
   usuario: any;
 
   constructor(
+    private router: Router,
     private route: ActivatedRoute,
-    private usuarioService: UsuariosService
+    private usuarioService: UsuariosService,
+    private alertService: AlertService,
+    private navController: NavController
   ) { }
 
   ngOnInit() {
@@ -26,4 +31,12 @@ export class PrincipalPage implements OnInit {
     });
   }
 
+  irAInicio() {
+    this.router.navigateByUrl("inicio-sesion");
+  }
+
+  cerrarSesion() {
+    this.alertService.showAlert("Vuelve pronto.", "Sesión Finalizada");
+    this.irAInicio();
+  }
 }

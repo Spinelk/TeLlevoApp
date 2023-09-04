@@ -47,6 +47,8 @@ export class InicioSesionPage implements OnInit, OnDestroy {
     let usuario = this.usuarioService.getUsuarioPorCorreo(this.correo);
 
     if (this.correo == usuario?.correo && this.contrasena == usuario.contrasena) {
+      this.correo = "";
+      this.contrasena = "";
       this.router.navigate(['/principal', usuario.correo]);
       return;
     }
