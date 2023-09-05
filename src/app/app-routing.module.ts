@@ -22,9 +22,18 @@ const routes: Routes = [
   {
     path: 'principal/:correo',
     loadChildren: () => import('./pages/menu/principal/principal.module').then( m => m.PrincipalPageModule)
-  },  {
+  },
+  {
     path: 'recuperar',
     loadChildren: () => import('./pages/login/recuperar/recuperar.module').then( m => m.RecuperarPageModule)
+  },
+  {
+    path: 'solicitar',
+    loadChildren: () => import('./pages/menu/solicitar/solicitar.module').then( m => m.SolicitarPageModule)
+  },
+  {
+    path: 'conductor',
+    loadChildren: () => import('./pages/menu/conductor/conductor.module').then( m => m.ConductorPageModule)
   },
 
 ];

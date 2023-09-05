@@ -35,6 +35,14 @@ export class PrincipalPage implements OnInit {
     this.router.navigateByUrl("inicio-sesion");
   }
 
+  irAConductor() {
+    this.router.navigateByUrl("conductor");
+  }
+
+  irASolicitar () {
+    this.router.navigateByUrl("solicitar");
+  }
+
   cerrarSesion() {
     this.alertService.showAlert("Vuelve pronto.", "Sesión Finalizada");
     this.irAInicio();
