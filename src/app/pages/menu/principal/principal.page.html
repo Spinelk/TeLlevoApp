@@ -66,15 +66,15 @@
         </div>
         <div class="m-0 rounded-none p-8 min-[400px]:p-8 min-[400px]:px-12 max-w-2xl mx-auto">
           <button (click)="irASolicitar()" expand="block" size="large"
-            class="w-full h-18 focus:outline-none text-gray-600 bg-white hover:bg-white-500 focus:ring-4 focus:ring-white-500 rounded-3xl text-lg px-5 py-2.5 mr-2 mt-5 mb-2 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600">
+            class="w-full h-18 focus:outline-none text-gray-600 bg-white hover:bg-white-500 focus:ring-4 focus:ring-white-500 rounded-3xl text-lg px-5 py-2.5 mr-2 mt-5 mb-4 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600">
             Solicitar vehículo
           </button>
-          <button (click)="irAConductor()" expand="block" size="large"
-            class="w-full h-18 focus:outline-none text-gray-600 bg-white hover:bg-white-500 focus:ring-4 focus:ring-white-500 rounded-3xl text-lg px-5 py-2.5 mr-2 mb-2 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600">
+          <button *ngIf="tipo==2" (click)="irAVehiculo()" expand="block" size="large"
+            class="w-full h-18 focus:outline-none text-gray-600 bg-white hover:bg-white-500 focus:ring-4 focus:ring-white-500 rounded-3xl text-lg px-5 py-2.5 mr-2 mb-4 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600">
             Disponibilizar vehículo
           </button>
           <button expand="block" size="large"
-            class="w-full h-18 focus:outline-none text-gray-600 bg-white hover:bg-white-500 focus:ring-4 focus:ring-white-500 rounded-3xl text-lg px-5 py-2.5 mr-2 mb-2 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600">
+            class="w-full h-18 focus:outline-none text-gray-600 bg-white hover:bg-white-500 focus:ring-4 focus:ring-white-500 rounded-3xl text-lg px-5 py-2.5 mr-2 mb-4 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600">
             Ayuda en línea
           </button>
         </div>

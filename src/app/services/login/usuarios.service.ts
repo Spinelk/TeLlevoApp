@@ -12,14 +12,16 @@ export class UsuariosService {
       nombre: 'Juan',
       apellido: 'Perez',
       correo: 'ju.perez@duocuc.cl',
-      contrasena: '123'
+      contrasena: '123',
+      tipo: 1
     },
     {
       id: 2,
       nombre: 'Pedro',
       apellido: 'Picapiedra',
       correo: 'pe.picapiedra@duocuc.cl',
-      contrasena: '321'
+      contrasena: '321',
+      tipo: 1
     },
   ];
 

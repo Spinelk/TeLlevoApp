@@ -2,9 +2,9 @@
   <ion-toolbar>
     <ion-buttons slot="start">
       <ion-back-button></ion-back-button>
-    </ion-buttons>
+      </ion-buttons>
 
-    <ion-title>Recuperación</ion-title>
+      <ion-title>Recuperación</ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -15,10 +15,10 @@
         class="text-center py-16 min-[400px]:py-16 px-8 min-[400px]:px-12 gradiente"
       >
         <h1 class="font-bold text-2xl mb-4 uppercase text-white">
-          ¿HAS OLVIDADO TU CONTRASEÑA?
+          CÓDIGO DE RECUPERACIÓN
         </h1>
         <h3 class="text-lg text-white">
-          Te enviaremos un correo para que puedas recuperarla
+          Revisa el código que enviamos a tu correo
         </h3>
       </div>
       <div
@@ -26,15 +26,16 @@
       >
         <div class="mb-6 lg:mb-16">
           <label
-            for="email"
+            for="codigo"
             class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
-            >INGRESA TU CORREO INSTITUCIONAL:</label
+            >CÓDIGO:</label
           >
           <input
-            [(ngModel)]="correo"
-            type="email"
+          id="codigo"
+            [(ngModel)]="codigo"
+            type="text"
             class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
-            placeholder="Ingresa tu correo Duoc UC"
+            placeholder="Ingresa el código"
             required
           />
         </div>
@@ -46,7 +47,8 @@
             >ENVIAR:</label
           >
           <button
-            (click)="enviar()"
+          id="enviar"
+            (click)="enviarCod()"
             expand="block"
             size="large"
             class="w-full h-14 uppercase focus:outline-none text-white bg-rose-400 hover:bg-rose-500 focus:ring-4 focus:ring-rose-500 font-bold rounded-3xl text-xl px-5 py-2.5 mr-2 mb-2 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600"
