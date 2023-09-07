@@ -17,6 +17,17 @@ export class ConductoresService{
       licencia: 'Clase A',
       tipo: 2
     },
+    {
+      id: 2,
+      nombre: 'Guillermo',
+      apellido: 'Villacura',
+      correo: 'pgy4121-003d',
+      contrasena: 'pgy4121-003d',
+      rut: '111-1',
+      licencia: 'Clase A',
+      tipo: 2
+    },
+    
   ];
 
   getNuevoId() {

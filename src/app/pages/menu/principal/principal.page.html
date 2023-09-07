@@ -1,19 +1,4 @@
-<!-- <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-
-    <ion-title>Menu</ion-title>
-  </ion-toolbar>
-</ion-header> -->
-
 <ion-menu contentId="main-content">
-  <!-- <ion-header>
-    <ion-toolbar>
-      <ion-title>{{ usuario.nombre }} {{ usuario.apellido }}</ion-title>
-    </ion-toolbar>
-  </ion-header> -->
   <ion-content>
     <div class="h-screen w-full">
       <div class="text-center py-8 px-6 gradiente flex justify-between">
@@ -25,16 +10,26 @@
             Editar mi perfil >
           </h2>
         </div>
-        <ion-icon class="w-16 h-16" name="person-circle-outline" color="light"></ion-icon>
+        <ion-icon
+          class="w-16 h-16 text-white"
+          name="person-circle-outline"
+        ></ion-icon>
       </div>
 
       <div class="px-6">
         <div>
-          <label for="ingresar"
-            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white invisible">INGRESAR:</label>
+          <label
+            for="ingresar"
+            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white invisible"
+            >INGRESAR:</label
+          >
           <ion-menu-toggle>
-            <button (click)="cerrarSesion()" expand="block" size="large"
-              class="w-full h-14 uppercase focus:outline-none text-white bg-rose-400 hover:bg-rose-500 focus:ring-4 focus:ring-rose-500 font-bold rounded-3xl text-xl px-5 py-2.5 mr-2 mb-2 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600">
+            <button
+              (click)="cerrarSesion()"
+              expand="block"
+              size="large"
+              class="w-full h-14 uppercase focus:outline-none text-white bg-rose-400 hover:bg-rose-500 focus:ring-4 focus:ring-rose-500 font-bold rounded-3xl text-xl px-5 py-2.5 mr-2 mb-2 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600"
+            >
               Cerrar Sesión
             </button>
           </ion-menu-toggle>
@@ -45,36 +40,56 @@
 </ion-menu>
 
 <div class="ion-page" id="main-content">
-  <ion-header>
+  <ion-header [translucent]="true">
     <ion-toolbar>
       <ion-buttons slot="start">
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
+
       <ion-title>Menu</ion-title>
     </ion-toolbar>
   </ion-header>
+
   <ion-content [fullscreen]="true">
-    <div class="h-full flex flex-col justify-between bg-gray-100">
-      <div class="">
-        <div class="text-center py-16 min-[400px]:py-16 px-8 min-[400px]:px-12 gradiente">
-          <h1 class="font-bold text-5xl mb-4 uppercase text-white">
-            BIENVENID@
-          </h1>
-          <h3 class="text-3xl text-white">
-            {{ usuario.nombre }} {{ usuario.apellido }}
-          </h3>
-        </div>
-        <div class="m-0 rounded-none p-8 min-[400px]:p-8 min-[400px]:px-12 max-w-2xl mx-auto">
-          <button (click)="irASolicitar()" expand="block" size="large"
-            class="w-full h-18 focus:outline-none text-gray-600 bg-white hover:bg-white-500 focus:ring-4 focus:ring-white-500 rounded-3xl text-lg px-5 py-2.5 mr-2 mt-5 mb-4 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600">
+    <div class="h-full">
+      <div
+        class="text-center py-16 min-[400px]:py-16 px-8 min-[400px]:px-12 gradiente"
+      >
+        <h1 class="font-bold text-5xl mb-4 uppercase text-white">BIENVENID@</h1>
+        <h3 class="text-3xl text-white">
+          {{ usuario.nombre }} {{ usuario.apellido }}
+        </h3>
+      </div>
+      <div
+        class="m-0 rounded-none p-8 min-[400px]:p-8 min-[400px]:px-12 max-w-2xl mx-auto"
+      >
+        <div class="mb-6 lg:mb-16">
+          <button
+            (click)="irASolicitar()"
+            expand="block"
+            size="large"
+            class="w-full h-14 uppercase focus:outline-none text-white bg-rose-400 hover:bg-rose-500 focus:ring-4 focus:ring-rose-500 font-bold rounded-3xl text-xl px-5 py-2.5 mr-2 mb-2 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600"
+          >
             Solicitar vehículo
           </button>
-          <button *ngIf="tipo==2" (click)="irAVehiculo()" expand="block" size="large"
-            class="w-full h-18 focus:outline-none text-gray-600 bg-white hover:bg-white-500 focus:ring-4 focus:ring-white-500 rounded-3xl text-lg px-5 py-2.5 mr-2 mb-4 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600">
+        </div>
+        <div class="mb-6 lg:mb-16">
+          <button
+            (click)="irAVehiculo()"
+            expand="block"
+            size="large"
+            class="w-full h-14 uppercase focus:outline-none text-white bg-rose-400 hover:bg-rose-500 focus:ring-4 focus:ring-rose-500 font-bold rounded-3xl text-xl px-5 py-2.5 mr-2 mb-2 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600"
+          >
             Disponibilizar vehículo
           </button>
-          <button expand="block" size="large"
-            class="w-full h-18 focus:outline-none text-gray-600 bg-white hover:bg-white-500 focus:ring-4 focus:ring-white-500 rounded-3xl text-lg px-5 py-2.5 mr-2 mb-4 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600">
+        </div>
+        <div class="mb-6 lg:mb-16">
+          <button
+            disabled
+            expand="block"
+            size="large"
+            class="w-full h-14 uppercase focus:outline-none text-white bg-rose-400 hover:bg-rose-500 focus:ring-4 focus:ring-rose-500 font-bold rounded-3xl text-xl px-5 py-2.5 mr-2 mb-2 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600"
+          >
             Ayuda en línea
           </button>
         </div>

@@ -1,0 +1,79 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Confirmar</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="h-full flex flex-col justify-between">
+    <div class="">
+      <div
+        class="text-center py-16 min-[400px]:py-16 px-8 min-[400px]:px-12 gradiente"
+      >
+        <h1 class="font-bold text-5xl mb-4 uppercase text-white">CONFIRMAR</h1>
+        <h3 class="text-3xl text-white"></h3>
+      </div>
+      <div
+        class="m-0 rounded-none p-8 min-[400px]:p-8 min-[400px]:px-12 max-w-2xl mx-auto cursor-pointer"
+      >
+        <div class="mb-6 lg:mb-16">
+          <div class="max-w-sm border-0 rounded-lg shadow gradiente">
+            <div class="w-full h-48">
+              <ion-thumbnail slot="start" class="w-full h-full">
+                <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+              </ion-thumbnail>
+            </div>
+            <div class="p-5">
+              <h5
+                class="mb-7 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+              >
+                <ion-skeleton-text
+                  [animated]="true"
+                  style="width: 85%; height: 18px"
+                ></ion-skeleton-text>
+              </h5>
+              <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                <ion-skeleton-text
+                  [animated]="true"
+                  style="width: 65%"
+                ></ion-skeleton-text>
+              </p>
+              <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
+                <ion-skeleton-text
+                  [animated]="true"
+                  style="width: 70%"
+                ></ion-skeleton-text>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        <div class="mb-6 lg:mb-16">
+          <button
+            (click)="irAInicio()"
+            expand="block"
+            size="large"
+            class="w-full h-14 uppercase focus:outline-none text-white bg-rose-400 hover:bg-rose-500 focus:ring-4 focus:ring-rose-500 font-bold rounded-3xl text-xl px-5 py-2.5 mr-2 mb-2 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600"
+          >
+            Confirmar
+          </button>
+        </div>
+
+        <div class="mb-6 lg:mb-16">
+          <button
+            (click)="irASolicitar()"
+            expand="block"
+            size="large"
+            class="w-full h-14 uppercase focus:outline-none text-white bg-rose-400 hover:bg-rose-500 focus:ring-4 focus:ring-rose-500 font-bold rounded-3xl text-xl px-5 py-2.5 mr-2 mb-2 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600"
+          >
+            Cancelar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

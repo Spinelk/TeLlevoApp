@@ -21,7 +21,6 @@ export class PrincipalPage implements OnInit {
     private usuarioService: UsuariosService,
     private conductorService: ConductoresService,
     private alertService: AlertService,
-    private navController: NavController
   ) { }
 
   ngOnInit() {

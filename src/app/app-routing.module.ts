@@ -42,7 +42,11 @@ const routes: Routes = [
   {
     path: 'vehiculo/:correo',
     loadChildren: () => import('./pages/conductor/vehiculo/vehiculo.module').then( m => m.VehiculoPageModule)
+  },  {
+    path: 'confirmar',
+    loadChildren: () => import('./pages/menu/confirmar/confirmar.module').then( m => m.ConfirmarPageModule)
   },
+
 
 
 ];
