@@ -1,110 +1,127 @@
+
 <ion-content [fullscreen]="true">
   <div class="h-full flex flex-col justify-between">
     <div class="">
       <div
         class="text-center py-16 min-[400px]:py-20 px-8 min-[400px]:px-12 gradiente"
       >
-        <h1 class="font-bold text-3xl mb-4 uppercase text-white">REGISTRATE</h1>
+        <h1 class="font-bold text-3xl mb-4 uppercase text-white">REGISTRA TU VEHÍCULO</h1>
         <h3 class="text-lg text-white">
-          ¿Ya te has registrado?
-          <span (click)="irAInicio()" class="font-bold cursor-pointer"
-            >Ingresar</span
+          ¿Quieres continuar?
+          <span (click)="irAPrincipal()" class="font-bold cursor-pointer"
+            >Mejor en otro momento</span
           >
         </h3>
       </div>
       <div
         class="m-0 rounded-none p-8 min-[400px]:p-8 min-[400px]:px-12 max-w-2xl mx-auto"
       >
-        <!-- NOMBRE -->
+        <!-- PATENTE -->
         <div class="mb-6 lg:mb-16">
           <label
-            for="nombre"
+            for="patente"
             class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
-            >NOMBRE:</label
+            >PATENTE:</label
           >
           <input
-            id="nombre"
-            [(ngModel)]="nombre"
+            id="patente"
+            [(ngModel)]="patente"
             type="text"
             class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
-            placeholder="Ingresa tu nombre"
+            placeholder="Ingresa la patente de tu vehículo"
             required
           />
         </div>
-        <!-- APELLIDO -->
+        <!-- TIPOVEHÍCULO -->
         <div class="mb-6 lg:mb-16">
           <label
-            for="apellido"
+            for="tipoVehiculo"
             class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
-            >APELLIDO:</label
+            >TIPO VEHÍCULO:</label
           >
           <input
-            id="apellido"
-            [(ngModel)]="apellido"
+            id="tipoVehiculo"
+            [(ngModel)]="tipoVehiculo"
             type="text"
             class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
-            placeholder="Ingresa tu apellido"
+            placeholder="Ingresa el tipo de tu vehiculo (Automóvil, motocileta...)"
             required
           />
         </div>
-        <!-- CORREO -->
+        <!-- MARCA -->
         <div class="mb-6 lg:mb-16">
           <label
-            for="email"
+            for="marca"
             class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
-            >CORREO INSTITUCIONAL:</label
+            >MARCA:</label
           >
           <input
-            id="email"
-            [(ngModel)]="correo"
-            type="email"
+            id="marca"
+            [(ngModel)]="marca"
+            type="text"
             class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
-            placeholder="Ingresa tu correo Duoc UC"
+            placeholder="Ingresa la marca"
             required
           />
         </div>
-        <!-- PASSWORD -->
+        <!-- MODELO -->
         <div class="mb-6 lg:mb-16">
           <label
-            for="password"
+            for="modelo"
             class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
-            >CONTRASEÑA:</label
+            >MODELO :</label
           >
           <input
-            id="password"
-            [(ngModel)]="contrasena"
-            type="password"
+            id="modelo"
+            [(ngModel)]="modelo"
+            type="text"
             class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
-            placeholder="Ingresa tu contraseña"
+            placeholder="Ingresa el modelo"
             required
           />
         </div>
-        <!-- PASSWORD 2-->
+        <!-- COLOR -->
         <div class="mb-6 lg:mb-16">
           <label
-            for="password2"
+            for="color"
             class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
-            >VERIFICAR CONTRASEÑA:</label
+            >COLOR:</label
           >
           <input
-            id="password2"
-            [(ngModel)]="contrasena2"
-            type="password"
+            id="color"
+            [(ngModel)]="color"
+            type="text"
             class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
-            placeholder="Verifica tu contraseña"
+            placeholder="Ingresa el color del vehículo"
+            required
+          />
+        </div>
+        <!-- CANTIDAD ASIENTOS -->
+        <div class="mb-6 lg:mb-16">
+          <label
+            for="cantidadAsientos"
+            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
+            >CANTIDAD ASIENTOS:</label
+          >
+          <input
+            id="cantidadAsientos"
+            [(ngModel)]="cantidadAsientos"
+            type="number"
+            class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
+            placeholder="Ingresa la cantidad de asientos del vehículo"
             required
           />
         </div>
         <!-- BOTÓN REGISTRAR -->
         <div>
           <label
-            for="registrar"
+            for="registrarVehiculo"
             class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white invisible"
-            >INGRESAR:</label
+            ></label
           >
           <button
-            id="registrar"
-            (click)="registrar()"
+            id="registrarVehiculo"
+            (click)="registrarVehiculo()"
             expand="block"
             size="large"
             class="w-full h-14 uppercase focus:outline-none text-white bg-rose-400 hover:bg-rose-500 focus:ring-4 focus:ring-rose-500 font-bold rounded-3xl text-xl px-5 py-2.5 mr-2 mb-2 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600"
@@ -112,15 +129,6 @@
             REGISTRAR
           </button>
         </div>
-      </div>
-      <!-- LINK REGISTRAR CONDUCTOR-->
-      <div class="pb-6 px-8 min-[400px]:px-12">
-        <p class="text-end text-[13px] tracking-wider">
-          ¿Conduces?
-          <span (click)="irARegistroConductor()" class="font-bold cursor-pointer"
-            >Regístrate como conductor</span
-          >
-        </p>
       </div>
     </div>
   </div>

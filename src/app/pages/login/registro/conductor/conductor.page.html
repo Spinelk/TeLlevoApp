@@ -15,6 +15,22 @@
       <div
         class="m-0 rounded-none p-8 min-[400px]:p-8 min-[400px]:px-12 max-w-2xl mx-auto"
       >
+        <!-- RUT -->
+        <div class="mb-6 lg:mb-16">
+          <label
+            for="rut"
+            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
+            >RUT:</label
+          >
+          <input
+            id="rut"
+            [(ngModel)]="rut"
+            type="text"
+            class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
+            placeholder="Ingresa tu rut sin puntos ni guión"
+            required
+          />
+        </div>
         <!-- NOMBRE -->
         <div class="mb-6 lg:mb-16">
           <label
@@ -95,6 +111,22 @@
             required
           />
         </div>
+        <!-- LICENCIA -->
+        <div class="mb-6 lg:mb-16">
+          <label
+            for="licencia"
+            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
+            >TIPO DE LICENCIA:</label
+          >
+          <input
+            id="licencia"
+            [(ngModel)]="licencia"
+            type="text"
+            class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
+            placeholder="Ingresa la clase o tipo de tu licencia"
+            required
+          />
+        </div>
         <!-- BOTÓN REGISTRAR -->
         <div>
           <label
@@ -104,7 +136,7 @@
           >
           <button
             id="registrar"
-            (click)="registrar()"
+            (click)="registrarConductor()"
             expand="block"
             size="large"
             class="w-full h-14 uppercase focus:outline-none text-white bg-rose-400 hover:bg-rose-500 focus:ring-4 focus:ring-rose-500 font-bold rounded-3xl text-xl px-5 py-2.5 mr-2 mb-2 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600"
@@ -112,15 +144,6 @@
             REGISTRAR
           </button>
         </div>
-      </div>
-      <!-- LINK REGISTRAR CONDUCTOR-->
-      <div class="pb-6 px-8 min-[400px]:px-12">
-        <p class="text-end text-[13px] tracking-wider">
-          ¿Conduces?
-          <span (click)="irARegistroConductor()" class="font-bold cursor-pointer"
-            >Regístrate como conductor</span
-          >
-        </p>
       </div>
     </div>
   </div>

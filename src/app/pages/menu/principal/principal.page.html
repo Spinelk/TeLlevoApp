@@ -18,35 +18,23 @@
     <div class="h-screen w-full">
       <div class="text-center py-8 px-6 gradiente flex justify-between">
         <div class="flex justify-center flex-col">
-          <h1
-            class="font-black text-base uppercase text-white text-left"
-          >
+          <h1 class="font-black text-base uppercase text-white text-left">
             {{ usuario.nombre }} {{ usuario.apellido }}
           </h1>
           <h2 class="text-xs font-semibold text-white text-left">
             Editar mi perfil >
           </h2>
         </div>
-        <ion-icon
-          class="w-16 h-16"
-          name="person-circle-outline"
-          color="light"
-        ></ion-icon>
+        <ion-icon class="w-16 h-16" name="person-circle-outline" color="light"></ion-icon>
       </div>
+
       <div class="px-6">
         <div>
-          <label
-            for="ingresar"
-            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white invisible"
-            >INGRESAR:</label
-          >
+          <label for="ingresar"
+            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white invisible">INGRESAR:</label>
           <ion-menu-toggle>
-            <button
-              (click)="cerrarSesion()"
-              expand="block"
-              size="large"
-              class="w-full h-14 uppercase focus:outline-none text-white bg-rose-400 hover:bg-rose-500 focus:ring-4 focus:ring-rose-500 font-bold rounded-3xl text-xl px-5 py-2.5 mr-2 mb-2 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600"
-            >
+            <button (click)="cerrarSesion()" expand="block" size="large"
+              class="w-full h-14 uppercase focus:outline-none text-white bg-rose-400 hover:bg-rose-500 focus:ring-4 focus:ring-rose-500 font-bold rounded-3xl text-xl px-5 py-2.5 mr-2 mb-2 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600">
               Cerrar Sesión
             </button>
           </ion-menu-toggle>
@@ -66,11 +54,9 @@
     </ion-toolbar>
   </ion-header>
   <ion-content [fullscreen]="true">
-    <div class="h-full flex flex-col justify-between">
+    <div class="h-full flex flex-col justify-between bg-gray-100">
       <div class="">
-        <div
-          class="text-center py-16 min-[400px]:py-16 px-8 min-[400px]:px-12 gradiente"
-        >
+        <div class="text-center py-16 min-[400px]:py-16 px-8 min-[400px]:px-12 gradiente">
           <h1 class="font-bold text-5xl mb-4 uppercase text-white">
             BIENVENID@
           </h1>
@@ -78,9 +64,20 @@
             {{ usuario.nombre }} {{ usuario.apellido }}
           </h3>
         </div>
-        <div
-          class="m-0 rounded-none p-8 min-[400px]:p-8 min-[400px]:px-12 max-w-2xl mx-auto"
-        ></div>
+        <div class="m-0 rounded-none p-8 min-[400px]:p-8 min-[400px]:px-12 max-w-2xl mx-auto">
+          <button (click)="irASolicitar()" expand="block" size="large"
+            class="w-full h-18 focus:outline-none text-gray-600 bg-white hover:bg-white-500 focus:ring-4 focus:ring-white-500 rounded-3xl text-lg px-5 py-2.5 mr-2 mt-5 mb-4 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600">
+            Solicitar vehículo
+          </button>
+          <button *ngIf="tipo==2" (click)="irAVehiculo()" expand="block" size="large"
+            class="w-full h-18 focus:outline-none text-gray-600 bg-white hover:bg-white-500 focus:ring-4 focus:ring-white-500 rounded-3xl text-lg px-5 py-2.5 mr-2 mb-4 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600">
+            Disponibilizar vehículo
+          </button>
+          <button expand="block" size="large"
+            class="w-full h-18 focus:outline-none text-gray-600 bg-white hover:bg-white-500 focus:ring-4 focus:ring-white-500 rounded-3xl text-lg px-5 py-2.5 mr-2 mb-4 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600">
+            Ayuda en línea
+          </button>
+        </div>
       </div>
     </div>
   </ion-content>

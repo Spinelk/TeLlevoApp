@@ -1,29 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
+import { Conductor } from 'src/app/models/conductor';
 import { Usuario } from 'src/app/models/usuario';
 import { AlertService } from 'src/app/services/global/alert.service';
+import { ConductoresService } from 'src/app/services/login/conductores.service';
 import { UsuariosService } from 'src/app/services/login/usuarios.service';
 
-
 @Component({
-  selector: 'app-registro',
-  templateUrl: './registro.page.html',
-  styleUrls: ['./registro.page.scss'],
+  selector: 'app-conductor',
+  templateUrl: './conductor.page.html',
+  styleUrls: ['./conductor.page.scss'],
 })
-export class RegistroPage implements OnInit {
+export class ConductorPage implements OnInit {
 
   nombre: string = "";
   apellido: string = "";
   correo: string = "";
   contrasena: string = "";
   contrasena2: string = "";
-  tipo: number = 1;
-
+  rut: string = "";
+  licencia: string = "";
+  // tipo conductor
+  tipo = 2;
 
   constructor(
     private router: Router,
     private usuarioService: UsuariosService,
+    private conductoresService: ConductoresService,
     private alertService:AlertService,
     private navController: NavController
   ) { }
@@ -31,7 +35,15 @@ export class RegistroPage implements OnInit {
   ngOnInit() {
   }
 
-  registrar() {
+  irAInicio() {
+    this.router.navigateByUrl("inicio-sesion");
+  }
+
+  registrarConductor() {
+    if (this.rut == "") {
+      this.alertService.showAlert("Debe ingresar rut.", "Ingrese rut")
+      return;
+    }
     if (this.nombre == "") {
       this.alertService.showAlert("Debe ingresar un nombre.", "Ingrese un nombre");
       return;
@@ -52,38 +64,37 @@ export class RegistroPage implements OnInit {
       this.alertService.showAlert("Debe ingresar la contraseña nuevamente.", "Verifique la contraseña")
       return;
     }
+    if (this.licencia == "") {
+      this.alertService.showAlert("Debe ingresar un tipo de licencia", "Ingrese licencia")
+      return;
+    }
 
-    let nuevoUsuario: Usuario = {
-      id: this.usuarioService.getNuevoId(),
+    let nuevoConductor: Conductor = {
+      id: this.conductoresService.getNuevoId(),
       nombre: this.nombre,
       apellido: this.apellido,
       correo: this.correo,
       contrasena: this.contrasena,
+      rut: this.rut,
+      licencia: this.licencia,
       tipo: this.tipo
     };
 
-    // console.log("Nuevo Usuario");
-    // console.table(usuario);
-
-
     if (!this.usuarioService.getUsuarioPorCorreo(this.correo)) {
-      this.usuarioService.ingresarUsuario(nuevoUsuario);
+      if(!this.conductoresService.getConductorPorCorreo(this.correo)){
+        this.conductoresService.ingresarConductor(nuevoConductor);
 
-
-      this.alertService.showAlert("Usuario registrado con éxito.", "Registro exitoso");
-      this.irAInicio();
+        this.alertService.showAlert("Conductor registrado con éxito.", "Registro exitoso");
+        this.irAInicio();
+      }
+      else {
+        this.alertService.showAlert("El correo ingresado ya está registrado.", "Error al registrar");
+        return;
+      }
     }
     else {
-      this.alertService.showAlert("El correo ingresado ya existe.", "Error al registrar");
+      this.alertService.showAlert("El correo ingresado ya existe como usuario.", "Error al registrar");
       return;
     }
-  }
-
-  irAInicio() {
-    this.navController.back();
-  }
-
-  irARegistroConductor() {
-    this.router.navigateByUrl("conductor");
   }
 }
