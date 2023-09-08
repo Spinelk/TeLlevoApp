@@ -57,7 +57,7 @@ export class UsuariosService {
     return this.usuarios.find(usuario => usuario.id === id);
   }
 
-  ingresarUsuario(usuario: Usuario) {
+  registrarUsuario(usuario: Usuario) {
     this.usuarios.push(usuario);
   }
 

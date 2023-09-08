@@ -13,13 +13,16 @@ import { UsuariosService } from 'src/app/services/login/usuarios.service';
 })
 export class RegistroPage implements OnInit {
 
-  nombre: string = "";
-  apellido: string = "";
-  correo: string = "";
-  contrasena: string = "";
-  contrasena2: string = "";
-  esConductor: boolean = false;
+  nuevoUsuario: Usuario = {
+    id: 0,
+    nombre: "",
+    apellido: "",
+    correo: "",
+    contrasena: "",
+    esConductor: false
+  }
 
+  verificadorContrasena: string = "";
 
   constructor(
     private router: Router,
@@ -32,43 +35,36 @@ export class RegistroPage implements OnInit {
   }
 
   registrar() {
-    if (this.nombre == "") {
+    if (this.nuevoUsuario.nombre == "") {
       this.alertService.showAlert("Debe ingresar un nombre.", "Ingrese un nombre");
       return;
     }
-    if (this.apellido == "") {
+    if (this.nuevoUsuario.apellido == "") {
       this.alertService.showAlert("Debe ingresar un apellido.", "Ingrese un apellido")
       return;
     }
-    if (this.correo == "") {
+    if (this.nuevoUsuario.correo == "") {
       this.alertService.showAlert("Debe ingresar un correo.", "Ingrese un correo");
       return;
     }
-    if (this.contrasena == "") {
+    if (this.nuevoUsuario.contrasena == "") {
       this.alertService.showAlert("Debe ingresar una contraseña.", "Ingrese una contraseña")
       return;
     }
-    if (this.contrasena2 == "") {
+    if (this.verificadorContrasena == "") {
       this.alertService.showAlert("Debe ingresar la contraseña nuevamente.", "Verifique la contraseña")
       return;
     }
 
-    let nuevoUsuario: Usuario = {
-      id: this.usuarioService.getNuevoId(),
-      nombre: this.nombre,
-      apellido: this.apellido,
-      correo: this.correo,
-      contrasena: this.contrasena,
-      esConductor: this.esConductor
-    };
-
-    // console.log("Nuevo Usuario");
-    // console.table(usuario);
+    this.nuevoUsuario.id = this.usuarioService.getNuevoId();
 
 
-    if (!this.usuarioService.getUsuarioPorCorreo(this.correo)) {
-      this.usuarioService.ingresarUsuario(nuevoUsuario);
+    console.log("Nuevo Usuario");
+    console.table(this.nuevoUsuario);
 
+
+    if (!this.usuarioService.getUsuarioPorCorreo(this.nuevoUsuario.correo)) {
+      this.usuarioService.registrarUsuario(this.nuevoUsuario);
 
       this.alertService.showAlert("Usuario registrado con éxito.", "Registro exitoso");
       this.irAInicio();

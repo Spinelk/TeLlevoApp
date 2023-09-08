@@ -7,5 +7,5 @@ export interface Vehiculo{
   modelo: string,
   color: string,
   cantidadAsientos: number,
-  conductor: Usuario
+  conductor:  Usuario| null;
 }
