@@ -4,6 +4,7 @@ export interface Usuario{
     apellido:string;
     correo:string;
     contrasena:string;
-    tipo: number;
-
+    rut?:string;
+    licencia?:string;
+    esConductor: boolean;
 }

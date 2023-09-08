@@ -1,7 +1,6 @@
 import { Component, OnDestroy, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertService } from 'src/app/services/global/alert.service';
-import { ConductoresService } from 'src/app/services/login/conductores.service';
 import { UsuariosService } from 'src/app/services/login/usuarios.service';
 
 
@@ -18,7 +17,6 @@ export class InicioSesionPage implements OnInit, OnDestroy {
   constructor(
     private router: Router,
     private usuarioService: UsuariosService,
-    private conductorService: ConductoresService,
     private alertService: AlertService
   ) { }
 
@@ -51,17 +49,18 @@ export class InicioSesionPage implements OnInit, OnDestroy {
     if (this.correo == usuario?.correo && this.contrasena == usuario?.contrasena) {
       this.correo = "";
       this.contrasena = "";
-      this.router.navigate(['/principal', usuario.correo, usuario.tipo]);
+      this.router.navigate(['/principal', usuario.correo]);
       return;
-    } else {
-      let conductor = this.conductorService.getConductorPorCorreo(this.correo);
-      if (this.correo == conductor?.correo && this.contrasena == conductor?.contrasena){
-        this.correo = "";
-        this.contrasena = "";
-        this.router.navigate(['/principal', conductor?.correo, conductor.tipo,]);
-        return;
-      }
-    }
+    } 
+    // else {
+    //   let conductor = this.conductorService.getConductorPorCorreo(this.correo);
+    //   if (this.correo == conductor?.correo && this.contrasena == conductor?.contrasena){
+    //     this.correo = "";
+    //     this.contrasena = "";
+    //     this.router.navigate(['/principal', conductor?.correo]);
+    //     return;
+    //   }
+    // }
     // alert("Correo o contraseña incorrectos.");
     this.alertService.showAlert("El correo o la contraseña son invalidos.", "Credenciales invalidas");
   }

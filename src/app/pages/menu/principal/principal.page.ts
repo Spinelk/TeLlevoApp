@@ -1,11 +1,9 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
 import { Usuario } from 'src/app/models/usuario';
 import { AlertService } from 'src/app/services/global/alert.service';
-import { ConductoresService } from 'src/app/services/login/conductores.service';
 import { UsuariosService } from 'src/app/services/login/usuarios.service';
-import { IonCard , AnimationController} from '@ionic/angular';
+import { IonCard, AnimationController } from '@ionic/angular';
 import type { Animation } from '@ionic/angular';
 
 @Component({
@@ -24,7 +22,6 @@ export class PrincipalPage implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private usuarioService: UsuariosService,
-    private conductorService: ConductoresService,
     private alertService: AlertService,
     private animationCtrl: AnimationController
   ) { }
@@ -43,18 +40,13 @@ export class PrincipalPage implements OnInit {
   ngOnInit() {
     this.route.params.subscribe(params => {
       const correo = params['correo'];
-      const tipo = params['tipo'];
-      if (tipo == 1) {
-        this.usuario = this.usuarioService.getUsuarioPorCorreo(correo);
-      } else {
-        this.usuario = this.conductorService.getConductorPorCorreo(correo);
-      }
-      this.tipo = tipo;
+      this.usuario = this.usuarioService.getUsuarioPorCorreo(correo);
+      // this.tipo = tipo;
     });
-    
+
   }
 
-  play(){
+  play() {
     this.animation.play();
   }
 
@@ -63,17 +55,17 @@ export class PrincipalPage implements OnInit {
     this.router.navigateByUrl("inicio-sesion");
   }
 
-  irASolicitar () {
+  irASolicitar() {
     this.router.navigateByUrl("solicitar");
   }
 
-  irAVehiculo () {
+  irAVehiculo() {
     this.router.navigate(['/vehiculo', this.usuario.correo]);
   }
 
   async cerrarSesion() {
     let confirm = await this.alertService.showConfirm("¿Está seguro que desea cerrar sesión?", "Si", "No");
-    if (confirm) {  
+    if (confirm) {
 
       this.alertService.showAlert("Vuelve pronto.", "Sesión Finalizada");
       this.irAInicio();

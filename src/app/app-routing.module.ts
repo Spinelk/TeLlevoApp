@@ -20,7 +20,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/login/registro/registro.module').then( m => m.RegistroPageModule)
   },
   {
-    path: 'principal/:correo/:tipo',
+    path: 'principal/:correo',
     loadChildren: () => import('./pages/menu/principal/principal.module').then( m => m.PrincipalPageModule)
   },
   {
@@ -32,17 +32,14 @@ const routes: Routes = [
     loadChildren: () => import('./pages/menu/solicitar/solicitar.module').then( m => m.SolicitarPageModule)
   },
   {
-    path: 'conductor',
-    loadChildren: () => import('./pages/login/registro/conductor/conductor.module').then( m => m.ConductorPageModule)
-  },
-  {
     path: 'cambiar-clave',
     loadChildren: () => import('./pages/login/cambiar-clave/cambiar-clave.module').then( m => m.CambiarClavePageModule)
   },
   {
     path: 'vehiculo/:correo',
     loadChildren: () => import('./pages/conductor/vehiculo/vehiculo.module').then( m => m.VehiculoPageModule)
-  },  {
+  },
+  {
     path: 'confirmar',
     loadChildren: () => import('./pages/menu/confirmar/confirmar.module').then( m => m.ConfirmarPageModule)
   },

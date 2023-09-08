@@ -1,10 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
-import { Conductor } from 'src/app/models/conductor';
 import { Vehiculo } from 'src/app/models/vehiculo';
 import { AlertService } from 'src/app/services/global/alert.service';
-import { ConductoresService } from 'src/app/services/login/conductores.service';
+import { UsuariosService } from 'src/app/services/login/usuarios.service';
 
 @Component({
   selector: 'app-vehiculo',
@@ -25,17 +23,16 @@ export class VehiculoPage implements OnInit {
   constructor(
     private router: Router,
     private route: ActivatedRoute,
-    private conductorService: ConductoresService,
     private alertService:AlertService,
-    private navController: NavController
+    private usuarioService: UsuariosService,
   ) { }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      const conductorCorreo = params['correo'];
-      if (conductorCorreo) {
-        const correo = conductorCorreo;
-        this.conductor = this.conductorService.getConductorPorCorreo(correo);
+      const usuarioCorreo = params['correo'];
+      if (usuarioCorreo) {
+        const correo = usuarioCorreo;
+        this.conductor = this.usuarioService.getUsuarioPorCorreo(correo);
       }
     })
   }

@@ -13,7 +13,7 @@ export class UsuariosService {
       apellido: 'Perez',
       correo: 'ju.perez@duocuc.cl',
       contrasena: '123',
-      tipo: 1
+      esConductor: false
     },
     {
       id: 2,
@@ -21,7 +21,27 @@ export class UsuariosService {
       apellido: 'Picapiedra',
       correo: 'pe.picapiedra@duocuc.cl',
       contrasena: '321',
-      tipo: 1
+      esConductor: false
+    },
+    {
+      id: 3,
+      nombre: 'José',
+      apellido: 'Silva',
+      correo: 'jo.silva@duocuc.cl',
+      contrasena: '132',
+      rut: '111-1',
+      licencia: 'Clase A',
+      esConductor: true
+    },
+    {
+      id: 4,
+      nombre: 'Guillermo',
+      apellido: 'Villacura',
+      correo: 'pgy4121-003d',
+      contrasena: 'pgy4121-003d',
+      rut: '111-1',
+      licencia: 'Clase A',
+      esConductor: true
     },
   ];
 

@@ -18,7 +18,7 @@ export class RegistroPage implements OnInit {
   correo: string = "";
   contrasena: string = "";
   contrasena2: string = "";
-  tipo: number = 1;
+  esConductor: boolean = false;
 
 
   constructor(
@@ -59,7 +59,7 @@ export class RegistroPage implements OnInit {
       apellido: this.apellido,
       correo: this.correo,
       contrasena: this.contrasena,
-      tipo: this.tipo
+      esConductor: this.esConductor
     };
 
     // console.log("Nuevo Usuario");
@@ -81,9 +81,5 @@ export class RegistroPage implements OnInit {
 
   irAInicio() {
     this.navController.back();
-  }
-
-  irARegistroConductor() {
-    this.router.navigateByUrl("conductor");
   }
 }
