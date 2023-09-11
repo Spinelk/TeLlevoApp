@@ -7,11 +7,11 @@ import { UsuariosService } from 'src/app/services/login/usuarios.service';
 
 
 @Component({
-  selector: 'app-registro',
-  templateUrl: './registro.page.html',
-  styleUrls: ['./registro.page.scss'],
+  selector: 'app-registro-usuario',
+  templateUrl: './registro-usuario.page.html',
+  styleUrls: ['./registro-usuario.page.scss'],
 })
-export class RegistroPage implements OnInit {
+export class RegistroUsuarioPage implements OnInit {
 
   nuevoUsuario: Usuario = {
     id: 0,

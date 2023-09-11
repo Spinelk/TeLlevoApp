@@ -3,11 +3,11 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { UsuariosService } from 'src/app/services/login/usuarios.service';
 
 @Component({
-  selector: 'app-solicitar',
-  templateUrl: './solicitar.page.html',
-  styleUrls: ['./solicitar.page.scss'],
+  selector: 'app-solicitar-viaje',
+  templateUrl: './solicitar-viaje.page.html',
+  styleUrls: ['./solicitar-viaje.page.scss'],
 })
-export class SolicitarPage implements OnInit {
+export class SolicitarViajePage implements OnInit {
 
   constructor(
     private router: Router,
@@ -20,6 +20,6 @@ export class SolicitarPage implements OnInit {
 
   irAConfirmar() {
     console.log("Se presiono el boton de solicitar");
-    this.router.navigateByUrl("confirmar");
+    this.router.navigateByUrl("confirmar-solicitud");
   }
 }

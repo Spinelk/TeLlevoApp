@@ -12,10 +12,15 @@ import { UsuariosService } from 'src/app/services/login/usuarios.service';
 })
 export class VehiculoPage implements OnInit {
   // Se llena automaticamente durante la inicialización del componente.
-  correoUsuarioActual: string = "";
+  usuario: Usuario = {
+    id: 0,
+    nombre: '',
+    apellido: '',
+    correo: '',
+    contrasena: '',
+    esConductor: false
+  }
 
-
-  usuario: any;
   nuevoVehiculo: Vehiculo = {
     patente: "",
     tipoVehiculo: "",
@@ -35,17 +40,19 @@ export class VehiculoPage implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      this.correoUsuarioActual = params['correo'];
-      if (this.correoUsuarioActual) {
-        this.usuario = this.usuarioService.getUsuarioPorCorreo(this.correoUsuarioActual);
-
-        this.nuevoVehiculo.conductor = this.usuario;
+      this.usuario.correo = params['correo'];
+      const usuarioEncontrado = this.usuarioService.getUsuarioPorCorreo(this.usuario.correo);
+     
+      if (usuarioEncontrado !== undefined) {
+        this.usuario = usuarioEncontrado;
+      } else {
+        // Manejar el caso en el que no se encuentra ningún usuario con el correo especificado
       }
     })
   }
 
   irAPrincipal() {
-    this.router.navigate(['/principal', this.correoUsuarioActual]);
+    this.router.navigate(['/principal', this.usuario.correo]);
   }
 
   registrarVehiculo() {

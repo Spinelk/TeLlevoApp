@@ -5,11 +5,11 @@ import { AlertService } from 'src/app/services/global/alert.service';
 import { UsuariosService } from 'src/app/services/login/usuarios.service';
 
 @Component({
-  selector: 'app-recuperar',
-  templateUrl: './recuperar.page.html',
-  styleUrls: ['./recuperar.page.scss'],
+  selector: 'app-recuperar-contrasena',
+  templateUrl: './recuperar-contrasena.page.html',
+  styleUrls: ['./recuperar-contrasena.page.scss'],
 })
-export class RecuperarPage implements OnInit {
+export class RecuperarContrasenaPage implements OnInit {
 
   codigo: string = "";
 

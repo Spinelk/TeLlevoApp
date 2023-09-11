@@ -16,36 +16,33 @@ const routes: Routes = [
     loadChildren: () => import('./pages/login/inicio-sesion/inicio-sesion.module').then( m => m.InicioSesionPageModule)
   },
   {
-    path: 'registro',
-    loadChildren: () => import('./pages/login/registro/registro.module').then( m => m.RegistroPageModule)
+    path: 'registro-usuario',
+    loadChildren: () => import('./pages/login/registro-usuario/registro-usuario.module').then( m => m.RegistroUsuarioPageModule)
   },
   {
     path: 'principal/:correo',
     loadChildren: () => import('./pages/menu/principal/principal.module').then( m => m.PrincipalPageModule)
   },
   {
-    path: 'recuperar',
-    loadChildren: () => import('./pages/login/recuperar/recuperar.module').then( m => m.RecuperarPageModule)
+    path: 'recuperar-contrasena',
+    loadChildren: () => import('./pages/login/recuperar-contrasena/recuperar-contrasena.module').then( m => m.RecuperarContrasenaPageModule)
   },
   {
-    path: 'solicitar',
-    loadChildren: () => import('./pages/menu/solicitar/solicitar.module').then( m => m.SolicitarPageModule)
-  },
-  {
-    path: 'cambiar-clave',
-    loadChildren: () => import('./pages/login/cambiar-clave/cambiar-clave.module').then( m => m.CambiarClavePageModule)
+    path: 'solicitar-viaje',
+    loadChildren: () => import('./pages/viajero/solicitar-viaje/solicitar-viaje.module').then( m => m.SolicitarViajePageModule)
   },
   {
     path: 'vehiculo/:correo',
     loadChildren: () => import('./pages/conductor/vehiculo/vehiculo.module').then( m => m.VehiculoPageModule)
   },
   {
-    path: 'confirmar',
-    loadChildren: () => import('./pages/menu/confirmar/confirmar.module').then( m => m.ConfirmarPageModule)
+    path: 'confirmar-solicitud',
+    loadChildren: () => import('./pages/viajero/solicitar-viaje/confirmar-solicitud/confirmar.module').then( m => m.ConfirmarPageModule)
   },
-
-
-
+  {
+    path: 'cambiar-contrasena',
+    loadChildren: () => import('./pages/login/cambiar-contrasena/cambiar-contrasena.module').then( m => m.CambiarContrasenaPageModule)
+  },
 ];
 
 @NgModule({

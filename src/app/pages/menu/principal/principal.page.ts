@@ -3,7 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario';
 import { AlertService } from 'src/app/services/global/alert.service';
 import { UsuariosService } from 'src/app/services/login/usuarios.service';
-import { IonCard, AnimationController } from '@ionic/angular';
+import { IonCard, AnimationController, Platform } from '@ionic/angular';
 import type { Animation } from '@ionic/angular';
 
 @Component({
@@ -12,8 +12,18 @@ import type { Animation } from '@ionic/angular';
   styleUrls: ['./principal.page.scss'],
 })
 export class PrincipalPage implements OnInit {
-  usuario: any;
-  tipo: number = 0;
+  usuario: Usuario = {
+    id: 0,
+    nombre: '',
+    apellido: '',
+    correo: '',
+    contrasena: '',
+    esConductor: false
+  }
+
+  // Utilizado para agregar/elimar clases de CSS dependiendo de la plataforma
+  // Se actuliza en el constructor
+  plataformaNoEsIos: boolean = true;
 
   @ViewChild(IonCard, { read: ElementRef }) card!: ElementRef<HTMLIonCardElement>;
   private animation!: Animation;
@@ -23,8 +33,11 @@ export class PrincipalPage implements OnInit {
     private route: ActivatedRoute,
     private usuarioService: UsuariosService,
     private alertService: AlertService,
-    private animationCtrl: AnimationController
-  ) { }
+    private animationCtrl: AnimationController,
+    private platform: Platform
+  ) {
+    this.plataformaNoEsIos = !this.platform.is('ios');
+  }
 
   ngAfterViewInit() {
     this.animation = this.animationCtrl
@@ -39,11 +52,15 @@ export class PrincipalPage implements OnInit {
 
   ngOnInit() {
     this.route.params.subscribe(params => {
-      const correo = params['correo'];
-      this.usuario = this.usuarioService.getUsuarioPorCorreo(correo);
-      // this.tipo = tipo;
+      this.usuario.correo = params['correo'];
+      const usuarioEncontrado = this.usuarioService.getUsuarioPorCorreo(this.usuario.correo);
+      
+      if (usuarioEncontrado !== undefined) {
+        this.usuario = usuarioEncontrado;
+      } else {
+        // Manejar el caso en el que no se encuentra ningún usuario con el correo especificado
+      }
     });
-
   }
 
   play() {
@@ -56,7 +73,7 @@ export class PrincipalPage implements OnInit {
   }
 
   irASolicitar() {
-    this.router.navigateByUrl("solicitar");
+    this.router.navigateByUrl("solicitar-viaje");
   }
 
   irAVehiculo() {

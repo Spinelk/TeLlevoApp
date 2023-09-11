@@ -5,11 +5,11 @@ import { AlertService } from 'src/app/services/global/alert.service';
 import { UsuariosService } from 'src/app/services/login/usuarios.service';
 
 @Component({
-  selector: 'app-cambiar-clave',
-  templateUrl: './cambiar-clave.page.html',
-  styleUrls: ['./cambiar-clave.page.scss'],
+  selector: 'app-cambiar-contrasena',
+  templateUrl: './cambiar-contrasena.page.html',
+  styleUrls: ['./cambiar-contrasena.page.scss'],
 })
-export class CambiarClavePage implements OnInit {
+export class CambiarContrasenaPage implements OnInit {
 
   correo: string = "";
 
@@ -29,7 +29,7 @@ export class CambiarClavePage implements OnInit {
   }
 
   irARecuperar() {
-    this.router.navigateByUrl("recuperar");
+    this.router.navigateByUrl("recuperar-contrasena");
   }
 
   enviar() {
