@@ -21,40 +21,35 @@ export class PrincipalPage implements OnInit {
     esConductor: false
   }
 
-  // Utilizado para agregar/elimar clases de CSS dependiendo de la plataforma
-  // Se actuliza en el constructor
-  plataformaNoEsIos: boolean = true;
-
   @ViewChild(IonCard, { read: ElementRef }) card!: ElementRef<HTMLIonCardElement>;
-  private animation!: Animation;
+  private animacionNombre!: Animation;
 
   constructor(
     private router: Router,
     private route: ActivatedRoute,
     private usuarioService: UsuariosService,
-    private alertService: AlertService,
     private animationCtrl: AnimationController,
-    private platform: Platform
   ) {
-    this.plataformaNoEsIos = !this.platform.is('ios');
+
   }
 
   ngAfterViewInit() {
-    this.animation = this.animationCtrl
+    this.animacionNombre = this.animationCtrl
       .create()
       .addElement(document.querySelectorAll("#cardOne"))
-      .duration(2000)
+      .duration(7000)
       .iterations(Infinity)
-      .fromTo('transform', 'translateX(100px)', 'translateX(-100px)')
+      .fromTo('transform', 'translateX(350px)', 'translateX(-350px)')
       .fromTo('opacity', '1', '0.2');
-    this.play();
+
+    this.animacionNombre.play();
   }
 
   ngOnInit() {
     this.route.params.subscribe(params => {
       this.usuario.correo = params['correo'];
       const usuarioEncontrado = this.usuarioService.getUsuarioPorCorreo(this.usuario.correo);
-      
+
       if (usuarioEncontrado !== undefined) {
         this.usuario = usuarioEncontrado;
       } else {
@@ -63,29 +58,10 @@ export class PrincipalPage implements OnInit {
     });
   }
 
-  play() {
-    this.animation.play();
-  }
-
-
-  irAInicio() {
-    this.router.navigateByUrl("inicio-sesion");
-  }
-
   irASolicitar() {
-    this.router.navigateByUrl("solicitar-viaje");
+    this.router.navigate(['/solicitar-viaje']);
   }
-
   irAVehiculo() {
     this.router.navigate(['/vehiculo', this.usuario.correo]);
-  }
-
-  async cerrarSesion() {
-    let confirm = await this.alertService.showConfirm("¿Está seguro que desea cerrar sesión?", "Si", "No");
-    if (confirm) {
-
-      this.alertService.showAlert("Vuelve pronto.", "Sesión Finalizada");
-      this.irAInicio();
-    }
   }
 }
