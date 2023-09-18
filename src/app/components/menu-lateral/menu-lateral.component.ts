@@ -42,7 +42,6 @@ export class MenuLateralComponent implements OnInit {
     if (confirm) {
       // Cerrar sesion con firebase
       this.auth.signOut().then(() => {
-        console.log('Sesion cerrada');
         this.alertService.showAlert("Vuelve pronto.", "Sesión Finalizada");
         this.irAInicio();
       }
