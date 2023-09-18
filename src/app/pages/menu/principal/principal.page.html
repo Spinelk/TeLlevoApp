@@ -7,7 +7,7 @@
         <ion-menu-button></ion-menu-button>
       </ion-buttons>
 
-      <ion-title>Menu</ion-title>
+      <ion-title>Te Llevo</ion-title>
     </ion-toolbar>
   </ion-header>
 
@@ -17,35 +17,37 @@
         class="text-center py-16 min-[400px]:py-16 px-8 min-[400px]:px-12 gradiente"
       >
         <h1 class="font-bold text-5xl mb-4 uppercase text-white">BIENVENID@</h1>
-        <ion-card id="cardOne" class="bg-transparent border-0 shadow-none">
+        <!-- <ion-card id="cardOne" class="bg-transparent border-0 shadow-none">
           <h3 class="text-3xl text-white">
             {{ usuario.nombre }} {{ usuario.apellido }}
           </h3>
-        </ion-card>
+        </ion-card> -->
       </div>
       <div
         class="m-0 rounded-none p-8 min-[400px]:p-8 min-[400px]:px-12 max-w-2xl mx-auto"
       >
         <div class="mb-6 lg:mb-16">
-          <button
-            (click)="irASolicitar()"
-            expand="block"
-            size="large"
-            class="w-full h-14 uppercase focus:outline-none text-white bg-rose-400 hover:bg-rose-500 focus:ring-4 focus:ring-rose-500 font-bold rounded-3xl text-xl px-5 py-2.5 mr-2 mb-2 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600"
-          >
-            Solicitar vehículo
-          </button>
+          <a [routerLink]="['/solicitar-viaje']">
+            <button
+              expand="block"
+              size="large"
+              class="w-full h-14 uppercase focus:outline-none text-white bg-rose-400 hover:bg-rose-500 focus:ring-4 focus:ring-rose-500 font-bold rounded-3xl text-xl px-5 py-2.5 mr-2 mb-2 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600"
+            >
+              Solicitar vehículo
+            </button>
+          </a>
         </div>
         <div class="mb-6 lg:mb-16">
-          <button
-            *ngIf="usuario.esConductor==true"
-            (click)="irAVehiculo()"
-            expand="block"
-            size="large"
-            class="w-full h-14 uppercase focus:outline-none text-white bg-rose-400 hover:bg-rose-500 focus:ring-4 focus:ring-rose-500 font-bold rounded-3xl text-xl px-5 py-2.5 mr-2 mb-2 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600"
-          >
-            Disponibilizar vehículo
-          </button>
+          <a [routerLink]="['/registrar-vehiculo']">
+            <button
+              *ngIf="usuario.esConductor==true"
+              expand="block"
+              size="large"
+              class="w-full h-14 uppercase focus:outline-none text-white bg-rose-400 hover:bg-rose-500 focus:ring-4 focus:ring-rose-500 font-bold rounded-3xl text-xl px-5 py-2.5 mr-2 mb-2 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600"
+            >
+              Disponibilizar vehículo
+            </button>
+          </a>
         </div>
       </div>
     </div>

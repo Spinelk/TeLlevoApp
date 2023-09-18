@@ -8,11 +8,11 @@ import { NavController } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
-  selector: 'app-vehiculo',
-  templateUrl: './vehiculo.page.html',
-  styleUrls: ['./vehiculo.page.scss'],
+  selector: 'app-registrar-vehiculo',
+  templateUrl: './registrar-vehiculo.page.html',
+  styleUrls: ['./registrar-vehiculo.page.scss'],
 })
-export class VehiculoPage implements OnInit {
+export class RegistrarVehiculoPage implements OnInit {
   // Se llena automaticamente durante la inicialización del componente.
   usuario: Usuario = {
     id: 0,

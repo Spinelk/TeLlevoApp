@@ -1,6 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
-import { Platform } from '@ionic/angular';
+import { NavController, Platform } from '@ionic/angular';
 import { Usuario } from 'src/app/models/usuario';
 import { AlertService } from 'src/app/services/global/alert.service';
 
@@ -11,7 +12,7 @@ import { AlertService } from 'src/app/services/global/alert.service';
 })
 export class MenuLateralComponent implements OnInit {
 
-   @Input() usuario: Usuario = {
+  @Input() usuario: Usuario = {
     id: 0,
     nombre: '',
     apellido: '',
@@ -27,7 +28,9 @@ export class MenuLateralComponent implements OnInit {
   constructor(
     private alertService: AlertService,
     private router: Router,
-    private platform: Platform
+    private platform: Platform,
+    private navController: NavController,
+    private auth: AngularFireAuth,
   ) {
     this.plataformaNoEsIos = !this.platform.is('ios');
   }
@@ -37,17 +40,26 @@ export class MenuLateralComponent implements OnInit {
   async cerrarSesion() {
     let confirm = await this.alertService.showConfirm("¿Está seguro que desea cerrar sesión?", "Si", "No");
     if (confirm) {
-
-      this.alertService.showAlert("Vuelve pronto.", "Sesión Finalizada");
-      this.irAInicio();
+      // Cerrar sesion con firebase
+      this.auth.signOut().then(() => {
+        console.log('Sesion cerrada');
+        this.alertService.showAlert("Vuelve pronto.", "Sesión Finalizada");
+        this.irAInicio();
+      }
+      ).catch((error) => {
+        // Manejar el error
+        console.log('Error al cerrar sesion');
+      }
+      );
     }
   }
 
   irAInicio() {
+    this.navController.setDirection('back');
     this.router.navigate(['/inicio-sesion']);
   }
 
   irAVehiculo() {
-    this.router.navigate(['/vehiculo', this.usuario.correo]);
+    this.router.navigate(['/registrar-vehiculo']);
   }
 }

@@ -20,7 +20,7 @@ const routes: Routes = [
     loadChildren: () => import('./pages/login/registro-usuario/registro-usuario.module').then( m => m.RegistroUsuarioPageModule)
   },
   {
-    path: 'principal/:correo',
+    path: 'principal',
     loadChildren: () => import('./pages/menu/principal/principal.module').then( m => m.PrincipalPageModule)
   },
   {
@@ -32,10 +32,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/viajero/solicitar-viaje/solicitar-viaje.module').then( m => m.SolicitarViajePageModule)
   },
   {
-    path: 'vehiculo/:correo',
-    loadChildren: () => import('./pages/conductor/vehiculo/vehiculo.module').then( m => m.VehiculoPageModule)
-  },
-  {
     path: 'confirmar-solicitud',
     loadChildren: () => import('./pages/viajero/solicitar-viaje/confirmar-solicitud/confirmar.module').then( m => m.ConfirmarPageModule)
   },
@@ -43,6 +39,11 @@ const routes: Routes = [
     path: 'cambiar-contrasena',
     loadChildren: () => import('./pages/login/cambiar-contrasena/cambiar-contrasena.module').then( m => m.CambiarContrasenaPageModule)
   },
+  {
+    path: 'registrar-vehiculo',
+    loadChildren: () => import('./pages/conductor/registrar-vehiculo/registrar-vehiculo.module').then( m => m.RegistrarVehiculoPageModule)
+  },
+
 ];
 
 @NgModule({

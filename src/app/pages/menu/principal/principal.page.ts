@@ -1,10 +1,12 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario';
-import { AlertService } from 'src/app/services/global/alert.service';
 import { UsuariosService } from 'src/app/services/login/usuarios.service';
-import { IonCard, AnimationController, Platform } from '@ionic/angular';
+import { IonCard, AnimationController } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
 import type { Animation } from '@ionic/angular';
+
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-principal',
@@ -17,7 +19,6 @@ export class PrincipalPage implements OnInit {
     nombre: '',
     apellido: '',
     correo: '',
-    contrasena: '',
     esConductor: false
   }
 
@@ -26,42 +27,59 @@ export class PrincipalPage implements OnInit {
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
     private usuarioService: UsuariosService,
     private animationCtrl: AnimationController,
+    private navController: NavController,
+    private auth: AngularFireAuth,
   ) {
 
   }
 
-  ngAfterViewInit() {
-    this.animacionNombre = this.animationCtrl
-      .create()
-      .addElement(document.querySelectorAll("#cardOne"))
-      .duration(7000)
-      .iterations(Infinity)
-      .fromTo('transform', 'translateX(350px)', 'translateX(-350px)')
-      .fromTo('opacity', '1', '0.2');
-
-    this.animacionNombre.play();
-  }
-
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      this.usuario.correo = params['correo'];
-      const usuarioEncontrado = this.usuarioService.getUsuarioPorCorreo(this.usuario.correo);
-
-      if (usuarioEncontrado !== undefined) {
-        this.usuario = usuarioEncontrado;
-      } else {
-        // Manejar el caso en el que no se encuentra ningún usuario con el correo especificado
+    // 1) Redirigir a inicio de sesion si no hay usuario
+    this.auth.onAuthStateChanged(user => {
+      if (!user) {
+        this.navController.setDirection('back');
+        this.router.navigate(['/inicio-sesion']);
+        return;
       }
+      // 2) Obtener el usuario de firebase
+      if (user === null) {
+        // Manejar el caso cuando user es nulo
+        return;
+      }
+
+      // 3) Extraer el correo del usuario
+      if (user.email === null) {
+        // Manejar el caso cuando user.email es nulo
+        return;
+      }
+
+      // 4) Buscar el usuario en el arreglo de usuarios
+      const usuarioEncontrado = this.usuarioService.getUsuarioPorCorreo(user.email);
+      if (!usuarioEncontrado) {
+        // Manejar el caso cuando no se encuentra el usuario
+        console.log('No se encontro el array al usuario: ' + user.email);
+        return;
+      }
+
+      // 5) Asignar el usuario encontrado
+      this.usuario = usuarioEncontrado;
+
     });
   }
 
-  irASolicitar() {
-    this.router.navigate(['/solicitar-viaje']);
-  }
-  irAVehiculo() {
-    this.router.navigate(['/vehiculo', this.usuario.correo]);
-  }
+
+  // Eliminar o remplazar esta animación
+  // ngAfterViewInit() {
+  //   this.animacionNombre = this.animationCtrl
+  //     .create()
+  //     .addElement(document.querySelectorAll("#cardOne"))
+  //     .duration(7000)
+  //     .iterations(Infinity)
+  //     .fromTo('transform', 'translateX(350px)', 'translateX(-350px)')
+  //     .fromTo('opacity', '1', '0.2');
+
+  //   this.animacionNombre.play();
+  // }
 }
