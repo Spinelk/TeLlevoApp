@@ -23,54 +23,42 @@ export class InicioSesionPage implements OnInit {
   ) { }
 
   ngOnInit() {
+    // Redirigir a principal si ya hay un usuario logeado
+    this.auth.onAuthStateChanged(user => {
+      if (user) {
+        this.router.navigate(['/principal']);
+        return;
+      }
+    });
   }
 
 
-  // iniciar() {
-  //   if (this.correo == "") {
-  //     // alert("Debe ingresar un correo.");
-  //     this.alertService.showAlert("Debe ingresar un correo para iniciar sesión.", "Ingrese un correo");
-  //     return;
-  //   }
-  //   if (this.contrasena == "") {
-  //     // alert("Debe ingresar una contraseña.")
-  //     this.alertService.showAlert("Debe ingresar una contraseña para iniciar sesión.", "Ingrese una contraseña");
-  //     return;
-  //   }
-
-
-  //   let usuario = this.usuarioService.getUsuarioPorCorreo(this.correo);
-  //   if (this.correo == usuario?.correo && this.contrasena == usuario?.contrasena) {
-  //     this.correo = "";
-  //     this.contrasena = "";
-  //     this.router.navigate(['/principal', usuario.correo]);
-  //     return;
-  //   } 
-
-
-  //   this.alertService.showAlert("El correo o la contraseña son invalidos.", "Credenciales invalidas");
-  // }
-
   async iniciar() {
-    if (this.correo === "" || this.contrasena === "") {
-      this.alertService.showAlert("Debe ingresar un email y una contraseña.", "ERROR");
+    // Validar que el correo y la contraseña no esten vacios
+    if (this.correo == "") {
+      this.alertService.showAlert("Debe ingresar un correo para iniciar sesión.", "Ingrese un correo");
+      return;
+    }
+    if (this.contrasena == "") {
+      this.alertService.showAlert("Debe ingresar una contraseña para iniciar sesión.", "Ingrese una contraseña");
       return;
     }
 
+    // Iniciar sesion con firebase
     try {
       await this.auth.signInWithEmailAndPassword(this.correo, this.contrasena);
-      this.alertService.showAlert("Validando credenciales...", "");
-    } catch (error) {
-      this.alertService.showAlert("Usuario y contraseña no válidos.", "ERROR");
+
+      // Si el inicio de sesion fue exitoso, enviar a la pagina principal
+      setTimeout(() => {
+        this.alertService.showAlert("Bienvenido a TeLlevoAPP.", "");
+        this.router.navigate(['/principal']);
+      }, 1000);
     }
-
-    setTimeout(() => {
-
-      this.alertService.showAlert("Bienvenido a TeLlevoAPP.", "");
-      // this.router.navigateByUrl("menu");
-      this.router.navigate(['/principal', this.correo]);
-    }, 1000);
-
+    catch (error) {
+      // Manejar errores de firebase
+      this.alertService.showAlert("El correo o la contraseña son invalidos.", "Credenciales invalidas");
+      return;
+    }
   }
 
 

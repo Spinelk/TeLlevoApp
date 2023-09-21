@@ -12,7 +12,6 @@ export class UsuariosService {
       nombre: 'Juan',
       apellido: 'Perez',
       correo: 'ju.perez@duocuc.cl',
-      contrasena: '123',
       esConductor: false
     },
     {
@@ -20,7 +19,6 @@ export class UsuariosService {
       nombre: 'Pedro',
       apellido: 'Picapiedra',
       correo: 'pe.picapiedra@duocuc.cl',
-      contrasena: '321',
       esConductor: false
     },
     {
@@ -28,7 +26,6 @@ export class UsuariosService {
       nombre: 'José',
       apellido: 'Silva',
       correo: 'jo.silva@duocuc.cl',
-      contrasena: '132',
       rut: '111-1',
       licencia: 'Clase A',
       esConductor: true
@@ -38,8 +35,23 @@ export class UsuariosService {
       nombre: 'Guillermo',
       apellido: 'Villacura',
       correo: 'pgy4121-003d',
-      contrasena: 'pgy4121-003d',
       rut: '111-1',
+      licencia: 'Clase A',
+      esConductor: true
+    },
+    {
+      id: 5,
+      nombre: 'Fernanda',
+      apellido: 'Valenzuela',
+      correo: 'fe.valenzuela@duocuc.cl',
+      esConductor: false
+    },
+    {
+      id: 6,
+      nombre: 'Kevin',
+      apellido: 'Espinel',
+      correo: 'ke.espinel@duocuc.cl',
+      rut: '26.370.443-6',
       licencia: 'Clase A',
       esConductor: true
     },
@@ -51,10 +63,6 @@ export class UsuariosService {
 
   getUsuarioPorCorreo(correo: string) {
     return this.usuarios.find(usuario => usuario.correo === correo);
-  }
-
-  getUsuarioPorId(id: number) {
-    return this.usuarios.find(usuario => usuario.id === id);
   }
 
   registrarUsuario(usuario: Usuario) {

@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { UsuariosService } from 'src/app/services/login/usuarios.service';
 
+import { AngularFireAuth } from '@angular/fire/compat/auth';
+
 @Component({
   selector: 'app-solicitar-viaje',
   templateUrl: './solicitar-viaje.page.html',
@@ -13,13 +15,21 @@ export class SolicitarViajePage implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private usuarioService: UsuariosService,
-    ) { }
+    private auth: AngularFireAuth,
+
+  ) { }
 
   ngOnInit() {
+    // Redirigir a inicio de sesion si no hay usuario
+    this.auth.onAuthStateChanged(user => {
+      if (!user) {
+        this.router.navigate(['/inicio-sesion']);
+        return;
+      }
+    });
   }
 
   irAConfirmar() {
-    console.log("Se presiono el boton de solicitar");
-    this.router.navigateByUrl("confirmar-solicitud");
+    this.router.navigate(['/confirmar-solicitud']);
   }
 }
