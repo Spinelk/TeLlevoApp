@@ -1,9 +1,12 @@
-import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario';
-import { AlertService } from 'src/app/services/global/alert.service';
 import { UsuariosService } from 'src/app/services/login/usuarios.service';
+import { IonCard, AnimationController } from '@ionic/angular';
+import { NavController } from '@ionic/angular';
+import type { Animation } from '@ionic/angular';
+
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-principal',
@@ -11,32 +14,73 @@ import { UsuariosService } from 'src/app/services/login/usuarios.service';
   styleUrls: ['./principal.page.scss'],
 })
 export class PrincipalPage implements OnInit {
-  usuario: any;
+  usuario: Usuario = {
+    id: 0,
+    nombre: '',
+    apellido: '',
+    correo: '',
+    urlImagenPerfil: '',
+    esConductor: false
+  }
+
+  @ViewChild(IonCard, { read: ElementRef }) card!: ElementRef<HTMLIonCardElement>;
+  private animacionNombre!: Animation;
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
     private usuarioService: UsuariosService,
-    private alertService: AlertService,
-    private navController: NavController
-  ) { }
+    private animationCtrl: AnimationController,
+    private navController: NavController,
+    private auth: AngularFireAuth,
+  ) {
+
+  }
 
   ngOnInit() {
-    this.route.params.subscribe(params => {
-      const usuarioCorreo = params['correo'];
-      if (usuarioCorreo) {
-        const correo = usuarioCorreo;
-        this.usuario = this.usuarioService.getUsuarioPorCorreo(correo);
+    // 1) Redirigir a inicio de sesion si no hay usuario
+    this.auth.onAuthStateChanged(user => {
+      if (!user) {
+        this.navController.setDirection('back');
+        this.router.navigate(['/inicio-sesion']);
+        return;
       }
+      // 2) Obtener el usuario de firebase
+      if (user === null) {
+        // Manejar el caso cuando user es nulo
+        return;
+      }
+
+      // 3) Extraer el correo del usuario
+      if (user.email === null) {
+        // Manejar el caso cuando user.email es nulo
+        return;
+      }
+
+      // 4) Buscar el usuario en el arreglo de usuarios
+      const usuarioEncontrado = this.usuarioService.getUsuarioPorCorreo(user.email);
+      if (!usuarioEncontrado) {
+        // Manejar el caso cuando no se encuentra el usuario
+        console.log('No se encontro el array al usuario: ' + user.email);
+        return;
+      }
+
+      // 5) Asignar el usuario encontrado
+      this.usuario = usuarioEncontrado;
+
     });
   }
 
-  irAInicio() {
-    this.router.navigateByUrl("inicio-sesion");
-  }
 
-  cerrarSesion() {
-    this.alertService.showAlert("Vuelve pronto.", "Sesión Finalizada");
-    this.irAInicio();
-  }
+  // Eliminar o remplazar esta animación
+  // ngAfterViewInit() {
+  //   this.animacionNombre = this.animationCtrl
+  //     .create()
+  //     .addElement(document.querySelectorAll("#cardOne"))
+  //     .duration(7000)
+  //     .iterations(Infinity)
+  //     .fromTo('transform', 'translateX(350px)', 'translateX(-350px)')
+  //     .fromTo('opacity', '1', '0.2');
+
+  //   this.animacionNombre.play();
+  // }
 }

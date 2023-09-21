@@ -13,4 +13,32 @@ export class AlertService {
     await alert.present();
     return alert;
   }
+
+  async showConfirm(msg:string, btn_confirmar:string, btn_cancelar:string){
+    let promise = new Promise<boolean>( async (resolve)=>
+    {
+      var alert = await this.alertService.create(
+        {
+          cssClass:"ConfirmarCss",
+          message:msg, 
+          buttons:
+          [
+            {
+              text:btn_confirmar,
+              handler: () => {
+                resolve(true);
+              }
+            },
+            {
+              text:btn_cancelar,
+              handler: () => {
+                resolve(false);
+              }
+            }
+          ]
+        });
+        await alert.present();
+    });
+    return promise;
+  }
 }

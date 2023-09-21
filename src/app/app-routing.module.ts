@@ -16,15 +16,32 @@ const routes: Routes = [
     loadChildren: () => import('./pages/login/inicio-sesion/inicio-sesion.module').then( m => m.InicioSesionPageModule)
   },
   {
-    path: 'registro',
-    loadChildren: () => import('./pages/login/registro/registro.module').then( m => m.RegistroPageModule)
+    path: 'registro-usuario',
+    loadChildren: () => import('./pages/login/registro-usuario/registro-usuario.module').then( m => m.RegistroUsuarioPageModule)
   },
   {
-    path: 'principal/:correo',
+    path: 'principal',
     loadChildren: () => import('./pages/menu/principal/principal.module').then( m => m.PrincipalPageModule)
-  },  {
-    path: 'recuperar',
-    loadChildren: () => import('./pages/login/recuperar/recuperar.module').then( m => m.RecuperarPageModule)
+  },
+  {
+    path: 'recuperar-contrasena',
+    loadChildren: () => import('./pages/login/recuperar-contrasena/recuperar-contrasena.module').then( m => m.RecuperarContrasenaPageModule)
+  },
+  {
+    path: 'solicitar-viaje',
+    loadChildren: () => import('./pages/viajero/solicitar-viaje/solicitar-viaje.module').then( m => m.SolicitarViajePageModule)
+  },
+  {
+    path: 'confirmar-solicitud',
+    loadChildren: () => import('./pages/viajero/solicitar-viaje/confirmar-solicitud/confirmar.module').then( m => m.ConfirmarPageModule)
+  },
+  {
+    path: 'cambiar-contrasena',
+    loadChildren: () => import('./pages/login/cambiar-contrasena/cambiar-contrasena.module').then( m => m.CambiarContrasenaPageModule)
+  },
+  {
+    path: 'registrar-vehiculo',
+    loadChildren: () => import('./pages/conductor/registrar-vehiculo/registrar-vehiculo.module').then( m => m.RegistrarVehiculoPageModule)
   },
 
 ];

@@ -5,13 +5,13 @@ import { AlertService } from 'src/app/services/global/alert.service';
 import { UsuariosService } from 'src/app/services/login/usuarios.service';
 
 @Component({
-  selector: 'app-recuperar',
-  templateUrl: './recuperar.page.html',
-  styleUrls: ['./recuperar.page.scss'],
+  selector: 'app-recuperar-contrasena',
+  templateUrl: './recuperar-contrasena.page.html',
+  styleUrls: ['./recuperar-contrasena.page.scss'],
 })
-export class RecuperarPage implements OnInit {
+export class RecuperarContrasenaPage implements OnInit {
 
-  correo: string = "";
+  codigo: string = "";
 
   constructor(
     private router: Router,
@@ -25,16 +25,16 @@ export class RecuperarPage implements OnInit {
   }
 
   irAInicio() {
-    this.navController.back();
+    this.router.navigateByUrl("inicio-sesion");
   }
 
-  enviar() {
-    if (this.correo == "") {
-      this.alertService.showAlert("Debe ingresar un correo para la recuperación.", "Ingrese un correo");
+  enviarCod() {
+    if (this.codigo == "") {
+      this.alertService.showAlert("Debe ingresar el código enviado a su correo.", "Ingrese código");
       return;
     }
 
-    this.alertService.showAlert("Se ha enviado un correo a " + this.correo + " con las instrucciones para recuperar su contraseña.", "Correo enviado");
+    this.alertService.showAlert("Haga click en aceptar para crear una nueva contraseña", "Verificación realizada");
     this.irAInicio();
   }
 }

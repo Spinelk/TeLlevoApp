@@ -1,0 +1,62 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Recuperación</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="h-full flex flex-col justify-between">
+    <div class="">
+      <div
+        class="text-center py-16 min-[400px]:py-16 px-8 min-[400px]:px-12 gradiente"
+      >
+        <h1 class="font-bold text-2xl mb-4 uppercase text-white">
+          CÓDIGO DE RECUPERACIÓN
+        </h1>
+        <h3 class="text-lg text-white">
+          Revisa el código que enviamos a tu correo
+        </h3>
+      </div>
+      <div
+        class="m-0 rounded-none p-8 min-[400px]:p-8 min-[400px]:px-12 max-w-2xl mx-auto"
+      >
+        <div class="mb-6 lg:mb-16">
+          <label
+            for="codigo"
+            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
+            >CÓDIGO:</label
+          >
+          <input
+          id="codigo"
+            [(ngModel)]="codigo"
+            type="text"
+            class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
+            placeholder="Ingresa el código"
+            required
+          />
+        </div>
+
+        <div class="mb-6 lg:mb-16">
+          <label
+            for="enviar"
+            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white invisible"
+            >ENVIAR:</label
+          >
+          <button
+          id="enviar"
+            (click)="enviarCod()"
+            expand="block"
+            size="large"
+            class="w-full h-14 uppercase focus:outline-none text-white bg-rose-400 hover:bg-rose-500 focus:ring-4 focus:ring-rose-500 font-bold rounded-3xl text-xl px-5 py-2.5 mr-2 mb-2 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600"
+          >
+            ENVIAR
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

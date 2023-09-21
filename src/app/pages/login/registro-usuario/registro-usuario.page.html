@@ -1,50 +1,63 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Registro</ion-title>
+  </ion-toolbar>
+</ion-header>
+
 <ion-content [fullscreen]="true">
   <div class="h-full flex flex-col justify-between">
     <div class="">
       <div
         class="text-center py-16 min-[400px]:py-20 px-8 min-[400px]:px-12 gradiente"
       >
-        <h1 class="font-bold text-3xl mb-4 uppercase text-white">REGISTRATE</h1>
+        <h1 class="font-bold text-3xl mb-4 uppercase text-white">ÚNETE</h1>
         <h3 class="text-lg text-white">
-          ¿Ya te has registrado?
-          <span (click)="irAInicio()" class="font-bold cursor-pointer"
-            >Ingresar</span
+          Forma parte de la comunidad
+          <span class="font-bold cursor-pointer"
+            >Te Llevo</span
           >
         </h3>
       </div>
       <div
         class="m-0 rounded-none p-8 min-[400px]:p-8 min-[400px]:px-12 max-w-2xl mx-auto"
       >
+        <!-- NOMBRE -->
         <div class="mb-6 lg:mb-16">
           <label
-            for="email"
+            for="nombre"
             class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
             >NOMBRE:</label
           >
           <input
-            [(ngModel)]="nombre"
-            type="email"
+            id="nombre"
+            [(ngModel)]="nuevoUsuario.nombre"
+            type="text"
             class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
-            placeholder="Ingresa tu correo"
+            placeholder="Ingresa tu nombre"
             required
           />
         </div>
-
+        <!-- APELLIDO -->
         <div class="mb-6 lg:mb-16">
           <label
-            for="email"
+            for="apellido"
             class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
             >APELLIDO:</label
           >
           <input
-            [(ngModel)]="apellido"
-            type="email"
+            id="apellido"
+            [(ngModel)]="nuevoUsuario.apellido"
+            type="text"
             class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
-            placeholder="Ingresa tu correo"
+            placeholder="Ingresa tu apellido"
             required
           />
         </div>
-
+        <!-- CORREO -->
         <div class="mb-6 lg:mb-16">
           <label
             for="email"
@@ -52,14 +65,15 @@
             >CORREO INSTITUCIONAL:</label
           >
           <input
-            [(ngModel)]="correo"
+            id="email"
+            [(ngModel)]="nuevoUsuario.correo"
             type="email"
             class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
             placeholder="Ingresa tu correo Duoc UC"
             required
           />
         </div>
-
+        <!-- CONTRASEÑA -->
         <div class="mb-6 lg:mb-16">
           <label
             for="password"
@@ -67,29 +81,31 @@
             >CONTRASEÑA:</label
           >
           <input
-            [(ngModel)]="contrasena"
+            id="password"
+            [(ngModel)]="nuevoUsuario.contrasena"
             type="password"
             class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
             placeholder="Ingresa tu contraseña"
             required
           />
         </div>
-
+        <!-- CONTRASEÑA 2-->
         <div class="mb-6 lg:mb-16">
           <label
-            for="password"
+            for="password2"
             class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
             >VERIFICAR CONTRASEÑA:</label
           >
           <input
-            [(ngModel)]="contrasena2"
+            id="password2"
+            [(ngModel)]="verificadorContrasena"
             type="password"
             class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
             placeholder="Verifica tu contraseña"
             required
           />
         </div>
-
+        <!-- BOTÓN REGISTRAR -->
         <div>
           <label
             for="registrar"
@@ -97,6 +113,7 @@
             >INGRESAR:</label
           >
           <button
+            id="registrar"
             (click)="registrar()"
             expand="block"
             size="large"

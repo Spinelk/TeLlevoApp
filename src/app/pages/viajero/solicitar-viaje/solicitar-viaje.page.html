@@ -1,0 +1,248 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Solicitar Viaje</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="h-full flex flex-col justify-between">
+    <div class="">
+      <div
+        class="text-center py-16 min-[400px]:py-16 px-8 min-[400px]:px-12 gradiente"
+      >
+        <h1 class="font-bold text-5xl mb-4 uppercase text-white">SOLICITAR</h1>
+      </div>
+      <div
+        class="m-0 rounded-none p-8 min-[400px]:p-8 min-[400px]:px-12 max-w-2xl mx-auto cursor-pointer"
+      >
+        <div class="mb-6 lg:mb-16">
+          <label
+            for="destino"
+            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
+            >DESTINO:</label
+          >
+          <input
+            id="destino"
+            type="text"
+            class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
+            placeholder="Ingresa tu destino"
+            required
+          />
+        </div>
+
+        <div class="mb-6 lg:mb-16">
+          <hr />
+        </div>
+
+        <div class="mb-6 lg:mb-16" (click)="irAConfirmar()">
+          <div
+            class="grid grid-cols-[50px_1fr] gap-x-8 gradiente p-5 rounded-lg"
+          >
+            <div>
+              <ion-thumbnail slot="start">
+                <ion-skeleton-text
+                  [animated]="true"
+                  class="rounded-full"
+                ></ion-skeleton-text>
+              </ion-thumbnail>
+            </div>
+            <div class="w-full">
+              <h3>
+                <ion-skeleton-text
+                  [animated]="true"
+                  style="width: 80%"
+                ></ion-skeleton-text>
+              </h3>
+              <p>
+                <ion-skeleton-text
+                  [animated]="true"
+                  style="width: 60%"
+                ></ion-skeleton-text>
+              </p>
+              <p>
+                <ion-skeleton-text
+                  [animated]="true"
+                  style="width: 30%"
+                ></ion-skeleton-text>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="mb-6 lg:mb-16" (click)="irAConfirmar()">
+          <div
+            class="grid grid-cols-[50px_1fr] gap-x-8 gradiente p-5 rounded-lg"
+          >
+            <div>
+              <ion-thumbnail slot="start">
+                <ion-skeleton-text
+                  [animated]="true"
+                  class="rounded-full"
+                ></ion-skeleton-text>
+              </ion-thumbnail>
+            </div>
+            <div class="w-full">
+              <h3>
+                <ion-skeleton-text
+                  [animated]="true"
+                  style="width: 80%"
+                ></ion-skeleton-text>
+              </h3>
+              <p>
+                <ion-skeleton-text
+                  [animated]="true"
+                  style="width: 60%"
+                ></ion-skeleton-text>
+              </p>
+              <p>
+                <ion-skeleton-text
+                  [animated]="true"
+                  style="width: 30%"
+                ></ion-skeleton-text>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="mb-6 lg:mb-16" (click)="irAConfirmar()">
+          <div
+            class="grid grid-cols-[50px_1fr] gap-x-8 gradiente p-5 rounded-lg"
+          >
+            <div>
+              <ion-thumbnail slot="start">
+                <ion-skeleton-text
+                  [animated]="true"
+                  class="rounded-full"
+                ></ion-skeleton-text>
+              </ion-thumbnail>
+            </div>
+            <div class="w-full">
+              <h3>
+                <ion-skeleton-text
+                  [animated]="true"
+                  style="width: 80%"
+                ></ion-skeleton-text>
+              </h3>
+              <p>
+                <ion-skeleton-text
+                  [animated]="true"
+                  style="width: 60%"
+                ></ion-skeleton-text>
+              </p>
+              <p>
+                <ion-skeleton-text
+                  [animated]="true"
+                  style="width: 30%"
+                ></ion-skeleton-text>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="mb-6 lg:mb-16" (click)="irAConfirmar()">
+          <div
+            class="grid grid-cols-[50px_1fr] gap-x-8 gradiente p-5 rounded-lg"
+          >
+            <div>
+              <ion-thumbnail slot="start">
+                <ion-skeleton-text
+                  [animated]="true"
+                  class="rounded-full"
+                ></ion-skeleton-text>
+              </ion-thumbnail>
+            </div>
+            <div class="w-full">
+              <h3>
+                <ion-skeleton-text
+                  [animated]="true"
+                  style="width: 80%"
+                ></ion-skeleton-text>
+              </h3>
+              <p>
+                <ion-skeleton-text
+                  [animated]="true"
+                  style="width: 60%"
+                ></ion-skeleton-text>
+              </p>
+              <p>
+                <ion-skeleton-text
+                  [animated]="true"
+                  style="width: 30%"
+                ></ion-skeleton-text>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="mb-6 lg:mb-16" (click)="irAConfirmar()">
+          <div
+            class="grid grid-cols-[50px_1fr] gap-x-8 gradiente p-5 rounded-lg"
+          >
+            <div>
+              <ion-thumbnail slot="start">
+                <ion-skeleton-text
+                  [animated]="true"
+                  class="rounded-full"
+                ></ion-skeleton-text>
+              </ion-thumbnail>
+            </div>
+            <div class="w-full">
+              <h3>
+                <ion-skeleton-text
+                  [animated]="true"
+                  style="width: 80%"
+                ></ion-skeleton-text>
+              </h3>
+              <p>
+                <ion-skeleton-text
+                  [animated]="true"
+                  style="width: 60%"
+                ></ion-skeleton-text>
+              </p>
+              <p>
+                <ion-skeleton-text
+                  [animated]="true"
+                  style="width: 30%"
+                ></ion-skeleton-text>
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="mb-6 lg:mb-16" (click)="irAConfirmar()">
+          <div
+            class="grid grid-cols-[50px_1fr] gap-x-8 gradiente p-5 rounded-lg"
+          >
+            <div>
+              <ion-thumbnail slot="start">
+                <ion-skeleton-text
+                  [animated]="true"
+                  class="rounded-full"
+                ></ion-skeleton-text>
+              </ion-thumbnail>
+            </div>
+            <div class="w-full">
+              <h3>
+                <ion-skeleton-text
+                  [animated]="true"
+                  style="width: 80%"
+                ></ion-skeleton-text>
+              </h3>
+              <p>
+                <ion-skeleton-text
+                  [animated]="true"
+                  style="width: 60%"
+                ></ion-skeleton-text>
+              </p>
+              <p>
+                <ion-skeleton-text
+                  [animated]="true"
+                  style="width: 30%"
+                ></ion-skeleton-text>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>

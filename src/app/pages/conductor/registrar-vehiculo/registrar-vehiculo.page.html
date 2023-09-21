@@ -1,0 +1,138 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-buttons slot="start">
+      <ion-back-button></ion-back-button>
+    </ion-buttons>
+
+    <ion-title>Registrar vehiculo</ion-title>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <div class="h-full flex flex-col justify-between">
+    <div class="">
+      <div
+        class="text-center py-16 min-[400px]:py-16 px-8 min-[400px]:px-12 gradiente"
+      >
+        <h1 class="font-bold text-5xl mb-4 uppercase text-white truncate">REGISTRA TU VEHÍCULO</h1>
+      </div>
+      <div
+        class="m-0 rounded-none p-8 min-[400px]:p-8 min-[400px]:px-12 max-w-2xl mx-auto"
+      >
+        <!-- PATENTE -->
+        <div class="mb-6 lg:mb-16">
+          <label
+            for="patente"
+            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
+            >PATENTE:</label
+          >
+          <input
+            id="patente"
+            [(ngModel)]="nuevoVehiculo.patente"
+            type="text"
+            class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
+            placeholder="Ingresa la patente de tu vehículo"
+            required
+          />
+        </div>
+        <!-- TIPOVEHÍCULO -->
+        <div class="mb-6 lg:mb-16">
+          <label
+            for="tipoVehiculo"
+            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
+            >TIPO VEHÍCULO:</label
+          >
+          <input
+            id="tipoVehiculo"
+            [(ngModel)]="nuevoVehiculo.tipoVehiculo"
+            type="text"
+            class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
+            placeholder="Ingresa el tipo de tu vehiculo (Automóvil, motocileta...)"
+            required
+          />
+        </div>
+        <!-- MARCA -->
+        <div class="mb-6 lg:mb-16">
+          <label
+            for="marca"
+            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
+            >MARCA:</label
+          >
+          <input
+            id="marca"
+            [(ngModel)]="nuevoVehiculo.marca"
+            type="text"
+            class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
+            placeholder="Ingresa la marca"
+            required
+          />
+        </div>
+        <!-- MODELO -->
+        <div class="mb-6 lg:mb-16">
+          <label
+            for="modelo"
+            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
+            >MODELO :</label
+          >
+          <input
+            id="modelo"
+            [(ngModel)]="nuevoVehiculo.modelo"
+            type="text"
+            class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
+            placeholder="Ingresa el modelo"
+            required
+          />
+        </div>
+        <!-- COLOR -->
+        <div class="mb-6 lg:mb-16">
+          <label
+            for="color"
+            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
+            >COLOR:</label
+          >
+          <input
+            id="color"
+            [(ngModel)]="nuevoVehiculo.color"
+            type="text"
+            class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
+            placeholder="Ingresa el color del vehículo"
+            required
+          />
+        </div>
+        <!-- CANTIDAD ASIENTOS -->
+        <div class="mb-6 lg:mb-16">
+          <label
+            for="cantidadAsientos"
+            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
+            >CANTIDAD DE ASIENTOS:</label
+          >
+          <input
+            id="cantidadAsientos"
+            [(ngModel)]="nuevoVehiculo.cantidadAsientos"
+            type="number"
+            class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
+            placeholder="Ingresa la cantidad de asientos del vehículo"
+            required
+          />
+        </div>
+        <!-- BOTÓN REGISTRAR -->
+        <div>
+          <label
+            for="registrarVehiculo"
+            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white invisible"
+            ></label
+          >
+          <button
+            id="registrarVehiculo"
+            (click)="registrarVehiculo()"
+            expand="block"
+            size="large"
+            class="w-full h-14 uppercase focus:outline-none text-white bg-rose-400 hover:bg-rose-500 focus:ring-4 focus:ring-rose-500 font-bold rounded-3xl text-xl px-5 py-2.5 mr-2 mb-2 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600"
+          >
+            REGISTRAR
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</ion-content>
