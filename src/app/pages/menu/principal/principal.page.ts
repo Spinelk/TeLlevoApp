@@ -18,6 +18,7 @@ export class PrincipalPage implements OnInit {
     apellido: '',
     correo: '',
     contrasena: '',
+    urlImagenPerfil: '',
     esConductor: false
   }
 

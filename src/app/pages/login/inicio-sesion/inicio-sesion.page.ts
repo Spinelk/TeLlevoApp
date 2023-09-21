@@ -67,7 +67,7 @@ export class InicioSesionPage implements OnInit {
     setTimeout(() => {
 
       this.alertService.showAlert("Bienvenido a TeLlevoAPP.", "");
-      this.router.navigateByUrl("menu");
+      // this.router.navigateByUrl("menu");
       this.router.navigate(['/principal', this.correo]);
     }, 1000);
 

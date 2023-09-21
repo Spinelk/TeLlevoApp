@@ -17,6 +17,7 @@ export class MenuLateralComponent implements OnInit {
     apellido: '',
     correo: '',
     contrasena: '',
+    urlImagenPerfil: '',
     esConductor: false
   }
 

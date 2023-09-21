@@ -6,6 +6,7 @@ export interface Usuario{
     contrasena:string;
     esConductor: boolean;
 
+    urlImagenPerfil?: string;
     rut?:string;
     licencia?:string;
 }
