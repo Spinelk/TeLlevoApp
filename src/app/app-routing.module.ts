@@ -1,6 +1,9 @@
 import { NgModule } from '@angular/core';
 import { PreloadAllModules, RouterModule, Routes } from '@angular/router';
 
+import { AngularFireAuthGuard, redirectUnauthorizedTo } from '@angular/fire/compat/auth-guard'
+const redireccionarlogin = () => redirectUnauthorizedTo(['/inicio-sesion']);
+
 const routes: Routes = [
   {
     path: 'home',
@@ -8,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: '',
-    redirectTo: 'inicio-sesion',
+    redirectTo: 'principal',
     pathMatch: 'full'
   },
   {
@@ -21,6 +24,7 @@ const routes: Routes = [
   },
   {
     path: 'principal',
+    canActivate: [AngularFireAuthGuard], data:{authGuardPipe:redireccionarlogin},
     loadChildren: () => import('./pages/menu/principal/principal.module').then( m => m.PrincipalPageModule)
   },
   {
@@ -29,10 +33,12 @@ const routes: Routes = [
   },
   {
     path: 'solicitar-viaje',
+    canActivate: [AngularFireAuthGuard], data:{authGuardPipe:redireccionarlogin}, //PREGUNTAR! es necesario? o solo menú principal?
     loadChildren: () => import('./pages/viajero/solicitar-viaje/solicitar-viaje.module').then( m => m.SolicitarViajePageModule)
   },
   {
     path: 'confirmar-solicitud',
+    canActivate: [AngularFireAuthGuard], data:{authGuardPipe:redireccionarlogin}, //PREGUNTAR! es necesario? o solo menú principal?
     loadChildren: () => import('./pages/viajero/solicitar-viaje/confirmar-solicitud/confirmar.module').then( m => m.ConfirmarPageModule)
   },
   {
@@ -41,6 +47,7 @@ const routes: Routes = [
   },
   {
     path: 'registrar-vehiculo',
+    canActivate: [AngularFireAuthGuard], data:{authGuardPipe:redireccionarlogin}, //PREGUNTAR! es necesario? o solo menú principal?
     loadChildren: () => import('./pages/conductor/registrar-vehiculo/registrar-vehiculo.module').then( m => m.RegistrarVehiculoPageModule)
   },
 

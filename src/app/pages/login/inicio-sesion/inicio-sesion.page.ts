@@ -1,9 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AlertService } from 'src/app/services/global/alert.service';
-import { UsuariosService } from 'src/app/services/login/usuarios.service';
-
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import {getAuth} from 'firebase/auth';
+import { StorageService } from 'src/app/services/global/storage.service';
 
 @Component({
   selector: 'app-inicio-sesion',
@@ -15,15 +15,16 @@ export class InicioSesionPage implements OnInit {
   correo: string = "";
   contrasena: string = "";
 
+
   constructor(
     private router: Router,
-    private usuarioService: UsuariosService,
+    private storageService: StorageService,
     private alertService: AlertService,
     private auth: AngularFireAuth,
   ) { }
 
   ngOnInit() {
-    // Redirigir a principal si ya hay un usuario logeado
+    //Redirigir a principal si ya hay un usuario logeado
     this.auth.onAuthStateChanged(user => {
       if (user) {
         this.router.navigate(['/principal']);
@@ -31,6 +32,7 @@ export class InicioSesionPage implements OnInit {
       }
     });
   }
+
 
 
   async iniciar() {
@@ -47,19 +49,33 @@ export class InicioSesionPage implements OnInit {
     // Iniciar sesion con firebase
     try {
       await this.auth.signInWithEmailAndPassword(this.correo, this.contrasena);
-
       // Si el inicio de sesion fue exitoso, enviar a la pagina principal
-      setTimeout(() => {
-        this.alertService.showAlert("Bienvenido a TeLlevoAPP.", "");
-        this.router.navigate(['/principal']);
+      // const user = await this.getUserInfo();
+      // if (user != null){
+      //   console.log("Correo guardado: " + user.email);
+      //}
+      const loader = await this.alertService.showLoading("Cargando");
+      await loader.dismiss();
+      await this.alertService.showAlert("Bienvenido a TeLlevoAPP.", "");
+      setTimeout(async () => {
+        await this.router.navigate(['/principal']);
+
       }, 1000);
     }
-    catch (error) {
+    catch (error: any) {
       // Manejar errores de firebase
-      this.alertService.showAlert("El correo o la contraseña son invalidos.", "Credenciales invalidas");
+      if(error.code == 'auth/user-not-found'){
+        this.storageService.eliminarUsuario(this.correo);
+        await this.alertService.showAlert("La cuenta no existe. Tal vez ha sido eliminada","Error");
+        return;
+      }
+      this.alertService.showAlert(error.code, "Credenciales inválidas");
       return;
     }
+
   }
+
+
 
 
   irARegistro() {

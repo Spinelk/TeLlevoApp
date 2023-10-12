@@ -1,12 +1,16 @@
 import { Injectable } from '@angular/core';
-import { AlertController } from '@ionic/angular';
+import { AlertController, LoadingController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AlertService {
 
-  constructor(private alertService: AlertController) { }
+
+  constructor(
+    private alertService: AlertController,
+    private loadingController: LoadingController
+    ) { }
 
   async showAlert(msg:string, tittle:string){
     var alert = await this.alertService.create({cssClass:"alertClass", header:tittle, message:msg, buttons:["Aceptar"]});
@@ -20,7 +24,7 @@ export class AlertService {
       var alert = await this.alertService.create(
         {
           cssClass:"ConfirmarCss",
-          message:msg, 
+          message:msg,
           buttons:
           [
             {
@@ -41,4 +45,14 @@ export class AlertService {
     });
     return promise;
   }
+
+  async showLoading(msg:string){
+    var loader = await this.loadingController.create(
+      {
+        cssClass:"loaderCss",message:msg,translucent:true
+      });
+    await loader.present();
+    return loader;
+  }
+
 }

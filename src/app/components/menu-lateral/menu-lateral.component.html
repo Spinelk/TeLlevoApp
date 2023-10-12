@@ -11,17 +11,26 @@
             <span class="block">{{ usuario.apellido }}</span>
           </h1>
         </div>
-        <img
+        <!-- <img
          *ngIf="usuario.urlImagenPerfil !== ''"
-          src="{{ usuario.urlImagenPerfil }}"
+          src="assets/icon/usericon.png"
           alt="This is fine"
           class="w-16 h-16 rounded-full"
-        />
-        <ion-icon
-          *ngIf="usuario.urlImagenPerfil === ''"
+        /> -->
+        <img
+        *ngIf="usuario.urlImagenPerfil === ''"
+          src=""
           class="w-20 h-20 text-white"
           name="person-circle-outline"
-        ></ion-icon>
+          alt="This is fine"
+        />
+        <img
+        *ngIf="usuario.urlImagenPerfil !== ''"
+          src="assets/icon/usericon.jpg"
+          class="w-20 h-20 text-white"
+          name="person-circle-outline"
+          alt="This is fine"
+        />
       </div>
 
       <div class="py-5">

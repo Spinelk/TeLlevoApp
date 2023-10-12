@@ -20,12 +20,12 @@ export class ConfirmarPage implements OnInit {
 
   ngOnInit() {
     // Redirigir a inicio de sesion si no hay usuario
-    this.auth.onAuthStateChanged(user => {
-      if (!user) {
-        this.router.navigate(['/inicio-sesion']);
-        return;
-      }
-    });
+    // this.auth.onAuthStateChanged(user => {
+    //   if (!user) {
+    //     this.router.navigate(['/inicio-sesion']);
+    //     return;
+    //   }
+    // });
   }
 
   irASolicitar() {

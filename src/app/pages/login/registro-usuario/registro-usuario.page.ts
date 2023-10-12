@@ -3,9 +3,9 @@ import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { Usuario } from 'src/app/models/usuario';
 import { AlertService } from 'src/app/services/global/alert.service';
-import { UsuariosService } from 'src/app/services/login/usuarios.service';
 
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { StorageService } from 'src/app/services/global/storage.service';
 
 @Component({
   selector: 'app-registro-usuario',
@@ -27,19 +27,21 @@ export class RegistroUsuarioPage implements OnInit {
 
   constructor(
     private router: Router,
-    private usuarioService: UsuariosService,
     private alertService: AlertService,
     private navController: NavController,
     private auth: AngularFireAuth,
+    private storageService: StorageService
   ) { }
 
   ngOnInit() {
   }
 
-
+  async viewUser(){
+    console.log("USUARIOS REGISTRADOS",await this.storageService.obtenerUsuarios());
+  }
 
   async registrar() {
-    // Validar que los campos no esten vacios
+      // Validar que los campos no esten vacios
     if (this.nuevoUsuario.nombre == "") {
       this.alertService.showAlert("Debe ingresar un nombre.", "Ingrese un nombre");
       return;
@@ -71,16 +73,23 @@ export class RegistroUsuarioPage implements OnInit {
 
     // POR ALGUN MOTIVO TE REDIRECCIONA A LA PAGINA PRINCIPAL SIN REGISTRARTE EN EL ARRAY DE USUARIOS PERO SI EN FIREBASE
     // Validar que el correo no exista en el array de usuarios
-    if (!this.usuarioService.getUsuarioPorCorreo(this.nuevoUsuario.correo)) {
+    const usuario = await this.storageService.obtenerUsuarioPorCorreo(this.nuevoUsuario.correo);
+    if (!usuario) {
       // Registrar usuario en firebase
       try {
-        await this.auth.createUserWithEmailAndPassword(this.nuevoUsuario.correo, this.nuevoUsuario.contrasena);
+        var user =
+        [
+          {
+            id: this.nuevoUsuario.id,
+            nombre: this.nuevoUsuario.nombre,
+            apellido: this.nuevoUsuario.apellido,
+            correo: this.nuevoUsuario.correo,
+            esConductor: this.nuevoUsuario.esConductor
+          }
+        ]
 
-        // Si el registro de firebase fue exitoso, registrar usuario en el array de usuarios
-        this.nuevoUsuario.id = this.usuarioService.getNuevoId();
-        console.log("Nuevo Usuario");
-        console.table(this.nuevoUsuario);
-        this.usuarioService.registrarUsuario(this.nuevoUsuario);
+        await this.auth.createUserWithEmailAndPassword(this.nuevoUsuario.correo, this.nuevoUsuario.contrasena);
+        this.storageService.agregarUsuario(user);
         //////////////////////////////////////////////////////////////
       }
       catch (error) {
@@ -95,10 +104,11 @@ export class RegistroUsuarioPage implements OnInit {
         this.router.navigate(['/principal']);
       }, 5000);
     }
-    else {
-      this.alertService.showAlert("El correo ingresado ya existe.", "Error al registrar");
-      return;
-    }
+    // else {
+    //   this.alertService.showAlert("El correo ingresado ya existe.", "Error al registrar");
+    //   return;
+    // }
+
   }
 
   irAInicio() {

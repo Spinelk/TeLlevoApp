@@ -5,6 +5,8 @@ import { NavController, Platform } from '@ionic/angular';
 import { Usuario } from 'src/app/models/usuario';
 import { AlertService } from 'src/app/services/global/alert.service';
 
+import { StorageService } from 'src/app/services/global/storage.service';
+
 @Component({
   selector: 'app-menu-lateral',
   templateUrl: './menu-lateral.component.html',
@@ -12,15 +14,13 @@ import { AlertService } from 'src/app/services/global/alert.service';
 })
 export class MenuLateralComponent implements OnInit {
 
-  @Input() usuario: Usuario = {
-    id: 0,
-    nombre: '',
-    apellido: '',
-    correo: '',
-    contrasena: '',
-    urlImagenPerfil: '',
+  @Input() usuario:Usuario = {
+    id:0,
+    nombre:"",
+    apellido:"",
+    correo:"",
     esConductor: false
-  }
+  };
 
   // Utilizado para agregar/elimar clases de CSS dependiendo de la plataforma
   // Se actuliza en el constructor
@@ -32,17 +32,29 @@ export class MenuLateralComponent implements OnInit {
     private platform: Platform,
     private navController: NavController,
     private auth: AngularFireAuth,
-  ) {
+    private storageService: StorageService
+    ) {
     this.plataformaNoEsIos = !this.platform.is('ios');
   }
 
-  ngOnInit() { }
+  ngOnInit() {
+    this.cargar();
+  }
+
+  async cargar(){
+    const usuario = await this.storageService.cargarUsuario();
+    if (usuario != null) {
+      this.usuario = usuario;
+    }
+  }
+
 
   async cerrarSesion() {
     let confirm = await this.alertService.showConfirm("¿Está seguro que desea cerrar sesión?", "Si", "No");
     if (confirm) {
       // Cerrar sesion con firebase
       this.auth.signOut().then(() => {
+        localStorage.removeItem("correoUsuario");
         this.alertService.showAlert("Vuelve pronto.", "Sesión Finalizada");
         this.irAInicio();
       }
@@ -53,6 +65,8 @@ export class MenuLateralComponent implements OnInit {
       );
     }
   }
+
+
 
   irAInicio() {
     this.navController.setDirection('back');

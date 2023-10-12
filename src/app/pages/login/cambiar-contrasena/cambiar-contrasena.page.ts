@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { AlertService } from 'src/app/services/global/alert.service';
-import { UsuariosService } from 'src/app/services/login/usuarios.service';
+import { StorageService } from 'src/app/services/global/storage.service';
 
 @Component({
   selector: 'app-cambiar-contrasena',
@@ -15,7 +15,7 @@ export class CambiarContrasenaPage implements OnInit {
 
   constructor(
     private router: Router,
-    private usuarioService: UsuariosService,
+    private storageService: StorageService,
     private alertService: AlertService,
     private navController: NavController
   ) { }
@@ -32,12 +32,13 @@ export class CambiarContrasenaPage implements OnInit {
     this.router.navigateByUrl("recuperar-contrasena");
   }
 
-  enviar() {
+  async enviar() {
     if (this.correo == "") {
       this.alertService.showAlert("Debe ingresar un correo para la recuperación.", "Ingrese un correo");
       return;
     } else {
-      if (this.usuarioService.getUsuarioPorCorreo(this.correo)) {
+      // Cambiar por validación de firebase
+      if (await this.storageService.obtenerUsuarioPorCorreo(this.correo)) {
       this.alertService.showAlert("Se ha enviado un correo a " + this.correo + " con las instrucciones para recuperar su contraseña.", "Correo enviado");
       this.irARecuperar();
       }

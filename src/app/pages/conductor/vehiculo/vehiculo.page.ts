@@ -3,7 +3,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario';
 import { Vehiculo } from 'src/app/models/vehiculo';
 import { AlertService } from 'src/app/services/global/alert.service';
-import { UsuariosService } from 'src/app/services/login/usuarios.service';
 import { NavController } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 
@@ -37,19 +36,18 @@ export class VehiculoPage implements OnInit {
     private router: Router,
     private route: ActivatedRoute,
     private alertService: AlertService,
-    private usuarioService: UsuariosService,
     private navController: NavController,
     private auth: AngularFireAuth,
   ) { }
 
   ngOnInit() {
     // Redirigir a inicio de sesion si no hay usuario
-    this.auth.onAuthStateChanged(user => {
-      if (!user) {
-        this.router.navigate(['/inicio-sesion']);
-        return;
-      }
-    });
+    // this.auth.onAuthStateChanged(user => {
+    //   if (!user) {
+    //     this.router.navigate(['/inicio-sesion']);
+    //     return;
+    //   }
+    // });
   }
 
   irAPrincipal() {
