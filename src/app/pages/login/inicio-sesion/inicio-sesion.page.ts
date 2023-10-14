@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { AlertService } from 'src/app/services/global/alert.service';
+import { HelperService } from 'src/app/services/global/helper.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import {getAuth} from 'firebase/auth';
 import { StorageService } from 'src/app/services/global/storage.service';
@@ -19,7 +19,7 @@ export class InicioSesionPage implements OnInit {
   constructor(
     private router: Router,
     private storageService: StorageService,
-    private alertService: AlertService,
+    private alertService: HelperService,
     private auth: AngularFireAuth,
   ) { }
 
@@ -50,10 +50,7 @@ export class InicioSesionPage implements OnInit {
     try {
       await this.auth.signInWithEmailAndPassword(this.correo, this.contrasena);
       // Si el inicio de sesion fue exitoso, enviar a la pagina principal
-      // const user = await this.getUserInfo();
-      // if (user != null){
-      //   console.log("Correo guardado: " + user.email);
-      //}
+      localStorage.setItem('correoUsuario', this.correo);
       const loader = await this.alertService.showLoading("Cargando");
       await loader.dismiss();
       await this.alertService.showAlert("Bienvenido a TeLlevoAPP.", "");

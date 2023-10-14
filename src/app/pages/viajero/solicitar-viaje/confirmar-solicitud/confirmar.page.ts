@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
-import { AlertService } from 'src/app/services/global/alert.service';
+import { HelperService } from 'src/app/services/global/helper.service';
 
 @Component({
   selector: 'app-confirmar',
@@ -14,7 +14,7 @@ export class ConfirmarPage implements OnInit {
   constructor(
     private router: Router,
     private navController: NavController,
-    private alertService: AlertService,
+    private alertService: HelperService,
     private auth: AngularFireAuth,
   ) { }
 

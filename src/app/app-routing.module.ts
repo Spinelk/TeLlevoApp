@@ -49,7 +49,15 @@ const routes: Routes = [
     path: 'registrar-vehiculo',
     canActivate: [AngularFireAuthGuard], data:{authGuardPipe:redireccionarlogin}, //PREGUNTAR! es necesario? o solo menú principal?
     loadChildren: () => import('./pages/conductor/registrar-vehiculo/registrar-vehiculo.module').then( m => m.RegistrarVehiculoPageModule)
+  },  {
+    path: 'registrar-conductor',
+    loadChildren: () => import('./pages/conductor/registrar-conductor/registrar-conductor.module').then( m => m.RegistrarConductorPageModule)
   },
+  {
+    path: 'perfil',
+    loadChildren: () => import('./pages/menu/perfil/perfil.module').then( m => m.PerfilPageModule)
+  },
+
 
 ];
 

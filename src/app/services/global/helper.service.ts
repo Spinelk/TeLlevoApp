@@ -1,15 +1,16 @@
 import { Injectable } from '@angular/core';
-import { AlertController, LoadingController } from '@ionic/angular';
+import { AlertController, LoadingController, ToastController } from '@ionic/angular';
 
 @Injectable({
   providedIn: 'root'
 })
-export class AlertService {
+export class HelperService {
 
 
   constructor(
     private alertService: AlertController,
-    private loadingController: LoadingController
+    private loadingController: LoadingController,
+    private toastController: ToastController
     ) { }
 
   async showAlert(msg:string, tittle:string){
@@ -55,4 +56,16 @@ export class AlertService {
     return loader;
   }
 
+  async showToast(msg:string, duracion:number = 3000){
+    var toast = await this.toastController.create(
+    {
+      cssClass:"toastCss",
+      position:'bottom',
+      color:'dark',
+      message:msg,
+      duration:duracion
+    })
+    await toast.present();
+    return toast;
+  }
 }

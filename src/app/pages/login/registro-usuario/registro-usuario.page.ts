@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
 import { Usuario } from 'src/app/models/usuario';
-import { AlertService } from 'src/app/services/global/alert.service';
+import { HelperService } from 'src/app/services/global/helper.service';
 
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { StorageService } from 'src/app/services/global/storage.service';
@@ -27,7 +27,7 @@ export class RegistroUsuarioPage implements OnInit {
 
   constructor(
     private router: Router,
-    private alertService: AlertService,
+    private alertService: HelperService,
     private navController: NavController,
     private auth: AngularFireAuth,
     private storageService: StorageService
@@ -74,20 +74,21 @@ export class RegistroUsuarioPage implements OnInit {
     // POR ALGUN MOTIVO TE REDIRECCIONA A LA PAGINA PRINCIPAL SIN REGISTRARTE EN EL ARRAY DE USUARIOS PERO SI EN FIREBASE
     // Validar que el correo no exista en el array de usuarios
     const usuario = await this.storageService.obtenerUsuarioPorCorreo(this.nuevoUsuario.correo);
+    const nroUsuarios = (await this.storageService.obtenerUsuarios()).length;
     if (!usuario) {
-      // Registrar usuario en firebase
+
       try {
         var user =
         [
           {
-            id: this.nuevoUsuario.id,
+            id: nroUsuarios + 1,
             nombre: this.nuevoUsuario.nombre,
             apellido: this.nuevoUsuario.apellido,
             correo: this.nuevoUsuario.correo,
             esConductor: this.nuevoUsuario.esConductor
           }
         ]
-
+        // Registrar usuario en firebase
         await this.auth.createUserWithEmailAndPassword(this.nuevoUsuario.correo, this.nuevoUsuario.contrasena);
         this.storageService.agregarUsuario(user);
         //////////////////////////////////////////////////////////////

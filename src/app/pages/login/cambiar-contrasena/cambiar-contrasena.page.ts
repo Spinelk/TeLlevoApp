@@ -1,8 +1,10 @@
 import { Component, OnInit } from '@angular/core';
+import { getAuth, sendPasswordResetEmail } from "firebase/auth";
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
-import { AlertService } from 'src/app/services/global/alert.service';
+import { HelperService } from 'src/app/services/global/helper.service';
 import { StorageService } from 'src/app/services/global/storage.service';
+import { AngularFireAuth } from '@angular/fire/compat/auth';
 
 @Component({
   selector: 'app-cambiar-contrasena',
@@ -15,8 +17,9 @@ export class CambiarContrasenaPage implements OnInit {
 
   constructor(
     private router: Router,
+    private auth: AngularFireAuth,
     private storageService: StorageService,
-    private alertService: AlertService,
+    private alertService: HelperService,
     private navController: NavController
   ) { }
 
@@ -36,16 +39,24 @@ export class CambiarContrasenaPage implements OnInit {
     if (this.correo == "") {
       this.alertService.showAlert("Debe ingresar un correo para la recuperación.", "Ingrese un correo");
       return;
+    }
+
+    const usuario = await this.storageService.obtenerUsuarioPorCorreo(this.correo);
+
+    if (usuario) {
+      this.auth.sendPasswordResetEmail(this.correo)
+      .then(() => {
+        this.alertService.showAlert("Se ha enviado un correo a " + this.correo + " con las instrucciones para recuperar su contraseña.", "Correo enviado");
+        this.irARecuperar();
+      })
+      .catch((error) => {
+        const errorCode = error.code;
+        const errorMessage = error.message;
+        // ..
+      });
     } else {
-      // Cambiar por validación de firebase
-      if (await this.storageService.obtenerUsuarioPorCorreo(this.correo)) {
-      this.alertService.showAlert("Se ha enviado un correo a " + this.correo + " con las instrucciones para recuperar su contraseña.", "Correo enviado");
-      this.irARecuperar();
-      }
-      else {
-        this.alertService.showAlert("El correo ingresado no existe.", "Correo inválido");
-        return;
-      }
+      this.alertService.showAlert("El correo ingresado no existe.", "Correo inválido");
+      return;
     }
   }
 }

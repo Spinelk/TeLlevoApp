@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { NavController } from '@ionic/angular';
-import { AlertService } from 'src/app/services/global/alert.service';
+import { HelperService } from 'src/app/services/global/helper.service';
 
 @Component({
   selector: 'app-recuperar-contrasena',
@@ -14,7 +14,7 @@ export class RecuperarContrasenaPage implements OnInit {
 
   constructor(
     private router: Router,
-    private alertService: AlertService,
+    private alertService: HelperService,
     private navController: NavController
   ) { }
 

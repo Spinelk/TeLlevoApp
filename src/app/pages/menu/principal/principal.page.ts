@@ -38,19 +38,6 @@ export class PrincipalPage implements OnInit {
   }
 
   ngOnInit() {
-    // 1) Redirigir a inicio de sesion si no hay usuario
-    // this.auth.onAuthStateChanged(user => {
-    //   if (!user) {
-    //     this.navController.setDirection('back');
-    //     this.router.navigate(['/inicio-sesion']);
-    //     return;
-    //   }
-    //   // 2) Obtener el usuario de firebase
-    //   if (user === null) {
-    //     // Manejar el caso cuando user es nulo
-    //     return;
-    //   }
-    // });
 
     this.cargar();
   }

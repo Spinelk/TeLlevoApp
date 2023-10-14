@@ -3,7 +3,7 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
 import { NavController, Platform } from '@ionic/angular';
 import { Usuario } from 'src/app/models/usuario';
-import { AlertService } from 'src/app/services/global/alert.service';
+import { HelperService } from 'src/app/services/global/helper.service';
 
 import { StorageService } from 'src/app/services/global/storage.service';
 
@@ -27,7 +27,7 @@ export class MenuLateralComponent implements OnInit {
   plataformaNoEsIos: boolean = true;
 
   constructor(
-    private alertService: AlertService,
+    private alertService: HelperService,
     private router: Router,
     private platform: Platform,
     private navController: NavController,
@@ -66,6 +66,9 @@ export class MenuLateralComponent implements OnInit {
     }
   }
 
+  irAPerfil() {
+
+  }
 
 
   irAInicio() {
@@ -75,5 +78,9 @@ export class MenuLateralComponent implements OnInit {
 
   irAVehiculo() {
     this.router.navigate(['/registrar-vehiculo']);
+  }
+
+  irAConductor(){
+    this.router.navigate(['/registrar-conductor']);
   }
 }
