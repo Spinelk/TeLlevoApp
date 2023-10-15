@@ -6,6 +6,7 @@ import { HelperService } from 'src/app/services/global/helper.service';
 
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { StorageService } from 'src/app/services/global/storage.service';
+import { AvatarService } from 'src/app/services/global/avatar.service';
 
 @Component({
   selector: 'app-registro-usuario',
@@ -20,7 +21,8 @@ export class RegistroUsuarioPage implements OnInit {
     apellido: "",
     correo: "",
     contrasena: "",
-    esConductor: false
+    esConductor: false,
+    urlImagenPerfil: ""
   }
 
   verificadorContrasena: string = "";
@@ -30,15 +32,25 @@ export class RegistroUsuarioPage implements OnInit {
     private alertService: HelperService,
     private navController: NavController,
     private auth: AngularFireAuth,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private avatarService: AvatarService
   ) { }
 
   ngOnInit() {
+    this.cargarAvatar(1);
   }
 
   async viewUser(){
     console.log("USUARIOS REGISTRADOS",await this.storageService.obtenerUsuarios());
   }
+
+  async cargarAvatar(name: number){
+    const req = await this.avatarService.getAvatar(name);
+    this.nuevoUsuario.urlImagenPerfil = req.data[0].url;
+    console.log("URL",this.nuevoUsuario.urlImagenPerfil);
+    console.log("REQ",req);
+  }
+
 
   async registrar() {
       // Validar que los campos no esten vacios
