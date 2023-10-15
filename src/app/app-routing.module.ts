@@ -28,10 +28,6 @@ const routes: Routes = [
     loadChildren: () => import('./pages/menu/principal/principal.module').then( m => m.PrincipalPageModule)
   },
   {
-    path: 'recuperar-contrasena',
-    loadChildren: () => import('./pages/login/recuperar-contrasena/recuperar-contrasena.module').then( m => m.RecuperarContrasenaPageModule)
-  },
-  {
     path: 'solicitar-viaje',
     canActivate: [AngularFireAuthGuard], data:{authGuardPipe:redireccionarlogin}, //PREGUNTAR! es necesario? o solo menú principal?
     loadChildren: () => import('./pages/viajero/solicitar-viaje/solicitar-viaje.module').then( m => m.SolicitarViajePageModule)
@@ -49,14 +45,24 @@ const routes: Routes = [
     path: 'registrar-vehiculo',
     canActivate: [AngularFireAuthGuard], data:{authGuardPipe:redireccionarlogin}, //PREGUNTAR! es necesario? o solo menú principal?
     loadChildren: () => import('./pages/conductor/registrar-vehiculo/registrar-vehiculo.module').then( m => m.RegistrarVehiculoPageModule)
-  },  {
+  },
+  {
     path: 'registrar-conductor',
+    canActivate: [AngularFireAuthGuard], data:{authGuardPipe:redireccionarlogin},
     loadChildren: () => import('./pages/conductor/registrar-conductor/registrar-conductor.module').then( m => m.RegistrarConductorPageModule)
   },
   {
     path: 'perfil',
+    canActivate: [AngularFireAuthGuard], data:{authGuardPipe:redireccionarlogin},
     loadChildren: () => import('./pages/menu/perfil/perfil.module').then( m => m.PerfilPageModule)
   },
+  {
+    path: 'vehiculo',
+    canActivate: [AngularFireAuthGuard], data:{authGuardPipe:redireccionarlogin},
+    loadChildren: () => import('./pages/conductor/vehiculo/vehiculo.module').then( m => m.VehiculoPageModule)
+  },
+
+
 
 
 ];

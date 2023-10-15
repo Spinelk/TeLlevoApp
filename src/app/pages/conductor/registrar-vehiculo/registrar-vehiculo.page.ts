@@ -70,9 +70,11 @@ export class RegistrarVehiculoPage implements OnInit {
       return;
     }
 
-    const correoUsuario = localStorage.getItem('correoUsuario');
+    const user = await this.auth.currentUser;
+    const correoUsuario = user?.email;
+
     console.log("CORREO USUARIO", correoUsuario);
-    if (correoUsuario !== null) {
+    if (correoUsuario) {
       this.nuevoVehiculo.conductor = correoUsuario;
     }
 
@@ -95,7 +97,7 @@ export class RegistrarVehiculoPage implements OnInit {
         ]
         this.storageService.agregarVehiculo(vehicle);
         console.log("VEHICULO REGISTRADO", vehicle);
-        await this.helperService.showToast("Vehículo registrado con éxito.");
+        await this.router.navigateByUrl('principal');
       }
       catch (error) {
         // Manejar errores
@@ -104,8 +106,8 @@ export class RegistrarVehiculoPage implements OnInit {
       }
 
       setTimeout(() => {
-        this.router.navigate(['/principal']);
-      }, 5000);
+        this.helperService.showToast("Vehículo registrado con éxito.");
+      }, 1000);
     }
   }
 

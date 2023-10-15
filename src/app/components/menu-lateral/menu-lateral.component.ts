@@ -1,8 +1,10 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
-import { NavController, Platform } from '@ionic/angular';
+import { MenuController, NavController, Platform } from '@ionic/angular';
 import { Usuario } from 'src/app/models/usuario';
+import { VehiculoPage } from 'src/app/pages/conductor/vehiculo/vehiculo.page';
+import { PerfilPage } from 'src/app/pages/menu/perfil/perfil.page';
 import { HelperService } from 'src/app/services/global/helper.service';
 
 import { StorageService } from 'src/app/services/global/storage.service';
@@ -27,11 +29,12 @@ export class MenuLateralComponent implements OnInit {
   plataformaNoEsIos: boolean = true;
 
   constructor(
-    private alertService: HelperService,
+    private helper: HelperService,
     private router: Router,
     private platform: Platform,
     private navController: NavController,
     private auth: AngularFireAuth,
+    private menuCtrl:MenuController,
     private storageService: StorageService
     ) {
     this.plataformaNoEsIos = !this.platform.is('ios');
@@ -40,6 +43,50 @@ export class MenuLateralComponent implements OnInit {
   ngOnInit() {
     this.cargar();
   }
+
+  ionViewDisLeave(){
+    this.cerrarMenu();
+  }
+
+  async modalVehiculo(){
+    const vehiculo = await this.storageService.cargarVehiculo();
+    var info =[];
+    info.push(
+      {
+        patente: vehiculo?.patente,
+        tipoVehiculo: vehiculo?.tipoVehiculo,
+        marca: vehiculo?.marca,
+        modelo: vehiculo?.modelo,
+        color: vehiculo?.color,
+        cantidadAsientos: vehiculo?.cantidadAsientos,
+        conductor:  vehiculo?.conductor
+      }
+      );
+
+      const parametros = {dataModal:info};
+      this.helper.showModal(VehiculoPage,parametros,true);
+  }
+
+  async modalPerfil(){
+    const usuario = await this.storageService.cargarUsuario();
+    var info =[];
+    info.push(
+      {
+        nombre:usuario?.nombre,
+        apellido:usuario?.apellido,
+        correo:usuario?.correo,
+        esConductor: usuario?.esConductor,
+
+        urlImagenPerfil: usuario?.urlImagenPerfil,
+        rut: usuario?.rut,
+        licencia: usuario?.licencia,
+      }
+      );
+
+      const parametros = {dataModal:info};
+      this.helper.showModal(PerfilPage,parametros,true);
+  }
+
 
   async cargar(){
     const usuario = await this.storageService.cargarUsuario();
@@ -50,12 +97,12 @@ export class MenuLateralComponent implements OnInit {
 
 
   async cerrarSesion() {
-    let confirm = await this.alertService.showConfirm("¿Está seguro que desea cerrar sesión?", "Si", "No");
+    let confirm = await this.helper.showConfirm("¿Está seguro que desea cerrar sesión?", "Si", "No");
     if (confirm) {
       // Cerrar sesion con firebase
       this.auth.signOut().then(() => {
         localStorage.removeItem("correoUsuario");
-        this.alertService.showAlert("Vuelve pronto.", "Sesión Finalizada");
+        this.helper.showAlert("Vuelve pronto.", "Sesión Finalizada");
         this.irAInicio();
       }
       ).catch((error) => {
@@ -66,17 +113,17 @@ export class MenuLateralComponent implements OnInit {
     }
   }
 
-  irAPerfil() {
-
+  cerrarMenu(){
+    this.menuCtrl.close('menu-lateral');
   }
-
 
   irAInicio() {
     this.navController.setDirection('back');
     this.router.navigate(['/inicio-sesion']);
   }
 
-  irAVehiculo() {
+
+  irARegistrarVehiculo() {
     this.router.navigate(['/registrar-vehiculo']);
   }
 

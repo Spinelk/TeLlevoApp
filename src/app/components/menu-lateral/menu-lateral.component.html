@@ -1,4 +1,4 @@
-<ion-menu contentId="main-content">
+<ion-menu id="menu-lateral" contentId="main-content">
   <ion-content scrollY="false">
     <div
       [class.dark:bg-gris-android]="plataformaNoEsIos"
@@ -29,7 +29,7 @@
 
       <div class="py-5">
         <!-- CREAR FUNCIÓN -->
-        <ion-item button lines="none" (click)="irAPerfil()">
+        <ion-item (click)="modalPerfil()" button lines="none" >
           <ion-icon
             color="danger"
             slot="start"
@@ -58,7 +58,7 @@
             ></ion-icon>
             <ion-label> Mi billetera </ion-label>
           </ion-item>
-          <ion-item button lines="none" (click)="irAVehiculo()">
+          <ion-item button lines="none" (click)="modalVehiculo()">
             <ion-icon
               color="danger"
               slot="start"

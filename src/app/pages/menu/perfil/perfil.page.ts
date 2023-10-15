@@ -1,4 +1,6 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { ModalController } from '@ionic/angular';
+import { Usuario } from 'src/app/models/usuario';
 
 @Component({
   selector: 'app-perfil',
@@ -7,9 +9,16 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PerfilPage implements OnInit {
 
-  constructor() { }
+@Input() dataModal:Usuario[]=[];
+
+
+  constructor(private modalController:ModalController){ }
 
   ngOnInit() {
+    console.log("Información modal", this.dataModal);
   }
 
+  close(){
+    this.modalController.dismiss();
+  }
 }

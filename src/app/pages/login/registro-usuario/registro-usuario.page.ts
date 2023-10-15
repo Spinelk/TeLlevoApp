@@ -91,6 +91,8 @@ export class RegistroUsuarioPage implements OnInit {
         // Registrar usuario en firebase
         await this.auth.createUserWithEmailAndPassword(this.nuevoUsuario.correo, this.nuevoUsuario.contrasena);
         this.storageService.agregarUsuario(user);
+
+        this.alertService.showAlert("Bienvenido a TeLlevoAPP.", "Registro exitoso");
         //////////////////////////////////////////////////////////////
       }
       catch (error) {
@@ -101,14 +103,13 @@ export class RegistroUsuarioPage implements OnInit {
 
       // Si el registro fue exitoso, enviar a la pagina principal
       setTimeout(() => {
-        this.alertService.showAlert("Bienvenido a TeLlevoAPP.", "Registro exitoso");
         this.router.navigate(['/principal']);
       }, 5000);
     }
-    // else {
-    //   this.alertService.showAlert("El correo ingresado ya existe.", "Error al registrar");
-    //   return;
-    // }
+    else {
+      this.alertService.showAlert("El correo ingresado ya existe.", "Error al registrar");
+      return;
+    }
 
   }
 

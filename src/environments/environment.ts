@@ -11,7 +11,8 @@ export const environment = {
     storageBucket: "tellevoapp-kf.appspot.com",
     messagingSenderId: "564806590221",
     appId: "1:564806590221:web:c6ccd9d6ee8b156ba99a44"
-  }
+  },
+  apiURL: "https://cloudflare-ipfs.com/ipfs/Qmd3W5DuhgHirLHGVixi6V76LhCkZUz6pnFt5AJBiyvHye/avatar/",
 };
 
 /*

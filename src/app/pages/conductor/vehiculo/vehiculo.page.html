@@ -1,0 +1,31 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-icon (click)="close()" slot="end" name="close-outline"></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card
+  class="gradiente p-5 rounded-lg" *ngFor="let i of dataModal">
+    <div class="mb-6 lg:mb-16">
+      <div class="max-w-sm border-0 rounded-lg shadow gradiente">
+        <div class="w-full h-48">
+          <ion-thumbnail slot="start" class="w-full h-full">
+            <ion-skeleton-text [animated]="true"></ion-skeleton-text>
+          </ion-thumbnail>
+        </div>
+      </div>
+    </div>
+    <!-- <img alt="Silhouette of mountains" src="https://ionicframework.com/docs/img/demos/card-media.png" /> -->
+    <ion-card-header>
+      <ion-card-title class="font-bold text-4xl mb-4  text-white ">{{i.patente}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content class="text-3xl mb-4  text-white">
+      <h2>Tipo de Vehículo: {{i.tipoVehiculo}}</h2>
+      <h2>Marca: {{i.marca}}</h2>
+      <h2>Modelo: {{i.modelo}}</h2>
+      <h2>Color: {{i.color}}</h2>
+      <h2>Cantidad de Asientos: {{i.cantidadAsientos}}</h2>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

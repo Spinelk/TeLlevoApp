@@ -46,8 +46,8 @@ export class CambiarContrasenaPage implements OnInit {
     if (usuario) {
       this.auth.sendPasswordResetEmail(this.correo)
       .then(() => {
-        this.alertService.showAlert("Se ha enviado un correo a " + this.correo + " con las instrucciones para recuperar su contraseña.", "Correo enviado");
-        this.irARecuperar();
+        this.alertService.showAlert("Se ha enviado un correo a " + this.correo + " con las instrucciones para recuperar su contraseña.",
+        "Correo enviado");
       })
       .catch((error) => {
         const errorCode = error.code;
