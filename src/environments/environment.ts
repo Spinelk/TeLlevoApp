@@ -12,7 +12,6 @@ export const environment = {
     messagingSenderId: "564806590221",
     appId: "1:564806590221:web:c6ccd9d6ee8b156ba99a44"
   },
-  apiUrl: "https://rickandmortyapi.com/api/character",
 };
 
 /*

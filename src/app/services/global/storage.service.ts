@@ -86,6 +86,7 @@ export class StorageService {
           apellido: user.apellido,
           correo: user.correo,
           esConductor: user.esConductor,
+          urlImagenPerfil: user.urlImagenPerfil,
           licencia: user.licencia,
           rut: user.rut
         }
