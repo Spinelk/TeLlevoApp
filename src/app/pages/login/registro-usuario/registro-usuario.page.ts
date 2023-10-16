@@ -6,6 +6,8 @@ import { HelperService } from 'src/app/services/global/helper.service';
 
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { StorageService } from 'src/app/services/global/storage.service';
+import { AvatarService } from 'src/app/services/global/avatar.service';
+import { Avatar } from 'src/app/models/avatar';
 
 @Component({
   selector: 'app-registro-usuario',
@@ -13,6 +15,7 @@ import { StorageService } from 'src/app/services/global/storage.service';
   styleUrls: ['./registro-usuario.page.scss'],
 })
 export class RegistroUsuarioPage implements OnInit {
+  avatares:Avatar[]=[];
 
   nuevoUsuario: Usuario = {
     id: 0,
@@ -20,7 +23,8 @@ export class RegistroUsuarioPage implements OnInit {
     apellido: "",
     correo: "",
     contrasena: "",
-    esConductor: false
+    esConductor: false,
+    urlImagenPerfil: ""
   }
 
   verificadorContrasena: string = "";
@@ -30,15 +34,27 @@ export class RegistroUsuarioPage implements OnInit {
     private alertService: HelperService,
     private navController: NavController,
     private auth: AngularFireAuth,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private avatarService: AvatarService
   ) { }
 
   ngOnInit() {
+    this.cargarAvatar();
   }
 
   async viewUser(){
     console.log("USUARIOS REGISTRADOS",await this.storageService.obtenerUsuarios());
   }
+
+  async cargarAvatar() {
+    try {
+      const response = await this.avatarService.getAvatar();
+      this.avatares = response.results;
+    } catch (error) {
+      console.error("Error al cargar avatares", error);
+    }
+  }
+
 
   async registrar() {
       // Validar que los campos no esten vacios
@@ -85,7 +101,8 @@ export class RegistroUsuarioPage implements OnInit {
             nombre: this.nuevoUsuario.nombre,
             apellido: this.nuevoUsuario.apellido,
             correo: this.nuevoUsuario.correo,
-            esConductor: this.nuevoUsuario.esConductor
+            esConductor: this.nuevoUsuario.esConductor,
+            urlImagenPerfil: this.avatares[Math.floor(Math.random() * this.avatares.length)].image
           }
         ]
         // Registrar usuario en firebase

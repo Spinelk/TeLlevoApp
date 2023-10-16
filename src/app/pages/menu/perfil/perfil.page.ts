@@ -8,7 +8,7 @@ import { Usuario } from 'src/app/models/usuario';
   styleUrls: ['./perfil.page.scss'],
 })
 export class PerfilPage implements OnInit {
-
+loading:boolean = true;
 @Input() dataModal:Usuario[]=[];
 
 
@@ -16,9 +16,14 @@ export class PerfilPage implements OnInit {
 
   ngOnInit() {
     console.log("Información modal", this.dataModal);
+    setTimeout(this.simularCargaAvatar,2000);
   }
 
   close(){
     this.modalController.dismiss();
+  }
+
+  simularCargaAvatar = () => {
+    this.loading = false;
   }
 }

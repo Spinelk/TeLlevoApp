@@ -16,6 +16,8 @@ import { StorageService } from 'src/app/services/global/storage.service';
 })
 export class MenuLateralComponent implements OnInit {
 
+  loading:boolean = true;
+
   @Input() usuario:Usuario = {
     id:0,
     nombre:"",
@@ -42,6 +44,11 @@ export class MenuLateralComponent implements OnInit {
 
   ngOnInit() {
     this.cargar();
+    setTimeout(this.simularCargaAvatar,3000);
+  }
+
+  simularCargaAvatar = () => {
+    this.loading = false;
   }
 
   ionViewDisLeave(){
@@ -99,11 +106,15 @@ export class MenuLateralComponent implements OnInit {
   async cerrarSesion() {
     let confirm = await this.helper.showConfirm("¿Está seguro que desea cerrar sesión?", "Si", "No");
     if (confirm) {
+      const loader = await this.helper.showLoading("Cerrando sesión...");
       // Cerrar sesion con firebase
       this.auth.signOut().then(() => {
         localStorage.removeItem("correoUsuario");
-        this.helper.showAlert("Vuelve pronto.", "Sesión Finalizada");
-        this.irAInicio();
+        setTimeout(() => {
+          loader.dismiss();
+          this.helper.showAlert("Vuelve pronto.", "Sesión Finalizada");
+          this.irAInicio();
+        }, 1000);
       }
       ).catch((error) => {
         // Manejar el error

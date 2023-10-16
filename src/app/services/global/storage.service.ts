@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { EventEmitter, Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Preferences } from '@capacitor/preferences';
 import { Usuario } from 'src/app/models/usuario';
@@ -11,7 +11,7 @@ import { Vehiculo } from 'src/app/models/vehiculo';
   providedIn: 'root'
 })
 export class StorageService {
-
+  public conductorActualizado: EventEmitter<void> = new EventEmitter<void>();
   constructor(
     private auth: AngularFireAuth
   ) { }
@@ -91,6 +91,7 @@ export class StorageService {
         }
       ]
       await this.agregarUsuario(usuario);
+      this.conductorActualizado.emit();
     }
 
     async cargarUsuario(){
@@ -126,6 +127,16 @@ export class StorageService {
     }
   }
 
+  async obtenerVehiculoPorCorreo(correo: string=''){
+    const vehiculos = await this.obtenerVehiculos();
+    for (const i of vehiculos) {
+      if (i.conductor == correo) {
+        return i;
+      }
+    }
+    return null;
+  }
+
   async agregarVehiculo(vehicles:Vehiculo[]){ //id:number, nombre:string, apellido:string, correo:string, urlImagenPerfil:string, esConductor:boolean
     const vehiculos = await this.obtenerVehiculos();
     for (const i of vehiculos) {
@@ -135,5 +146,21 @@ export class StorageService {
     }
 
     this.setItem(storageVehiculo,JSON.stringify(vehicles));
+  }
+
+  async cargarVehiculo(){
+    const user = await this.auth.currentUser;
+    console.log(user?.email);
+      if (user?.email) {
+        const vehiculo = await this.obtenerVehiculoPorCorreo(user.email);
+        console.log(vehiculo);
+        if (vehiculo != null) {
+          return vehiculo;
+        } else {
+          return null;
+        }
+      } else {
+        return null;
+      }
   }
 }
