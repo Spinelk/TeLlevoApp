@@ -20,6 +20,7 @@ export class RegistrarConductorPage implements OnInit {
     apellido:"",
     correo:"",
     esConductor: false,
+    urlImagenPerfil: "",
     licencia: "",
     rut: ""
   };
@@ -52,6 +53,7 @@ export class RegistrarConductorPage implements OnInit {
         this.conductor.apellido = usuario.apellido;
         this.conductor.correo = usuario.correo;
         this.conductor.esConductor = true;
+        this.conductor.urlImagenPerfil = usuario.urlImagenPerfil;
         await this.storageService.modificarUsuario(this.conductor);
         await this.router.navigateByUrl('principal');
       }

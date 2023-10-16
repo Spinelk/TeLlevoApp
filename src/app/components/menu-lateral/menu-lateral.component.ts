@@ -51,7 +51,7 @@ export class MenuLateralComponent implements OnInit {
     this.loading = false;
   }
 
-  ionViewDisLeave(){
+  ionViewDidLeave(){
     this.cerrarMenu();
   }
 
@@ -133,6 +133,14 @@ export class MenuLateralComponent implements OnInit {
     this.router.navigate(['/inicio-sesion']);
   }
 
+  async irAVehiculo(){
+    const vehiculo = await this.storageService.cargarVehiculo();
+    if (vehiculo != null) {
+      this.modalVehiculo();
+    } else {
+      this.irARegistrarVehiculo();
+    }
+  }
 
   irARegistrarVehiculo() {
     this.router.navigate(['/registrar-vehiculo']);
