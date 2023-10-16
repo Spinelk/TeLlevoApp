@@ -1,6 +1,11 @@
-export class ApiResponse<type>{
-  msg:string = '';
-  data:type[]=[];
-  success:boolean = false;
-  isFailed:boolean = false;
+import { Avatar } from "./avatar";
+
+export interface ApiResponse {
+  info: {
+    count: number;
+    pages: number;
+    next: string | null;
+    prev: string | null;
+  };
+  results: Avatar[];
 }

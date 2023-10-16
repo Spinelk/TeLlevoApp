@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { HelperService } from 'src/app/services/global/helper.service';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
-import {getAuth} from 'firebase/auth';
+import { ClipboardService } from 'src/app/services/global/clipboard.service';
 import { StorageService } from 'src/app/services/global/storage.service';
 
 @Component({
@@ -20,6 +20,7 @@ export class InicioSesionPage implements OnInit {
     private router: Router,
     private storageService: StorageService,
     private alertService: HelperService,
+    private clipboardService: ClipboardService,
     private auth: AngularFireAuth,
   ) { }
 
@@ -31,6 +32,21 @@ export class InicioSesionPage implements OnInit {
         return;
       }
     });
+    this.checkClipboard();
+  }
+
+  async checkClipboard() {
+    try {
+      const clipboardData = await this.clipboardService.checkClipboard();
+      // Puedes hacer algo con los datos, como mostrarlos en la consola
+      console.log('Clipboard Data:', clipboardData);
+    } catch (error) {
+      console.error('Error checking clipboard:', error);
+    }
+  }
+
+  async copiarPortapapeles() {
+    await this.clipboardService.copiarPortapapeles(this.correo);
   }
 
 
@@ -52,12 +68,12 @@ export class InicioSesionPage implements OnInit {
       // Si el inicio de sesion fue exitoso, enviar a la pagina principal
       localStorage.setItem('correoUsuario', this.correo);
       const loader = await this.alertService.showLoading("Cargando");
-      await loader.dismiss();
-      await this.alertService.showAlert("Bienvenido a TeLlevoAPP.", "");
       setTimeout(async () => {
+        await loader.dismiss();
+        await this.alertService.showAlert("Bienvenido a TeLlevoAPP.", "");
         await this.router.navigate(['/principal']);
 
-      }, 1000);
+      }, 500);
     }
     catch (error: any) {
       // Manejar errores de firebase

@@ -12,8 +12,8 @@ export class AvatarService {
 
   constructor(private http:HttpClient) { }
 
-  async getAvatar(name:number){
-    return await lastValueFrom(this.http.get<ApiResponse<Avatar>>(`${environment.apiUrl}` + name + '.jpg'));
+  async getAvatar(){
+    const req = await lastValueFrom(this.http.get<ApiResponse>(environment.apiUrl));
+    return req;
   }
 }
-

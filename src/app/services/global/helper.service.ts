@@ -62,7 +62,7 @@ export class HelperService {
     {
       cssClass:"toastCss",
       position:'bottom',
-      color:'dark',
+      color:'light',
       message:msg,
       duration:duracion
     })
