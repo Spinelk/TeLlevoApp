@@ -25,7 +25,6 @@ export class ClipboardService {
   async checkClipboard() {
     try {
       const { type, value } = await Clipboard.read();
-      console.log(`Got ${type} from clipboard: ${value}`);
       return { type, value };
     } catch (error) {
       console.error('Error reading clipboard:', error);

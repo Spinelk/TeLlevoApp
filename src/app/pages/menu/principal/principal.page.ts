@@ -76,8 +76,6 @@ export class PrincipalPage implements OnInit {
     if (vehiculo != null) {
       this.vehiculo = vehiculo;
     }
-    console.log(this.vehiculo);
-
   }
 
   async disponibilizarVehiculo(){

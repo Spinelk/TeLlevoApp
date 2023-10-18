@@ -15,7 +15,6 @@ loading:boolean = true;
   constructor(private modalController:ModalController){ }
 
   ngOnInit() {
-    console.log("Información modal", this.dataModal);
     setTimeout(this.simularCargaAvatar,2000);
   }
 

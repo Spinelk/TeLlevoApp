@@ -73,14 +73,12 @@ export class RegistrarVehiculoPage implements OnInit {
     const user = await this.auth.currentUser;
     const correoUsuario = user?.email;
 
-    console.log("CORREO USUARIO", correoUsuario);
     if (correoUsuario) {
       this.nuevoVehiculo.conductor = correoUsuario;
     }
 
     const vehiculo = (await this.storageService.obtenerVehiculos()).filter(v => v.conductor == this.nuevoVehiculo.conductor);
 
-    console.log("VEHICULO", vehiculo);
     if (vehiculo.length == 0) {
       try {
         var vehicle =
@@ -96,7 +94,6 @@ export class RegistrarVehiculoPage implements OnInit {
           }
         ]
         this.storageService.agregarVehiculo(vehicle);
-        console.log("VEHICULO REGISTRADO", vehicle);
         await this.router.navigateByUrl('principal');
       }
       catch (error) {
