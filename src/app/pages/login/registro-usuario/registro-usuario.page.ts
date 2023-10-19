@@ -62,8 +62,16 @@ export class RegistroUsuarioPage implements OnInit {
       this.alertService.showAlert("Debe ingresar un nombre.", "Ingrese un nombre");
       return;
     }
+    if (this.nuevoUsuario.nombre.length < 2) {
+      this.alertService.showAlert("El nombre debe tener al menos dos caracteres.", "Ingrese un nombre valido");
+      return;
+    }
     if (this.nuevoUsuario.apellido == "") {
       this.alertService.showAlert("Debe ingresar un apellido.", "Ingrese un apellido")
+      return;
+    }
+    if (this.nuevoUsuario.apellido.length < 2) {
+      this.alertService.showAlert("El apellido debe tener al menos dos caracteres.", "Ingrese un apellido valido")
       return;
     }
     if (this.nuevoUsuario.correo == "") {

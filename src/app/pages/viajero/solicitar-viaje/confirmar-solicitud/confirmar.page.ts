@@ -38,7 +38,8 @@ export class ConfirmarPage implements OnInit {
     this.alertService.showAlert("Espera la respuesta del conductor", "Viaje Solicitado.");
 
     setTimeout(() => {
-      this.irASolicitar();
+      this.navController.setDirection('back');
+      this.router.navigate(['/principal']);
     }, 1);
   }
 }

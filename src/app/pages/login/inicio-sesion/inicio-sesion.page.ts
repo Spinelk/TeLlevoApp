@@ -39,7 +39,6 @@ export class InicioSesionPage implements OnInit {
     try {
       const clipboardData = await this.clipboardService.checkClipboard();
       // Puedes hacer algo con los datos, como mostrarlos en la consola
-      console.log('Clipboard Data:', clipboardData);
     } catch (error) {
       console.error('Error checking clipboard:', error);
     }

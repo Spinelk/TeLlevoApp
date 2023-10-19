@@ -14,7 +14,9 @@
       <div
         class="text-center py-16 min-[400px]:py-16 px-8 min-[400px]:px-12 gradiente"
       >
-        <h1 class="font-bold text-5xl mb-4 uppercase text-white truncate">REGISTRA TU VEHÍCULO</h1>
+        <h1 class="font-bold text-5xl mb-4 uppercase text-white truncate">
+          REGISTRA TU VEHÍCULO
+        </h1>
       </div>
       <div
         class="m-0 rounded-none p-8 min-[400px]:p-8 min-[400px]:px-12 max-w-2xl mx-auto"
@@ -42,14 +44,20 @@
             class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
             >TIPO VEHÍCULO:</label
           >
-          <input
-            id="tipoVehiculo"
-            [(ngModel)]="nuevoVehiculo.tipoVehiculo"
-            type="text"
-            class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
-            placeholder="Ingresa el tipo de tu vehiculo (Automóvil, motocileta...)"
+          <ion-select
             required
-          />
+            id="tipoVehiculo"
+            placeholder="Seleccione el tipo de vehículo"
+            [(ngModel)]="nuevoVehiculo.tipoVehiculo"
+            class="h-14 pt-0 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
+          >
+            <ion-select-option value="Sedan">Sedan</ion-select-option>
+            <ion-select-option value="Pickup">Pickup</ion-select-option>
+            <ion-select-option value="Hatchback">Hatchback</ion-select-option>
+            <ion-select-option value="Wagon">Wagon</ion-select-option>
+            <ion-select-option value="SUV">SUV</ion-select-option>
+            <ion-select-option value="Compacto">Compacto</ion-select-option>
+          </ion-select>
         </div>
         <!-- MARCA -->
         <div class="mb-6 lg:mb-16">
@@ -90,14 +98,27 @@
             class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
             >COLOR:</label
           >
-          <input
+          <ion-select
+            required
             id="color"
             [(ngModel)]="nuevoVehiculo.color"
-            type="text"
-            class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
             placeholder="Ingresa el color del vehículo"
-            required
-          />
+            class="h-14 pt-0 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
+          >
+            <ion-select-option value="Blanco">Blanco</ion-select-option>
+            <ion-select-option value="Negro">Negro</ion-select-option>->
+            <ion-select-option value="Gris">Gris</ion-select-option>->
+            <ion-select-option value="Plata">Plata</ion-select-option>->
+            <ion-select-option value="Azul">Azul</ion-select-option>->
+            <ion-select-option value="Rojo">Rojo</ion-select-option>->
+            <ion-select-option value="Marron">Marron</ion-select-option>->
+            <ion-select-option value="Verde">Verde</ion-select-option>->
+            <ion-select-option value="Amarillo">Amarillo</ion-select-option>->
+            <ion-select-option value="Dorado">Dorado</ion-select-option>->
+            <ion-select-option value="Naranja">Naranja</ion-select-option>->
+            <ion-select-option value="Morado">Morado</ion-select-option>->
+            <ion-select-option value="Rosado">Rosado</ion-select-option>->
+          </ion-select>
         </div>
         <!-- CANTIDAD ASIENTOS -->
         <div class="mb-6 lg:mb-16">
@@ -106,22 +127,28 @@
             class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
             >CANTIDAD DE ASIENTOS:</label
           >
-          <input
+          <ion-select
+            required
             id="cantidadAsientos"
             [(ngModel)]="nuevoVehiculo.cantidadAsientos"
-            type="number"
-            class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
             placeholder="Ingresa la cantidad de asientos del vehículo"
-            required
-          />
+            class="h-14 pt-0 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
+          >
+            <ion-select-option value="2">2</ion-select-option>->
+            <ion-select-option value="3">3</ion-select-option>->
+            <ion-select-option value="4">4</ion-select-option>->
+            <ion-select-option value="5">5</ion-select-option>->
+            <ion-select-option value="6">6</ion-select-option>->
+            <ion-select-option value="7">7</ion-select-option>->
+            <ion-select-option value="8">8</ion-select-option>->
+          </ion-select>
         </div>
         <!-- BOTÓN REGISTRAR -->
         <div>
           <label
             for="registrarVehiculo"
             class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white invisible"
-            ></label
-          >
+          ></label>
           <button
             id="registrarVehiculo"
             (click)="registrarVehiculo()"

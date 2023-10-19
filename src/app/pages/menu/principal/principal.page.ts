@@ -76,8 +76,6 @@ export class PrincipalPage implements OnInit {
     if (vehiculo != null) {
       this.vehiculo = vehiculo;
     }
-    console.log(this.vehiculo);
-
   }
 
   async disponibilizarVehiculo(){
@@ -121,15 +119,15 @@ export class PrincipalPage implements OnInit {
 
 
   // Eliminar o remplazar esta animación
-  // ngAfterViewInit() {
-  //   this.animacionNombre = this.animationCtrl
-  //     .create()
-  //     .addElement(document.querySelectorAll("#cardOne"))
-  //     .duration(7000)
-  //     .iterations(Infinity)
-  //     .fromTo('transform', 'translateX(350px)', 'translateX(-350px)')
-  //     .fromTo('opacity', '1', '0.2');
+  ngAfterViewInit() {
+    this.animacionNombre = this.animationCtrl
+      .create()
+      .addElement(document.querySelectorAll("#nombreUsuario"))
+      .duration(7000)
+      .iterations(Infinity)
+      .fromTo('transform', 'translateX(350px)', 'translateX(-350px)')
+      .fromTo('opacity', '1', '0.2');
 
-  //   this.animacionNombre.play();
-  // }
+    this.animacionNombre.play();
+  }
 }

@@ -49,6 +49,10 @@ export class RegistrarVehiculoPage implements OnInit {
       this.helperService.showAlert("Debe ingresar una patente.", "Ingrese patente");
       return;
     }
+    if (this.nuevoVehiculo.patente.length < 6) {
+      this.helperService.showAlert("La patente debe tener al menos 6 caracteres.", "Ingrese una patente valida");
+      return;
+    }
     if (this.nuevoVehiculo.tipoVehiculo == "") {
       this.helperService.showAlert("Debe ingresar un tipo de vehículo (Automóvil, motocicleta...).", "Ingrese un tipo de vehículo")
       return;
@@ -59,6 +63,10 @@ export class RegistrarVehiculoPage implements OnInit {
     }
     if (this.nuevoVehiculo.marca == "") {
       this.helperService.showAlert("Debe ingresar una marca.", "Ingrese una marca");
+      return;
+    }
+    if (this.nuevoVehiculo.marca.length < 2) {
+      this.helperService.showAlert("La marca debe tener al menos 2 caracteres.", "Ingrese una marca valida");
       return;
     }
     if (this.nuevoVehiculo.color == "") {
@@ -73,14 +81,12 @@ export class RegistrarVehiculoPage implements OnInit {
     const user = await this.auth.currentUser;
     const correoUsuario = user?.email;
 
-    console.log("CORREO USUARIO", correoUsuario);
     if (correoUsuario) {
       this.nuevoVehiculo.conductor = correoUsuario;
     }
 
     const vehiculo = (await this.storageService.obtenerVehiculos()).filter(v => v.conductor == this.nuevoVehiculo.conductor);
 
-    console.log("VEHICULO", vehiculo);
     if (vehiculo.length == 0) {
       try {
         var vehicle =
@@ -96,7 +102,6 @@ export class RegistrarVehiculoPage implements OnInit {
           }
         ]
         this.storageService.agregarVehiculo(vehicle);
-        console.log("VEHICULO REGISTRADO", vehicle);
         await this.router.navigateByUrl('principal');
       }
       catch (error) {

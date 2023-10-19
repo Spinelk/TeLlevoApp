@@ -26,8 +26,8 @@ export class SolicitarViajePage implements OnInit {
     // });
   }
 
-  irAConfirmar() {
-    this.router.navigate(['/confirmar-solicitud']);
+  irAConfirmar(id: number) {
+    this.router.navigate(['/confirmar-solicitud/' + id]);
   }
 
 

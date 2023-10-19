@@ -13,8 +13,6 @@ export class VehiculoPage implements OnInit {
   constructor(private modalController:ModalController) { }
 
   ngOnInit() {
-    console.log("Información modal", this.dataModal);
-
   }
 
   close(){

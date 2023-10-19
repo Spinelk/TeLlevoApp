@@ -97,10 +97,8 @@ export class StorageService {
 
     async cargarUsuario(){
       const user = await this.auth.currentUser;
-      console.log(user?.email);
         if (user?.email) {
           const usuario = await this.obtenerUsuarioPorCorreo(user.email);
-          console.log(usuario);
           if (usuario != null) {
             return usuario;
           } else {
@@ -151,10 +149,8 @@ export class StorageService {
 
   async cargarVehiculo(){
     const user = await this.auth.currentUser;
-    console.log(user?.email);
       if (user?.email) {
         const vehiculo = await this.obtenerVehiculoPorCorreo(user.email);
-        console.log(vehiculo);
         if (vehiculo != null) {
           return vehiculo;
         } else {

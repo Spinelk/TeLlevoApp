@@ -40,8 +40,16 @@ export class RegistrarConductorPage implements OnInit {
       this.alertService.showAlert("Debe ingresar su rut.", "Ingrese rut");
       return;
     }
+    if (this.conductor.rut && this.conductor.rut.length < 8) {
+      this.alertService.showAlert("El rut debe tener al menos 8.", "Ingrese nombre");
+      return;
+    }
     if (this.conductor.licencia == "") {
       this.alertService.showAlert("Debe ingresar una licencia.", "Ingrese licencia")
+      return;
+    }
+    if (this.conductor.licencia && this.conductor.licencia.length < 6) {
+      this.alertService.showAlert("La licencia debe tener al menos 6 caracteres.", "Ingrese una licencia valida");
       return;
     }
     const user = await this.auth.currentUser;
