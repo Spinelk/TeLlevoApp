@@ -7,10 +7,6 @@ const redireccionarLogin = () => redirectUnauthorizedTo(['inicio-sesion']);
 
 const routes: Routes = [
   {
-    path: 'home',
-    loadChildren: () => import('./home/home.module').then(m => m.HomePageModule)
-  },
-  {
     path: '',
     redirectTo: 'principal',
     pathMatch: 'full'
