@@ -1,13 +1,19 @@
+// Angular/Ionic
 import { Component, Input, OnInit } from '@angular/core';
-import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
-import { MenuController, NavController, Platform } from '@ionic/angular';
+import { MenuController, Platform } from '@ionic/angular';
+
+// Servicios
+import { AutenticacionService } from 'src/app/services/autenticacion/autenticacion.service';
+import { HelperService } from 'src/app/services/global/helper.service';
+import { StorageService } from 'src/app/services/global/storage.service';
+
+// Modelos
 import { Usuario } from 'src/app/models/usuario';
+
+// Ventanas modales
 import { VehiculoPage } from 'src/app/pages/conductor/vehiculo/vehiculo.page';
 import { PerfilPage } from 'src/app/pages/menu/perfil/perfil.page';
-import { HelperService } from 'src/app/services/global/helper.service';
-
-import { StorageService } from 'src/app/services/global/storage.service';
 
 @Component({
   selector: 'app-menu-lateral',
@@ -34,10 +40,9 @@ export class MenuLateralComponent implements OnInit {
     private helper: HelperService,
     private router: Router,
     private platform: Platform,
-    private navController: NavController,
-    private auth: AngularFireAuth,
     private menuCtrl:MenuController,
-    private storageService: StorageService
+    private storageService: StorageService,
+    private servicioAutenticacion: AutenticacionService,
     ) {
     this.plataformaNoEsIos = !this.platform.is('ios');
   }
@@ -104,33 +109,11 @@ export class MenuLateralComponent implements OnInit {
 
 
   async cerrarSesion() {
-    let confirm = await this.helper.showConfirm("¿Está seguro que desea cerrar sesión?", "Si", "No");
-    if (confirm) {
-      const loader = await this.helper.showLoading("Cerrando sesión...");
-      // Cerrar sesion con firebase
-      this.auth.signOut().then(() => {
-        localStorage.removeItem("correoUsuario");
-        setTimeout(() => {
-          loader.dismiss();
-          this.helper.showAlert("Vuelve pronto.", "Sesión Finalizada");
-          this.irAInicio();
-        }, 1000);
-      }
-      ).catch((error) => {
-        // Manejar el error
-        console.log('Error al cerrar sesion');
-      }
-      );
-    }
+    this.servicioAutenticacion.cerrarSesion();
   }
 
   cerrarMenu(){
     this.menuCtrl.close('menu-lateral');
-  }
-
-  irAInicio() {
-    this.navController.setDirection('back');
-    this.router.navigate(['/inicio-sesion']);
   }
 
   async irAVehiculo(){
@@ -142,10 +125,11 @@ export class MenuLateralComponent implements OnInit {
     }
   }
 
+  
+  // Navegación. Puede ser reemplazada por un botón en el HTML
   irARegistrarVehiculo() {
     this.router.navigate(['/registrar-vehiculo']);
   }
-
   irAConductor(){
     this.router.navigate(['/registrar-conductor']);
   }
