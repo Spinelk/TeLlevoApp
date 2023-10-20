@@ -9,14 +9,10 @@ import { HelperService } from '../global/helper.service';
 import { StorageService } from '../global/storage.service';
 import { AvatarService } from '../global/avatar.service';
 
-// Modelos
-import { Avatar } from 'src/app/models/avatar';
-
 @Injectable({
   providedIn: 'root'
 })
 export class AutenticacionService {
-  avatares: Avatar[] = [];
 
   constructor(
     private afAuth: AngularFireAuth,
@@ -30,18 +26,7 @@ export class AutenticacionService {
   ) { }
 
 
-  async obtenerAvatar() {
-    try {
-      const response = await this.avatarService.getAvatar();
-      this.avatares = response.results;
-      return this.avatares[Math.floor(Math.random() * this.avatares.length)].image;
-    } catch (error) {
-      console.error("Error al cargar avatares", error);
-      return "";
-    }
-  }
-
-
+  
   // Iniciar sesión con correo y contraseña
   async iniciarSesion(correo: string, contrasena: string) {
     // Validar que el correo y la contraseña no esten vacios
@@ -157,7 +142,7 @@ export class AutenticacionService {
           apellido: apellido,
           correo: correo,
           esConductor: false,
-          urlImagenPerfil: await this.obtenerAvatar()
+          urlImagenPerfil: await this.avatarService.obtenerAvatar(),
         }
       ]
     this.storageService.agregarUsuario(nuevoUsuario);
