@@ -4,8 +4,28 @@ import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 
 // Modelos
-import { Avatar } from 'src/app/models/avatar';
 import { ApiResponse } from 'src/app/models/apiResponse';
+
+export interface Avatar {
+  id: number;
+  name: string;
+  status: string;
+  species: string;
+  type: string;
+  gender: string;
+  origin: {
+    name: string;
+    url: string;
+  };
+  location: {
+    name: string;
+    url: string;
+  };
+  image: string;
+  episode: string[];
+  url: string;
+  created: string;
+}
 
 @Injectable({
   providedIn: 'root'

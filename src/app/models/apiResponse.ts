@@ -1,4 +1,4 @@
-import { Avatar } from "./avatar";
+import { Avatar } from "../services/global/avatar.service";
 
 export interface ApiResponse {
   info: {

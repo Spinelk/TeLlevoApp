@@ -1,5 +1,3 @@
-import { Usuario } from "./usuario";
-
 export interface Vehiculo{
   patente: string,
   tipoVehiculo: string,
