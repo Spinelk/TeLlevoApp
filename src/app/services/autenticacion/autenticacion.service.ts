@@ -29,7 +29,7 @@ export class AutenticacionService {
     private menuCtrl: MenuController,
   ) { }
 
-  
+
   async obtenerAvatar() {
     try {
       const response = await this.avatarService.getAvatar();
@@ -43,7 +43,7 @@ export class AutenticacionService {
 
 
   // Iniciar sesión con correo y contraseña
-  iniciarSesion(correo: string, contrasena: string) {
+  async iniciarSesion(correo: string, contrasena: string) {
     // Validar que el correo y la contraseña no esten vacios
     if (correo == "") {
       this.alertService.showAlert("Debe ingresar un correo. Por favor, intenta de nuevo.", "Ingrese un correo");
@@ -51,6 +51,13 @@ export class AutenticacionService {
     }
     if (contrasena == "") {
       this.alertService.showAlert("Debe ingresar una contraseña para iniciar sesión.", "Ingrese una contraseña");
+      return;
+    }
+
+    // Validar que el correo exista en el array de usuarios
+    const usuario = await this.storageService.obtenerUsuarioPorCorreo(correo);
+    if (!usuario) {
+      this.alertService.showAlert("La cuenta no esta registrada o ha sido eliminada.", "La cuenta no existe");
       return;
     }
 
@@ -69,7 +76,7 @@ export class AutenticacionService {
       const codigoError = error.code;
       switch (codigoError) {
         case "auth/user-not-found":
-          this.alertService.showAlert("El cuenta no esta registrada o ha sido eliminada.", "La cuenta no existe");
+          this.alertService.showAlert("La cuenta no esta registrada o ha sido eliminada.", "La cuenta no existe");
           break;
         case "auth/invalid-email":
           this.alertService.showAlert("Ingresa una direccion de correo válida.", "Correo no válido");
