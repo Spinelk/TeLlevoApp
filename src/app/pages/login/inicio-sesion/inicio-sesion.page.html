@@ -1,4 +1,5 @@
 <ion-content [fullscreen]="true">
+
   <div class="h-full flex flex-col justify-between">
     <div>
       <div
@@ -21,13 +22,20 @@
             class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
             >CORREO ELECTRÓNICO:</label
           >
-          <input
-            [(ngModel)]="correo"
-            type="email"
-            class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
-            placeholder="Ingresa tu correo"
-            required
-          />
+          <div
+          id="email" class="grid grid-cols-12">
+              <input
+              [(ngModel)]="correo"
+              type="email"
+              class="col-span-10 h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-l-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
+              placeholder="Ingresa tu correo"
+              required
+            />
+            <button class="bg-clipboard rounded-r-3xl col-span-2" (click)="copiarPortapapeles()">
+              <i class="fas fa-clipboard clipboard  "></i>
+            </button>
+          </div>
+
         </div>
 
         <div class="mb-6 lg:mb-16">
@@ -59,6 +67,7 @@
           >
             INGRESAR
           </button>
+
         </div>
       </div>
     </div>

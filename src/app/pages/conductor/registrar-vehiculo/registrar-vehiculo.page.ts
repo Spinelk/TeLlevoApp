@@ -1,11 +1,11 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
+import { Router } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario';
 import { Vehiculo } from 'src/app/models/vehiculo';
-import { AlertService } from 'src/app/services/global/alert.service';
-import { UsuariosService } from 'src/app/services/login/usuarios.service';
+import { HelperService } from 'src/app/services/global/helper.service';
 import { NavController } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { StorageService } from 'src/app/services/global/storage.service';
 
 @Component({
   selector: 'app-registrar-vehiculo',
@@ -14,14 +14,6 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 })
 export class RegistrarVehiculoPage implements OnInit {
   // Se llena automaticamente durante la inicialización del componente.
-  usuario: Usuario = {
-    id: 0,
-    nombre: '',
-    apellido: '',
-    correo: '',
-    contrasena: '',
-    esConductor: false
-  }
 
   nuevoVehiculo: Vehiculo = {
     patente: "",
@@ -30,63 +22,98 @@ export class RegistrarVehiculoPage implements OnInit {
     modelo: "",
     color: "",
     cantidadAsientos: 0,
-    conductor: null
+    conductor: ""
   };
 
   constructor(
     private router: Router,
-    private route: ActivatedRoute,
-    private alertService: AlertService,
-    private usuarioService: UsuariosService,
+    private helperService: HelperService,
+    private storageService: StorageService,
     private navController: NavController,
     private auth: AngularFireAuth,
   ) { }
 
   ngOnInit() {
-    // Redirigir a inicio de sesion si no hay usuario
-    this.auth.onAuthStateChanged(user => {
-      if (!user) {
-        this.router.navigate(['/inicio-sesion']);
-        return;
-      }
-    });
+
   }
+
+
 
   irAPrincipal() {
     this.navController.setDirection('back');
     this.router.navigate(['/principal']);
   }
 
-  registrarVehiculo() {
+  async registrarVehiculo() {
     if (this.nuevoVehiculo.patente == "") {
-      this.alertService.showAlert("Debe ingresar una patente.", "Ingrese patente");
+      this.helperService.showAlert("Debe ingresar una patente.", "Ingrese patente");
+      return;
+    }
+    if (this.nuevoVehiculo.patente.length < 6) {
+      this.helperService.showAlert("La patente debe tener al menos 6 caracteres.", "Ingrese una patente valida");
       return;
     }
     if (this.nuevoVehiculo.tipoVehiculo == "") {
-      this.alertService.showAlert("Debe ingresar un tipo de vehículo (Automóvil, motocicleta...).", "Ingrese un tipo de vehículo")
+      this.helperService.showAlert("Debe ingresar un tipo de vehículo (Automóvil, motocicleta...).", "Ingrese un tipo de vehículo")
       return;
     }
     if (this.nuevoVehiculo.modelo == "") {
-      this.alertService.showAlert("Debe ingresar un modelo.", "Ingrese un modelo")
+      this.helperService.showAlert("Debe ingresar un modelo.", "Ingrese un modelo")
       return;
     }
     if (this.nuevoVehiculo.marca == "") {
-      this.alertService.showAlert("Debe ingresar una marca.", "Ingrese una marca");
+      this.helperService.showAlert("Debe ingresar una marca.", "Ingrese una marca");
+      return;
+    }
+    if (this.nuevoVehiculo.marca.length < 2) {
+      this.helperService.showAlert("La marca debe tener al menos 2 caracteres.", "Ingrese una marca valida");
       return;
     }
     if (this.nuevoVehiculo.color == "") {
-      this.alertService.showAlert("Debe ingresar el color del vehículo.", "Ingrese color")
+      this.helperService.showAlert("Debe ingresar el color del vehículo.", "Ingrese color")
       return;
     }
     if (this.nuevoVehiculo.cantidadAsientos == 0) {
-      this.alertService.showAlert("Debe ingresar la cantidad de asientos.", "Ingrese cantidad de asientos")
+      this.helperService.showAlert("Debe ingresar la cantidad de asientos.", "Ingrese cantidad de asientos")
       return;
     }
-    console.log("nuevoVehiculo");
-    console.table(this.nuevoVehiculo);
 
-    this.alertService.showAlert("Vehículo registrado con éxito.", "Registro exitoso");
-    this.irAPrincipal();
+    const user = await this.auth.currentUser;
+    const correoUsuario = user?.email;
+
+    if (correoUsuario) {
+      this.nuevoVehiculo.conductor = correoUsuario;
+    }
+
+    const vehiculo = (await this.storageService.obtenerVehiculos()).filter(v => v.conductor == this.nuevoVehiculo.conductor);
+
+    if (vehiculo.length == 0) {
+      try {
+        var vehicle =
+        [
+          {
+            patente: this.nuevoVehiculo.patente,
+            tipoVehiculo: this.nuevoVehiculo.tipoVehiculo,
+            marca: this.nuevoVehiculo.marca,
+            modelo: this.nuevoVehiculo.modelo,
+            color: this.nuevoVehiculo.color,
+            cantidadAsientos: this.nuevoVehiculo.cantidadAsientos,
+            conductor: this.nuevoVehiculo.conductor
+          }
+        ]
+        this.storageService.agregarVehiculo(vehicle);
+        await this.router.navigateByUrl('principal');
+      }
+      catch (error) {
+        // Manejar errores
+        this.helperService.showAlert("Ocurrió un problema en el registro", "ERROR");
+        return;
+      }
+
+      setTimeout(() => {
+        this.helperService.showToast("Vehículo registrado con éxito.");
+      }, 1000);
+    }
   }
 
 }

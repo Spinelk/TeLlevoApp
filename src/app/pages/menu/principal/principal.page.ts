@@ -1,12 +1,16 @@
-import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario';
-import { UsuariosService } from 'src/app/services/login/usuarios.service';
 import { IonCard, AnimationController } from '@ionic/angular';
 import { NavController } from '@ionic/angular';
 import type { Animation } from '@ionic/angular';
 
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { StorageService } from 'src/app/services/global/storage.service';
+import { Vehiculo } from 'src/app/models/vehiculo';
+import { HelperService } from 'src/app/services/global/helper.service';
+import { VehiculoPage } from '../../../components/modals/vehiculo/vehiculo.page';
+import { PerfilPage } from '../../../components/modals/perfil/perfil.page';
 
 @Component({
   selector: 'app-principal',
@@ -14,13 +18,26 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
   styleUrls: ['./principal.page.scss'],
 })
 export class PrincipalPage implements OnInit {
+
   usuario: Usuario = {
     id: 0,
     nombre: '',
     apellido: '',
     correo: '',
     urlImagenPerfil: '',
-    esConductor: false
+    esConductor: false,
+    licencia: '',
+    rut: '',
+  }
+
+  vehiculo: Vehiculo = {
+    patente: '',
+    tipoVehiculo: '',
+    marca: '',
+    modelo: '',
+    color: '',
+    cantidadAsientos: 0,
+    conductor: '',
   }
 
   @ViewChild(IonCard, { read: ElementRef }) card!: ElementRef<HTMLIonCardElement>;
@@ -28,59 +45,89 @@ export class PrincipalPage implements OnInit {
 
   constructor(
     private router: Router,
-    private usuarioService: UsuariosService,
+    private storageService: StorageService,
+    private helper: HelperService,
     private animationCtrl: AnimationController,
-    private navController: NavController,
     private auth: AngularFireAuth,
   ) {
 
   }
 
   ngOnInit() {
-    // 1) Redirigir a inicio de sesion si no hay usuario
-    this.auth.onAuthStateChanged(user => {
-      if (!user) {
-        this.navController.setDirection('back');
-        this.router.navigate(['/inicio-sesion']);
-        return;
-      }
-      // 2) Obtener el usuario de firebase
-      if (user === null) {
-        // Manejar el caso cuando user es nulo
-        return;
-      }
+    this.cargarUsuario();
+    this.cargarVehiculo();
 
-      // 3) Extraer el correo del usuario
-      if (user.email === null) {
-        // Manejar el caso cuando user.email es nulo
-        return;
-      }
-
-      // 4) Buscar el usuario en el arreglo de usuarios
-      const usuarioEncontrado = this.usuarioService.getUsuarioPorCorreo(user.email);
-      if (!usuarioEncontrado) {
-        // Manejar el caso cuando no se encuentra el usuario
-        console.log('No se encontro el array al usuario: ' + user.email);
-        return;
-      }
-
-      // 5) Asignar el usuario encontrado
-      this.usuario = usuarioEncontrado;
-
+    this.storageService.conductorActualizado.subscribe(() => {
+      // Lógica para actualizar el componente, por ejemplo, cargar el botón
+      this.cargarUsuario();
     });
+
+  }
+
+  async cargarUsuario(){
+    const usuario = await this.storageService.cargarUsuario();
+    if (usuario != null) {
+      this.usuario = usuario;
+    }
+  }
+
+  async cargarVehiculo(){
+    const vehiculo = await this.storageService.cargarVehiculo();
+    if (vehiculo != null) {
+      this.vehiculo = vehiculo;
+    }
+  }
+
+  async disponibilizarVehiculo(){
+    const vehiculo = await this.storageService.cargarVehiculo();
+    if (vehiculo != null) {
+      this.modalVehiculo();
+    } else {
+      this.irARegistrarVehiculo();
+    }
+  }
+
+  async modalVehiculo(){
+    const vehiculo = await this.storageService.cargarVehiculo();
+    var info =[];
+    info.push(
+      {
+        patente: vehiculo?.patente,
+        tipoVehiculo: vehiculo?.tipoVehiculo,
+        marca: vehiculo?.marca,
+        modelo: vehiculo?.modelo,
+        color: vehiculo?.color,
+        cantidadAsientos: vehiculo?.cantidadAsientos,
+        conductor:  vehiculo?.conductor
+      }
+      );
+
+      const parametros = {dataModal:info};
+      this.helper.showModal(VehiculoPage,parametros,true);
   }
 
 
-  // Eliminar o remplazar esta animación
-  // ngAfterViewInit() {
-  //   this.animacionNombre = this.animationCtrl
-  //     .create()
-  //     .addElement(document.querySelectorAll("#cardOne"))
-  //     .duration(7000)
-  //     .iterations(Infinity)
-  //     .fromTo('transform', 'translateX(350px)', 'translateX(-350px)')
-  //     .fromTo('opacity', '1', '0.2');
+  irARegistrarVehiculo(){
+    this.router.navigateByUrl('registrar-vehiculo');
+  }
 
-  //   this.animacionNombre.play();
-  // }
+  irAVehiculo(){
+    this.router.navigateByUrl('vehiculo');
+  }
+
+
+
+
+  // Eliminar o remplazar esta animación
+  ngAfterViewInit() {
+    this.animacionNombre = this.animationCtrl
+      .create()
+      .addElement(document.querySelectorAll("#nombreUsuario"))
+      .duration(7000)
+      .iterations(Infinity)
+      .fromTo('transform', 'translateX(350px)', 'translateX(-350px)')
+      .fromTo('opacity', '1', '0.2');
+
+    this.animacionNombre.play();
+  }
 }

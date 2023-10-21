@@ -1,5 +1,3 @@
-import { Usuario } from "./usuario";
-
 export interface Vehiculo{
   patente: string,
   tipoVehiculo: string,
@@ -7,5 +5,5 @@ export interface Vehiculo{
   modelo: string,
   color: string,
   cantidadAsientos: number,
-  conductor:  Usuario| null;
+  conductor:  string;
 }
