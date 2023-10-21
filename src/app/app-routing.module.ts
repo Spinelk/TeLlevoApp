@@ -57,11 +57,11 @@ const routes: Routes = [
       },
       {
         path: 'perfil',
-        loadChildren: () => import('./pages/menu/perfil/perfil.module').then(m => m.PerfilPageModule)
+        loadChildren: () => import('./components/modals/perfil/perfil.module').then(m => m.PerfilPageModule)
       },
       {
         path: 'vehiculo',
-        loadChildren: () => import('./pages/conductor/vehiculo/vehiculo.module').then(m => m.VehiculoPageModule)
+        loadChildren: () => import('./components/modals/vehiculo/vehiculo.module').then(m => m.VehiculoPageModule)
       },
     ]
   },

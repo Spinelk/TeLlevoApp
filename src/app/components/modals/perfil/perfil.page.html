@@ -1,0 +1,56 @@
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-icon
+      (click)="close()"
+      slot="end"
+      name="close-outline"
+      size="large"
+    ></ion-icon>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <ion-card class="gradiente p-5 rounded-lg" *ngFor="let i of dataModal">
+    <ng-container *ngIf="loading">
+      <div class="mb-6 lg:mb-16">
+        <div class="w-48 h-48 mx-auto border-0 rounded-full shadow gradiente">
+          <div class="w-48 h-48 mx-auto">
+            <ion-thumbnail class="w-full h-full">
+              <ion-skeleton-text
+                class="rounded-full"
+                [animated]="true"
+              ></ion-skeleton-text>
+            </ion-thumbnail>
+          </div>
+        </div>
+      </div>
+    </ng-container>
+    <ng-container *ngIf="!loading">
+      <img
+        *ngIf="i.urlImagenPerfil !== ''"
+        src="{{i.urlImagenPerfil}}"
+        class="w-48 h-48 mx-auto text-white rounded-full"
+        name="person-circle-outline"
+        alt="This is fine"
+      />
+    </ng-container>
+    <ion-card-header>
+      <ion-card-title class="font-bold text-4xl mb-4 text-white"
+        >{{i.nombre}} {{i.apellido}}</ion-card-title
+      >
+    </ion-card-header>
+    <ion-card-content class="text-3xl mb-4 text-white font-black">
+      <h2>Correo: {{i.correo}}</h2>
+
+      <div *ngIf="i.esConductor==true">
+        <h2>Rut: {{i.rut}}</h2>
+        <h2>Tipo de Cuenta: Conductor</h2>
+        <h2>Tipo de Licencia: {{i.licencia}}</h2>
+      </div>
+
+      <div *ngIf="i.esConductor==false">
+        <h2>Tipo de Cuenta: Viajero</h2>
+      </div>
+    </ion-card-content>
+  </ion-card>
+</ion-content>

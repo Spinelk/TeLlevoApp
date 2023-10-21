@@ -9,8 +9,8 @@ import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { StorageService } from 'src/app/services/global/storage.service';
 import { Vehiculo } from 'src/app/models/vehiculo';
 import { HelperService } from 'src/app/services/global/helper.service';
-import { VehiculoPage } from '../../conductor/vehiculo/vehiculo.page';
-import { PerfilPage } from '../perfil/perfil.page';
+import { VehiculoPage } from '../../../components/modals/vehiculo/vehiculo.page';
+import { PerfilPage } from '../../../components/modals/perfil/perfil.page';
 
 @Component({
   selector: 'app-principal',

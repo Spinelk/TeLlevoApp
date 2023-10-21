@@ -12,8 +12,8 @@ import { StorageService } from 'src/app/services/global/storage.service';
 import { Usuario } from 'src/app/models/usuario';
 
 // Ventanas modales
-import { VehiculoPage } from 'src/app/pages/conductor/vehiculo/vehiculo.page';
-import { PerfilPage } from 'src/app/pages/menu/perfil/perfil.page';
+import { VehiculoPage } from 'src/app/components/modals/vehiculo/vehiculo.page';
+import { PerfilPage } from 'src/app/components/modals/perfil/perfil.page';
 
 @Component({
   selector: 'app-menu-lateral',
