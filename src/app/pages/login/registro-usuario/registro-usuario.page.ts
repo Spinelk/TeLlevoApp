@@ -18,11 +18,11 @@ export class RegistroUsuarioPage {
     nombre: "",
     apellido: "",
     correo: "",
-    contrasena: "",
     esConductor: false,
     urlImagenPerfil: ""
   }
 
+  contrasena: string = "";
   verificadorContrasena: string = "";
 
   constructor(
@@ -31,6 +31,11 @@ export class RegistroUsuarioPage {
 
 
   async registrar() {
-    this.servicioAutenticacion.registrarUsuario(this.nuevoUsuario.nombre, this.nuevoUsuario.apellido, this.nuevoUsuario.correo, this.nuevoUsuario.contrasena || "", this.verificadorContrasena);
+    this.servicioAutenticacion.registrarUsuario(
+      this.nuevoUsuario.nombre,
+      this.nuevoUsuario.apellido,
+      this.nuevoUsuario.correo,
+      this.contrasena,
+      this.verificadorContrasena);
   }
 }

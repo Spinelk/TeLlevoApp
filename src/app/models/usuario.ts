@@ -8,7 +8,4 @@ export interface Usuario{
     urlImagenPerfil?: string;
     rut?:string;
     licencia?:string;
-
-    // Eliminar de todos los lugares donde se usa, firebae se encarga de esto
-    contrasena?:string;
 }
