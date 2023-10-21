@@ -19,7 +19,7 @@ import { PerfilPage } from 'src/app/components/modals/perfil/perfil.page';
   templateUrl: './menu-lateral.component.html',
   styleUrls: ['./menu-lateral.component.scss'],
 })
-export class MenuLateralComponent implements OnInit {
+export class MenuLateralComponent {
 
   loading: boolean = true;
 
@@ -47,43 +47,33 @@ export class MenuLateralComponent implements OnInit {
     this.plataformaNoEsIos = !this.platform.is('ios');
   }
 
-  ngOnInit() {
-    this.cargar();
-    setTimeout(this.simularCargaAvatar, 3000);
-  }
-
-  simularCargaAvatar = () => {
-    this.loading = false;
-  }
-
   ionViewDidLeave() {
-    this.cerrarMenu();
+    this.menuCtrl.close('menu-lateral');
   }
 
-  async modalVehiculo() {
-    this.vehiculoPage.mostrarModal();
-  }
 
-  async modalPerfil() {
+
+  async modalPerfil() { // Perfil
     this.perfilPage.mostrarModal();
   }
 
+  // Mis Viajes
 
-  async cargar() {
-    const usuario = await this.storageService.cargarUsuario();
-    if (usuario != null) {
-      this.usuario = usuario;
-    }
+  // Mi Billetera
+
+  async modalVehiculo() { // Vehículo
+    this.vehiculoPage.mostrarModal();
   }
 
+  // Ayuda en línea
 
-  async cerrarSesion() {
+  // Configuración
+
+  async cerrarSesion() { // Cerrar sesión
     this.servicioAutenticacion.cerrarSesion();
   }
 
-  cerrarMenu() {
-    this.menuCtrl.close('menu-lateral');
-  }
+
 
   async irAVehiculo() {
     const vehiculo = await this.storageService.cargarVehiculo();
