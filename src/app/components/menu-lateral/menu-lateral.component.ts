@@ -5,7 +5,6 @@ import { MenuController, Platform } from '@ionic/angular';
 
 // Servicios
 import { AutenticacionService } from 'src/app/services/autenticacion/autenticacion.service';
-import { HelperService } from 'src/app/services/global/helper.service';
 import { StorageService } from 'src/app/services/global/storage.service';
 
 // Modelos
@@ -22,13 +21,13 @@ import { PerfilPage } from 'src/app/components/modals/perfil/perfil.page';
 })
 export class MenuLateralComponent implements OnInit {
 
-  loading:boolean = true;
+  loading: boolean = true;
 
-  @Input() usuario:Usuario = {
-    id:0,
-    nombre:"",
-    apellido:"",
-    correo:"",
+  @Input() usuario: Usuario = {
+    id: 0,
+    nombre: "",
+    apellido: "",
+    correo: "",
     esConductor: false
   };
 
@@ -37,70 +36,40 @@ export class MenuLateralComponent implements OnInit {
   plataformaNoEsIos: boolean = true;
 
   constructor(
-    private helper: HelperService,
     private router: Router,
     private platform: Platform,
-    private menuCtrl:MenuController,
+    private menuCtrl: MenuController,
     private storageService: StorageService,
     private servicioAutenticacion: AutenticacionService,
-    ) {
+    private vehiculoPage: VehiculoPage,
+    private perfilPage: PerfilPage,
+  ) {
     this.plataformaNoEsIos = !this.platform.is('ios');
   }
 
   ngOnInit() {
     this.cargar();
-    setTimeout(this.simularCargaAvatar,3000);
+    setTimeout(this.simularCargaAvatar, 3000);
   }
 
   simularCargaAvatar = () => {
     this.loading = false;
   }
 
-  ionViewDidLeave(){
+  ionViewDidLeave() {
     this.cerrarMenu();
   }
 
-  async modalVehiculo(){
-    const vehiculo = await this.storageService.cargarVehiculo();
-    var info =[];
-    info.push(
-      {
-        patente: vehiculo?.patente,
-        tipoVehiculo: vehiculo?.tipoVehiculo,
-        marca: vehiculo?.marca,
-        modelo: vehiculo?.modelo,
-        color: vehiculo?.color,
-        cantidadAsientos: vehiculo?.cantidadAsientos,
-        conductor:  vehiculo?.conductor
-      }
-      );
-
-      const parametros = {dataModal:info};
-      this.helper.showModal(VehiculoPage,parametros,true);
+  async modalVehiculo() {
+    this.vehiculoPage.mostrarModal();
   }
 
-  async modalPerfil(){
-    const usuario = await this.storageService.cargarUsuario();
-    var info =[];
-    info.push(
-      {
-        nombre:usuario?.nombre,
-        apellido:usuario?.apellido,
-        correo:usuario?.correo,
-        esConductor: usuario?.esConductor,
-
-        urlImagenPerfil: usuario?.urlImagenPerfil,
-        rut: usuario?.rut,
-        licencia: usuario?.licencia,
-      }
-      );
-
-      const parametros = {dataModal:info};
-      this.helper.showModal(PerfilPage,parametros,true);
+  async modalPerfil() {
+    this.perfilPage.mostrarModal();
   }
 
 
-  async cargar(){
+  async cargar() {
     const usuario = await this.storageService.cargarUsuario();
     if (usuario != null) {
       this.usuario = usuario;
@@ -112,11 +81,11 @@ export class MenuLateralComponent implements OnInit {
     this.servicioAutenticacion.cerrarSesion();
   }
 
-  cerrarMenu(){
+  cerrarMenu() {
     this.menuCtrl.close('menu-lateral');
   }
 
-  async irAVehiculo(){
+  async irAVehiculo() {
     const vehiculo = await this.storageService.cargarVehiculo();
     if (vehiculo != null) {
       this.modalVehiculo();
@@ -125,12 +94,12 @@ export class MenuLateralComponent implements OnInit {
     }
   }
 
-  
+
   // Navegación. Puede ser reemplazada por un botón en el HTML
   irARegistrarVehiculo() {
     this.router.navigate(['/registrar-vehiculo']);
   }
-  irAConductor(){
+  irAConductor() {
     this.router.navigate(['/registrar-conductor']);
   }
 }
