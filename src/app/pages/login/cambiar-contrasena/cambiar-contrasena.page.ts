@@ -29,6 +29,7 @@ export class CambiarContrasenaPage {
 
   // Navegación. Puede ser reemplazada por un botón en el HTML
   irAInicio() {
+    this.navController.setDirection('back');
     this.navController.back();
   }
   irARecuperar() {
