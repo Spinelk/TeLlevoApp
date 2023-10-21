@@ -6,6 +6,8 @@ import { AutenticacionService } from 'src/app/services/autenticacion/autenticaci
 
 // Modelos
 import { Usuario } from 'src/app/models/usuario';
+import { NavController } from '@ionic/angular';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-registro-usuario',
@@ -27,6 +29,8 @@ export class RegistroUsuarioPage {
 
   constructor(
     private servicioAutenticacion: AutenticacionService,
+    private navController: NavController,
+    private router: Router,
   ) { }
 
 
@@ -37,5 +41,10 @@ export class RegistroUsuarioPage {
       this.nuevoUsuario.correo,
       this.contrasena,
       this.verificadorContrasena);
+  }
+
+  irAInicio() {
+    this.navController.setDirection('back');
+    this.router.navigate(['/inicio']);
   }
 }

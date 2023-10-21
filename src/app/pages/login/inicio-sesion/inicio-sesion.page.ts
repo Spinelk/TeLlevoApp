@@ -5,6 +5,7 @@ import { Router } from '@angular/router';
 // Servicios
 import { ClipboardService } from 'src/app/services/global/clipboard.service';
 import { AutenticacionService } from 'src/app/services/autenticacion/autenticacion.service';
+import { NavController } from '@ionic/angular';
 
 @Component({
   selector: 'app-inicio-sesion',
@@ -21,6 +22,7 @@ export class InicioSesionPage {
     private router: Router,
     private clipboardService: ClipboardService,
     private servicioAutenticacion: AutenticacionService,
+    private navController: NavController,
   ) { }
 
 
@@ -36,6 +38,7 @@ export class InicioSesionPage {
 
   // Navegación. Puede ser reemplazada por un botón en el HTML
   irARegistro() {
+    // this.navController.setDirection('root');
     this.router.navigate(['registro-usuario']);
   }
   irACambiarContrasena() {
