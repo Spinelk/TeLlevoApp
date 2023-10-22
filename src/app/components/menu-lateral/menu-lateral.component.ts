@@ -1,5 +1,5 @@
 // Angular/Ionic
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
 import { MenuController, Platform } from '@ionic/angular';
 
@@ -51,11 +51,10 @@ export class MenuLateralComponent {
     this.menuCtrl.close('menu-lateral');
   }
 
-
-
   async modalPerfil() { // Perfil
     this.perfilPage.mostrarModal();
   }
+ 
 
   // Mis Viajes
 

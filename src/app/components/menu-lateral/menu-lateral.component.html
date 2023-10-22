@@ -11,7 +11,7 @@
             <span class="block">{{ usuario.apellido }}</span>
           </h1>
         </div>
-        <ng-container *ngIf="!loading">
+        <ng-container>
           <img
             *ngIf="usuario.urlImagenPerfil !== ''"
             src="{{ usuario.urlImagenPerfil }}"
@@ -26,18 +26,6 @@
             name="person-circle-outline"
             alt="This is fine"
           />
-        </ng-container>
-        <ng-container *ngIf="loading">
-          <div class="w-20 h-20 border-0 rounded-full shadow gradiente">
-            <div class="w-20 h-20">
-              <ion-thumbnail slot="end" class="w-full h-full">
-                <ion-skeleton-text
-                  class="rounded-full"
-                  [animated]="true"
-                ></ion-skeleton-text>
-              </ion-thumbnail>
-            </div>
-          </div>
         </ng-container>
       </div>
 
