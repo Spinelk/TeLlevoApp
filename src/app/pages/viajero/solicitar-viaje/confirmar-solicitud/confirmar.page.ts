@@ -34,12 +34,17 @@ export class ConfirmarPage implements OnInit {
   }
 
 
-  irAInicio() {
+  confirmar() {
     this.alertService.showAlert("Espera la respuesta del conductor", "Viaje Solicitado.");
 
     setTimeout(() => {
       this.navController.setDirection('back');
       this.router.navigate(['/principal']);
     }, 1);
+  }
+
+  irAInicio() {
+    this.navController.setDirection('back');
+    this.router.navigate(['/principal']);
   }
 }
