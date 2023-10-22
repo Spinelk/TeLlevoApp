@@ -1,47 +1,75 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-
-    <ion-title>Solicitar Viaje</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <div class="h-full flex flex-col justify-between">
-    <div class="">
-      <div
-        class="text-center py-16 min-[400px]:py-16 px-8 min-[400px]:px-12 gradiente"
-      >
-        <h1 class="font-bold text-5xl mb-4 uppercase text-white">SOLICITAR</h1>
+  <ion-fab
+    slot="fixed"
+    vertical="top"
+    horizontal="start"
+    class="p-2"
+    (click)="irAInicio()"
+  >
+    <ion-icon name="arrow-back-outline" color="light" size="large"></ion-icon>
+  </ion-fab>
+
+  <div
+    class="min-h-full flex flex-col justify-between bg-neutral-100 dark:bg-zinc-800"
+  >
+    <div>
+      <div class="fixed w-full z-10">
+        <div class="text-center pt-20 pb-24 px-12 gradiente relative">
+          <h1
+            class="font-extrabold text-7xl text-white"
+            style="font-family: 'Ubuntu', sans-serif"
+          >
+            te llevo
+          </h1>
+
+          <div class="curvas dark:shape-fill-dark">
+            <svg
+              data-name="Layer 1"
+              xmlns="http://www.w3.org/2000/svg"
+              viewBox="0 0 1200 120"
+              preserveAspectRatio="none"
+            >
+              <path
+                d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
+                opacity=".25"
+                class="shape-fill"
+              ></path>
+              <path
+                d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z"
+                opacity=".5"
+                class="shape-fill"
+              ></path>
+              <path
+                d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"
+                class="shape-fill"
+              ></path>
+            </svg>
+          </div>
+        </div>
       </div>
+
+      <!-- Contenido -->
       <div
-        class="m-0 rounded-none p-8 min-[400px]:p-8 min-[400px]:px-12 max-w-2xl mx-auto cursor-pointer"
+        class="mt-60 rounded-none p-8 min-[400px]:p-8 min-[400px]:px-12 max-w-2xl mx-auto"
       >
         <div class="mb-6 lg:mb-16">
-          <label
-            for="destino"
-            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
-            >DESTINO:</label
-          >
           <input
             id="destino"
             type="text"
-            class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
+            class="h-14 border-0 pl-5 shadow-sm font-semibold bg-white text-zinc-500 placeholder-zinc-300 text-sm rounded-3xl focus:ring-rosado-tla block w-full p-2.5 dark:bg-zinc-700 dark:placeholder-zinc-400 dark:text-white"
             placeholder="Ingresa tu destino"
             required
           />
         </div>
 
         <div class="mb-6 lg:mb-16">
-          <hr />
+          <hr class="border-gray-300 dark:border-gray-500" />
         </div>
 
         <div
           *ngFor="let i of [1, 2, 3, 4, 5, 6]"
           id="{{i}}"
-          class="mb-6 lg:mb-16"
+          class="mb-6 lg:mb-16 cursor-pointer"
           (click)="irAConfirmar(i)"
         >
           <div
