@@ -1,6 +1,7 @@
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
+import { NavController } from '@ionic/angular';
 import { Usuario } from 'src/app/models/usuario';
 import { HelperService } from 'src/app/services/global/helper.service';
 import { StorageService } from 'src/app/services/global/storage.service';
@@ -10,7 +11,7 @@ import { StorageService } from 'src/app/services/global/storage.service';
   templateUrl: './registrar-conductor.page.html',
   styleUrls: ['./registrar-conductor.page.scss'],
 })
-export class RegistrarConductorPage implements OnInit {
+export class RegistrarConductorPage {
 
 
 
@@ -29,11 +30,9 @@ export class RegistrarConductorPage implements OnInit {
     private auth: AngularFireAuth,
     private storageService: StorageService,
     private alertService: HelperService,
+    private navController: NavController,
     private router: Router,
   ) { }
-
-  ngOnInit() {
-  }
 
   async registrarConductor(){
     if (this.conductor.rut == "") {
@@ -70,5 +69,10 @@ export class RegistrarConductorPage implements OnInit {
       }, 1000);
     }
 
+  }
+
+  irAPrincipal() {
+    this.navController.setDirection('back');
+    this.router.navigate(['/principal']);
   }
 }
