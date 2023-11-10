@@ -9,15 +9,11 @@
       <div
         class="mt-52 rounded-none py-8 px-10 min-[400px]:p-8 min-[400px]:px-12 max-w-2xl mx-auto"
       >
-        <div class="mt-8 mb-16 lg:mb-16">
-          <h1
-            class="font-extrabold text-[40px] mb-4 text-gray-700 dark:text-white -ml-0.5 leading-6"
-          >
-            Bienvenido
-          </h1>
-          <h1 class="font-semibold text-base mb-4 text-gray-400 leading-3">
-            Inicia sesión con tu cuenta
-          </h1>
+        <div class="mt-8 mb-12 lg:mb-16">
+          <titulo
+            [titulo]="'Bienvenido'"
+            [subtitulo]="'Inicia sesión con tu cuenta'"
+          ></titulo>
         </div>
 
         <div class="mb-8 lg:mb-16">
@@ -54,7 +50,9 @@
           </p>
         </div>
 
-        <boton-lg [texto]="'Ingresar'" (click)="iniciar()" class="mt-14"></boton-lg>
+        <div class="mt-12 lg:mb-16">
+          <boton-lg [texto]="'Ingresar'" (click)="iniciar()"></boton-lg>
+        </div>
       </div>
     </div>
 
