@@ -5,21 +5,7 @@
     <div>
       <div class="fixed w-full">
         <div class="text-center pt-20 pb-24 px-12 gradiente relative">
-          <!-- <ion-icon class="text-white text-9xl" name="car-sport"></ion-icon> -->
-          <!-- <div
-          class="m-auto border-4 border-white rounded-[2.5rem] flex flex-col justify-center w-36 h-36"
-        >
-          <h1
-            class="font-extrabold text-8xl text-white"
-            style="font-family: 'Ubuntu', sans-serif"
-          >
-            tla
-          </h1>
-        </div> -->
-          <h1
-            class="font-extrabold text-7xl text-white"
-            style="font-family: 'Ubuntu', sans-serif"
-          >
+          <h1 class="font-extrabold text-7xl text-white font-ubuntu">
             te llevo
           </h1>
 
@@ -98,16 +84,7 @@
           </p>
         </div>
 
-        <div class="mt-14">
-          <button
-            (click)="iniciar()"
-            expand="block"
-            size="large"
-            class="w-full h-14 shadow-sm uppercase focus:outline-none text-white gradiente hover:saturate-150 focus:ring-4 focus:ring-rosado-tla font-bold rounded-3xl text-xl px-5 py-2.5 mr-2 mb-2"
-          >
-            INGRESAR
-          </button>
-        </div>
+        <boton-lg [texto]="'Ingresar'" (click)="iniciar()" class="mt-14"></boton-lg>
       </div>
     </div>
 
