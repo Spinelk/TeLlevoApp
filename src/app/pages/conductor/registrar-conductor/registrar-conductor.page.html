@@ -18,7 +18,7 @@
             class="font-extrabold text-7xl text-white truncate"
             style="font-family: 'Ubuntu', sans-serif"
           >
-            ÚNETE
+            te llevo
           </h1>
 
           <div class="curvas dark:shape-fill-dark">
@@ -49,15 +49,21 @@
 
       <!-- Contenido -->
       <div
-        class="mt-64 rounded-none py-8 px-10 min-[400px]:p-8 min-[400px]:px-12 max-w-2xl mx-auto"
+        class="mt-52 rounded-none py-8 px-10 min-[400px]:p-8 min-[400px]:px-12 max-w-2xl mx-auto"
       >
-        <!-- RUT -->
-        <div class="mb-6 lg:mb-16">
-          <label
-            for="rut"
-            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
-            >RUT:</label
+        <div class="mt-8 mb-16 lg:mb-16">
+          <h1
+            class="font-extrabold text-[40px] mb-4 text-gray-700 dark:text-white -ml-0.5 leading-6"
           >
+            Únete
+          </h1>
+          <h1 class="font-semibold text-base mb-4 text-gray-400 leading-3">
+            Registrate como conductor
+          </h1>
+        </div>
+
+        <!-- RUT -->
+        <div class="mb-8 lg:mb-16">
           <input
             id="rut"
             [(ngModel)]="conductor.rut"
@@ -68,12 +74,7 @@
           />
         </div>
         <!-- licencia -->
-        <div class="mb-6 lg:mb-16">
-          <label
-            for="licencia"
-            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
-            >N° DE LICENCIA:</label
-          >
+        <div class="mb-8 lg:mb-16">
           <input
             id="licencia"
             [(ngModel)]="conductor.licencia"
@@ -98,7 +99,7 @@
             size="large"
             class="w-full h-14 uppercase focus:outline-none text-white gradiente hover:saturate-150 focus:ring-4 focus:ring-rosado-tla font-bold rounded-3xl text-xl px-5 py-2.5 mr-2 mb-2"
           >
-            REGISTRARSE
+            REGISTRAR
           </button>
         </div>
       </div>
