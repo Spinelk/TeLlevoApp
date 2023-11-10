@@ -1,8 +1,7 @@
-import { Component, ElementRef, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario';
 import { IonCard, AnimationController } from '@ionic/angular';
-import { NavController } from '@ionic/angular';
 import type { Animation } from '@ionic/angular';
 
 import { AngularFireAuth } from '@angular/fire/compat/auth';
@@ -10,7 +9,6 @@ import { StorageService } from 'src/app/services/global/storage.service';
 import { Vehiculo } from 'src/app/models/vehiculo';
 import { HelperService } from 'src/app/services/global/helper.service';
 import { VehiculoPage } from '../../../components/modals/vehiculo/vehiculo.page';
-import { PerfilPage } from '../../../components/modals/perfil/perfil.page';
 
 @Component({
   selector: 'app-principal',
@@ -83,7 +81,7 @@ export class PrincipalPage implements OnInit {
     if (vehiculo != null) {
       this.modalVehiculo();
     } else {
-      this.irARegistrarVehiculo();
+      this.router.navigateByUrl('registrar-vehiculo');
     }
   }
 
@@ -105,17 +103,6 @@ export class PrincipalPage implements OnInit {
       const parametros = {dataModal:info};
       this.helper.showModal(VehiculoPage,parametros,true);
   }
-
-
-  irARegistrarVehiculo(){
-    this.router.navigateByUrl('registrar-vehiculo');
-  }
-
-  irAVehiculo(){
-    this.router.navigateByUrl('vehiculo');
-  }
-
-
 
 
   // Eliminar o remplazar esta animación

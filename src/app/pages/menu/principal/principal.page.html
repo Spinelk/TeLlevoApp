@@ -48,29 +48,18 @@
 
       <!-- Contenido -->
       <div
-        class="mt-52 rounded-none py-8 px-10 min-[400px]:p-8 min-[400px]:px-12 max-w-2xl mx-auto"
+        class="mt-52 py-8 min-[400px]:p-8 px-10 min-[400px]:px-12 w-full max-w-2xl mx-auto"
       >
-        <div class="mt-8 mb-6 lg:mb-16">
-          <a [routerLink]="['/solicitar-viaje']">
-            <button
-              expand="block"
-              size="large"
-              class="w-full h-14 shadow-sm uppercase focus:outline-none text-white gradiente hover:saturate-150 focus:ring-4 focus:ring-rosado-tla font-bold rounded-3xl text-xl px-5 py-2.5 mr-2 mb-2"
-            >
-              Solicitar vehículo
-            </button>
-          </a>
-        </div>
-        <div class="mb-6 lg:mb-16">
-          <button
-            *ngIf="usuario.esConductor==true"
-            expand="block"
-            size="large"
-            class="w-full h-14 shadow-sm uppercase focus:outline-none text-white gradiente hover:saturate-150 focus:ring-4 focus:ring-rosado-tla font-bold rounded-3xl text-xl px-5 py-2.5 mr-2 mb-2"
+        <div class="mt-8 w-full grid grid-cols-1 gap-8">
+          <boton-lg
+            [texto]="'solicitar viaje'"
+            [ruta]="'/solicitar-viaje'"
+          ></boton-lg>
+
+          <boton-lg
+            [texto]="'Disponer auto'"
             (click)="disponibilizarVehiculo()"
-          >
-            Disponibilizar vehículo
-          </button>
+          ></boton-lg>
         </div>
       </div>
     </div>
