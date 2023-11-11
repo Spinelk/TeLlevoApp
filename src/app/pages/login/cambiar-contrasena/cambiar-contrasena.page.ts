@@ -25,14 +25,4 @@ export class CambiarContrasenaPage {
   enviar() {
     this.servicioAutenticacion.enviarCorreoCambioContrasena(this.correo);
   }
-
-
-  // Navegación. Puede ser reemplazada por un botón en el HTML
-  irAInicio() {
-    this.navController.setDirection('back');
-    this.navController.back();
-  }
-  irARecuperar() {
-    this.router.navigate(['recuperar-contrasena']);
-  }
 }
