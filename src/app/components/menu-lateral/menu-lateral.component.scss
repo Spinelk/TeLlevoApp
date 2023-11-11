@@ -1,0 +1,17 @@
+:root {
+    --ion-color-gris: #27272a;
+    --ion-color-gris-rgb: 39, 39, 42;
+    --ion-color-gris-contrast: #ffffff;
+    --ion-color-gris-contrast-rgb: 255, 255, 255;
+    --ion-color-gris-shade: #222225;
+    --ion-color-gris-tint: #3d3d3f;
+}
+
+.ion-color-gris {
+    --ion-color-base: var(--ion-color-gris);
+    --ion-color-base-rgb: var(--ion-color-gris-rgb);
+    --ion-color-contrast: var(--ion-color-gris-contrast);
+    --ion-color-contrast-rgb: var(--ion-color-gris-contrast-rgb);
+    --ion-color-shade: var(--ion-color-gris-shade);
+    --ion-color-tint: var(--ion-color-gris-tint);
+}

@@ -1,9 +1,6 @@
 <ion-menu id="menu-lateral" contentId="main-content">
   <ion-content scrollY="false">
-    <div
-      [class.dark:bg-gris-android]="plataformaNoEsIos"
-      class="h-screen w-full"
-    >
+    <div class="h-screen w-full bg-neutral-100 dark:bg-zinc-800">
       <div class="text-center py-8 px-8 gradiente flex justify-between">
         <div class="flex justify-center flex-col">
           <h1 class="font-black text-base uppercase text-white text-left">
@@ -32,7 +29,7 @@
       <div class="py-5">
         <!-- CREAR FUNCIÓN -->
         <ion-menu-toggle>
-          <ion-item (click)="modalPerfil()" button lines="none">
+          <ion-item (click)="modalPerfil()" button lines="none" color="gris">
             <ion-icon
               color="danger"
               slot="start"
@@ -45,7 +42,7 @@
 
         <!-- Opciones de los conductores -->
         <div class="cursor-pointer" *ngIf="usuario.esConductor == true">
-          <ion-item class="text-gray-500" button lines="none">
+          <ion-item class="text-gray-500" button lines="none" color="gris">
             <ion-icon
               color="medium"
               slot="start"
@@ -54,7 +51,7 @@
             ></ion-icon>
             <ion-label> Mis viajes </ion-label>
           </ion-item>
-          <ion-item class="text-gray-500" button lines="none">
+          <ion-item class="text-gray-500" button lines="none" color="gris">
             <ion-icon
               color="medium"
               slot="start"
@@ -64,7 +61,7 @@
             <ion-label> Mi billetera </ion-label>
           </ion-item>
           <ion-menu-toggle>
-            <ion-item button lines="none" (click)="irAVehiculo()">
+            <ion-item button lines="none" (click)="irAVehiculo()" color="gris">
               <ion-icon
                 color="danger"
                 slot="start"
@@ -78,7 +75,7 @@
 
         <!-- Opciones de los viajeros -->
         <div class="cursor-pointer" *ngIf="usuario.esConductor == false">
-          <ion-item class="text-gray-500" button lines="none">
+          <ion-item class="text-gray-500" button lines="none" color="gris">
             <ion-icon
               color="medium"
               slot="start"
@@ -87,7 +84,7 @@
             ></ion-icon>
             <ion-label> Mis viajes </ion-label>
           </ion-item>
-          <ion-item class="text-gray-500" button lines="none">
+          <ion-item class="text-gray-500" button lines="none" color="gris">
             <ion-icon
               color="medium"
               slot="start"
@@ -97,7 +94,12 @@
             <ion-label> Mi billetera </ion-label>
           </ion-item>
           <ion-menu-toggle>
-            <ion-item button lines="none" (click)="irAConductor()">
+            <ion-item
+              button
+              lines="none"
+              [routerLink]="['/registrar-conductor']"
+              color="gris"
+            >
               <ion-icon
                 color="danger"
                 slot="start"
@@ -111,7 +113,7 @@
 
         <!-- Opciones de todos los usuarios -->
         <div class="cursor-pointer mt-5">
-          <ion-item class="text-gray-500" button lines="none">
+          <ion-item class="text-gray-500" button lines="none" color="gris">
             <ion-icon
               color="medium"
               slot="start"
@@ -120,7 +122,7 @@
             ></ion-icon>
             <ion-label> Ayuda en línea </ion-label>
           </ion-item>
-          <ion-item class="text-gray-500" button lines="none">
+          <ion-item class="text-gray-500" button lines="none" color="gris">
             <ion-icon
               color="medium"
               slot="start"
@@ -129,7 +131,7 @@
             ></ion-icon>
             <ion-label> Configuración </ion-label>
           </ion-item>
-          <ion-item button lines="none" (click)="cerrarSesion()">
+          <ion-item button lines="none" (click)="cerrarSesion()" color="gris">
             <ion-icon
               color="danger"
               slot="start"
