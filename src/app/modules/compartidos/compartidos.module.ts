@@ -4,6 +4,8 @@ import { BotonComponent } from 'src/app/components/compartidos/boton/boton.compo
 import { RouterModule } from '@angular/router';
 import { BannerComponent } from 'src/app/components/compartidos/banner/banner.component';
 import { TituloComponent } from 'src/app/components/compartidos/titulo/titulo.component';
+import { CampoTextoComponent } from 'src/app/components/compartidos/campo-texto/campo-texto.component';
+import { FormsModule } from '@angular/forms';
 
 
 
@@ -12,8 +14,10 @@ import { TituloComponent } from 'src/app/components/compartidos/titulo/titulo.co
     BotonComponent,
     BannerComponent,
     TituloComponent,
+    CampoTextoComponent,
   ],
   imports: [
+    FormsModule,
     CommonModule,
     RouterModule,
   ],
@@ -21,6 +25,7 @@ import { TituloComponent } from 'src/app/components/compartidos/titulo/titulo.co
     BotonComponent,
     BannerComponent,
     TituloComponent,
+    CampoTextoComponent,
   ],
 })
 export class CompartidosModule { }
