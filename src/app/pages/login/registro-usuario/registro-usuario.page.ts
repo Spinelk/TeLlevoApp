@@ -42,9 +42,4 @@ export class RegistroUsuarioPage {
       this.contrasena,
       this.verificadorContrasena);
   }
-
-  irAInicio() {
-    this.navController.setDirection('back');
-    this.router.navigate(['/inicio']);
-  }
 }
