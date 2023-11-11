@@ -1,13 +1,18 @@
+// Angular/Ionic
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario';
 import { IonCard, AnimationController } from '@ionic/angular';
 import type { Animation } from '@ionic/angular';
 
-import { AngularFireAuth } from '@angular/fire/compat/auth';
-import { StorageService } from 'src/app/services/global/storage.service';
-import { Vehiculo } from 'src/app/models/vehiculo';
+// Servicios
 import { HelperService } from 'src/app/services/global/helper.service';
+import { StorageService } from 'src/app/services/global/storage.service';
+
+// Modelos
+import { Vehiculo } from 'src/app/models/vehiculo';
+
+// Modals
 import { VehiculoPage } from '../../../components/modals/vehiculo/vehiculo.page';
 
 @Component({
@@ -46,7 +51,6 @@ export class PrincipalPage implements OnInit {
     private storageService: StorageService,
     private helper: HelperService,
     private animationCtrl: AnimationController,
-    private auth: AngularFireAuth,
   ) {
 
   }
@@ -62,21 +66,21 @@ export class PrincipalPage implements OnInit {
 
   }
 
-  async cargarUsuario(){
+  async cargarUsuario() {
     const usuario = await this.storageService.cargarUsuario();
     if (usuario != null) {
       this.usuario = usuario;
     }
   }
 
-  async cargarVehiculo(){
+  async cargarVehiculo() {
     const vehiculo = await this.storageService.cargarVehiculo();
     if (vehiculo != null) {
       this.vehiculo = vehiculo;
     }
   }
 
-  async disponibilizarVehiculo(){
+  async disponerVehiculo() {
     const vehiculo = await this.storageService.cargarVehiculo();
     if (vehiculo != null) {
       this.modalVehiculo();
@@ -85,9 +89,9 @@ export class PrincipalPage implements OnInit {
     }
   }
 
-  async modalVehiculo(){
+  async modalVehiculo() {
     const vehiculo = await this.storageService.cargarVehiculo();
-    var info =[];
+    var info = [];
     info.push(
       {
         patente: vehiculo?.patente,
@@ -96,12 +100,12 @@ export class PrincipalPage implements OnInit {
         modelo: vehiculo?.modelo,
         color: vehiculo?.color,
         cantidadAsientos: vehiculo?.cantidadAsientos,
-        conductor:  vehiculo?.conductor
+        conductor: vehiculo?.conductor
       }
-      );
+    );
 
-      const parametros = {dataModal:info};
-      this.helper.showModal(VehiculoPage,parametros,true);
+    const parametros = { dataModal: info };
+    this.helper.showModal(VehiculoPage, parametros, true);
   }
 
 
