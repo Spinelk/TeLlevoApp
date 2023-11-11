@@ -7,7 +7,7 @@
 
       <!-- Contenido -->
       <div
-        class="mt-52 rounded-none py-8 px-10 min-[400px]:p-8 min-[400px]:px-12 max-w-2xl mx-auto"
+        class="mt-52 py-8 min-[400px]:p-8 px-10 min-[400px]:px-12 max-w-2xl mx-auto"
       >
         <div class="mt-8 mb-12 lg:mb-16">
           <titulo
@@ -16,34 +16,23 @@
           ></titulo>
         </div>
 
-        <div class="mb-8 lg:mb-16">
-          <div id="email" class="grid grid-cols-12">
-            <input
-              [(ngModel)]="correo"
-              type="email"
-              class="h-14 border-0 pl-5 shadow-sm font-semibold bg-white text-zinc-500 placeholder-zinc-300 text-sm rounded-l-3xl focus:ring-rosado-tla block w-full p-2.5 dark:bg-zinc-700 dark:placeholder-zinc-400 dark:text-white col-span-10"
-              placeholder="Ingresa tu correo"
-              required
-            />
-            <button
-              class="gradiente shadow-sm hover:saturate-150 rounded-r-3xl focus:ring-rosado-tla col-span-2"
-              (click)="copiarPortapapeles()"
-            >
-              <i class="fas fa-clipboard text-white"></i>
-            </button>
-          </div>
+        <div class="mt-8 w-full grid grid-cols-1 gap-8">
+          <campo-texto
+            [placeholder]="'Ingresa tu correo'"
+            [tipo]="'email'"
+            [(valor)]="correo"
+          ></campo-texto>
+
+          <campo-texto
+            [placeholder]="'Ingresa tu contraseña'"
+            [tipo]="'password'"
+            [(valor)]="contrasena"
+          ></campo-texto>
         </div>
 
-        <div class="mb-8 lg:mb-16">
-          <input
-            [(ngModel)]="contrasena"
-            type="password"
-            class="h-14 border-0 pl-5 shadow-sm font-semibold bg-white text-zinc-500 placeholder-zinc-300 text-sm rounded-3xl focus:ring-rosado-tla block w-full p-2.5 dark:bg-zinc-700 dark:placeholder-zinc-400 dark:text-white"
-            placeholder="Ingresa tu contraseña"
-            required
-          />
+        <div>
           <p
-            (click)="irACambiarContrasena()"
+            [routerLink]="['/cambiar-contrasena']"
             class="mt-4 text-end text-[13px] tracking-wider font-semibold text-zinc-400 hover:text-zinc-500 hover:dark:text-zinc-300 cursor-pointer"
           >
             ¿Olvidaste tu contraseña?
@@ -51,7 +40,7 @@
         </div>
 
         <div class="mt-12 lg:mb-16">
-          <boton-lg [texto]="'Ingresar'" (click)="iniciar()"></boton-lg>
+          <boton-lg [texto]="'Ingresar'" (click)="iniciarSesion()"></boton-lg>
         </div>
       </div>
     </div>
@@ -62,7 +51,7 @@
       >
         ¿Aun no tienes cuenta?
         <span
-          (click)="irARegistro()"
+          [routerLink]="['/registro-usuario']"
           class="font-bold text-zinc-500 hover:text-zinc-600 dark:text-zinc-300 hover:dark:text-zinc-200 cursor-pointer"
           >Registrate</span
         >
