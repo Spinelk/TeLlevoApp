@@ -9,7 +9,7 @@ export class CampoTextoComponent implements OnInit {
 
   @Input() placeholder: string = "";
   @Input() tipo: string = "text";
-  @Input() valor: string = "test";
+  @Input() valor: string = "";
   @Output() valorChange: EventEmitter<any> = new EventEmitter<any>();
 
 
