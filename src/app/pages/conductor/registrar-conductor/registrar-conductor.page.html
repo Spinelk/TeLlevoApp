@@ -1,10 +1,11 @@
-<ion-content [fullscreen]="true">
+<ion-content [fullscreen]="true" [scrollY]="false">
   <ion-fab slot="fixed" vertical="top" horizontal="start" class="p-2">
     <ion-icon
       name="arrow-back-outline"
       color="light"
       size="large"
-      (click)="irAPrincipal()"
+      [routerLink]="['/inicio']"
+      routerDirection="back"
     ></ion-icon>
   </ion-fab>
 
@@ -12,90 +13,39 @@
     class="min-h-full flex flex-col justify-between bg-neutral-100 dark:bg-zinc-800"
   >
     <div>
-      <div class="fixed w-full z-50">
-        <div class="text-center pt-20 pb-24 px-12 gradiente relative">
-          <h1
-            class="font-extrabold text-7xl text-white truncate"
-            style="font-family: 'Ubuntu', sans-serif"
-          >
-            te llevo
-          </h1>
-
-          <div class="curvas dark:shape-fill-dark">
-            <svg
-              data-name="Layer 1"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 1200 120"
-              preserveAspectRatio="none"
-            >
-              <path
-                d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
-                opacity=".25"
-                class="shape-fill"
-              ></path>
-              <path
-                d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z"
-                opacity=".5"
-                class="shape-fill"
-              ></path>
-              <path
-                d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"
-                class="shape-fill"
-              ></path>
-            </svg>
-          </div>
-        </div>
-      </div>
+      <banner [titulo]="'te llevo'"></banner>
 
       <!-- Contenido -->
       <div
-        class="mt-52 rounded-none py-8 px-10 min-[400px]:p-8 min-[400px]:px-12 max-w-2xl mx-auto"
+        class="mt-36 min-[380px]:mt-52 py-8 px-10 min-[380px]:px-12 max-w-2xl mx-auto"
       >
-        <div class="mt-8 mb-16 lg:mb-16">
-          <h1
-            class="font-extrabold text-[40px] mb-4 text-gray-700 dark:text-white -ml-0.5 leading-6"
-          >
-            Únete
-          </h1>
-          <h1 class="font-semibold text-base mb-4 text-gray-400 leading-3">
-            Registrate como conductor
-          </h1>
+        <div class="mt-8 mb-8 min-[380px]:mb-14">
+          <titulo
+            [titulo]="'Únete'"
+            [subtitulo]="'Registrate como conductor'"
+          ></titulo>
         </div>
 
-        <!-- RUT -->
-        <div class="mb-8 lg:mb-16">
-          <input
-            id="rut"
-            [(ngModel)]="conductor.rut"
-            type="text"
-            class="h-14 border-0 pl-5 shadow-sm font-semibold bg-white text-zinc-500 placeholder-zinc-300 text-sm rounded-3xl focus:ring-rosado-tla block w-full p-2.5 dark:bg-zinc-700 dark:placeholder-zinc-400 dark:text-white"
-            placeholder="Ingresa tu rut"
-            required
-          />
-        </div>
-        <!-- licencia -->
-        <div class="mb-8 lg:mb-16">
-          <input
-            id="licencia"
-            [(ngModel)]="conductor.licencia"
-            type="text"
-            class="h-14 border-0 pl-5 shadow-sm font-semibold bg-white text-zinc-500 placeholder-zinc-300 text-sm rounded-3xl focus:ring-rosado-tla block w-full p-2.5 dark:bg-zinc-700 dark:placeholder-zinc-400 dark:text-white"
-            placeholder="Ingresa tu número de licencia"
-            required
-          />
-        </div>
+        <div class="grid grid-cols-1 gap-8">
+          <!-- RUT -->
+          <campo-texto
+            [placeholder]="'Ingresa tu rut'"
+            [tipo]="'text'"
+            [(valor)]="conductor.rut!"
+          ></campo-texto>
 
-        <!-- BOTÓN REGISTRAR -->
-        <div class="mt-14">
-          <button
-            id="registrar"
+          <!-- licencia -->
+          <campo-texto
+            [placeholder]="'Ingresa tu número de licencia'"
+            [tipo]="'text'"
+            [(valor)]="conductor.licencia!"
+          ></campo-texto>
+
+          <!-- BOTÓN REGISTRAR -->
+          <boton-lg
+            [texto]="'Registrar'"
             (click)="registrarConductor()"
-            expand="block"
-            size="large"
-            class="w-full h-14 uppercase focus:outline-none text-white gradiente hover:saturate-150 focus:ring-4 focus:ring-rosado-tla font-bold rounded-3xl text-xl px-5 py-2.5 mr-2 mb-2"
-          >
-            REGISTRAR
-          </button>
+          ></boton-lg>
         </div>
       </div>
     </div>

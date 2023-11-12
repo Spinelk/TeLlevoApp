@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
-import { NavController } from '@ionic/angular';
-import { Usuario } from 'src/app/models/usuario';
+
 import { HelperService } from 'src/app/services/global/helper.service';
 import { StorageService } from 'src/app/services/global/storage.service';
+
+import { Usuario } from 'src/app/models/usuario';
 
 @Component({
   selector: 'app-registrar-conductor',
@@ -14,12 +15,11 @@ import { StorageService } from 'src/app/services/global/storage.service';
 export class RegistrarConductorPage {
 
 
-
-  conductor:Usuario = {
-    id:0,
-    nombre:"",
-    apellido:"",
-    correo:"",
+  conductor: Usuario = {
+    id: 0,
+    nombre: "",
+    apellido: "",
+    correo: "",
     esConductor: false,
     urlImagenPerfil: "",
     licencia: "",
@@ -30,11 +30,10 @@ export class RegistrarConductorPage {
     private auth: AngularFireAuth,
     private storageService: StorageService,
     private alertService: HelperService,
-    private navController: NavController,
     private router: Router,
   ) { }
 
-  async registrarConductor(){
+  async registrarConductor() {
     if (this.conductor.rut == "") {
       this.alertService.showAlert("Debe ingresar su rut.", "Ingrese rut");
       return;
@@ -52,9 +51,9 @@ export class RegistrarConductorPage {
       return;
     }
     const user = await this.auth.currentUser;
-    if(user?.email){
+    if (user?.email) {
       const usuario = await this.storageService.obtenerUsuarioPorCorreo(user?.email);
-      if(usuario != null){
+      if (usuario != null) {
         this.conductor.id = usuario.id;
         this.conductor.nombre = usuario.nombre;
         this.conductor.apellido = usuario.apellido;
@@ -68,11 +67,5 @@ export class RegistrarConductorPage {
         this.alertService.showToast("Se ha registrado como conductor");
       }, 1000);
     }
-
-  }
-
-  irAPrincipal() {
-    this.navController.setDirection('back');
-    this.router.navigate(['/principal']);
   }
 }
