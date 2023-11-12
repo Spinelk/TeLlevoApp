@@ -25,6 +25,7 @@
             ></boton-lg>
 
             <boton-lg
+              *ngIf="usuario.esConductor"
               [texto]="'Disponer auto'"
               (click)="disponerVehiculo()"
             ></boton-lg>
