@@ -15,7 +15,7 @@ import { VehiculoPage } from 'src/app/components/modals/vehiculo/vehiculo.page';
 import { PerfilPage } from 'src/app/components/modals/perfil/perfil.page';
 
 @Component({
-  selector: '¿menu-lateral',
+  selector: 'menu-lateral',
   templateUrl: './menu-lateral.component.html',
   styleUrls: ['./menu-lateral.component.scss'],
 })
