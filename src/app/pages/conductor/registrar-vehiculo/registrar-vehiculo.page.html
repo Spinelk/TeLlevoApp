@@ -4,7 +4,8 @@
     vertical="top"
     horizontal="start"
     class="p-2"
-    (click)="irAPrincipal()"
+    [routerLink]="['/inicio']"
+    routerDirection="back"
   >
     <ion-icon name="arrow-back-outline" color="light" size="large"></ion-icon>
   </ion-fab>
@@ -13,68 +14,28 @@
     class="min-h-full flex flex-col justify-between bg-neutral-100 dark:bg-zinc-800"
   >
     <div>
-      <div class="fixed w-full z-50">
-        <div class="text-center pt-20 pb-24 px-12 gradiente relative">
-          <h1
-            class="font-extrabold text-7xl text-white truncate"
-            style="font-family: 'Ubuntu', sans-serif"
-          >
-            Registra tu vehículo
-          </h1>
-
-          <div class="curvas dark:shape-fill-dark">
-            <svg
-              data-name="Layer 1"
-              xmlns="http://www.w3.org/2000/svg"
-              viewBox="0 0 1200 120"
-              preserveAspectRatio="none"
-            >
-              <path
-                d="M0,0V46.29c47.79,22.2,103.59,32.17,158,28,70.36-5.37,136.33-33.31,206.8-37.5C438.64,32.43,512.34,53.67,583,72.05c69.27,18,138.3,24.88,209.4,13.08,36.15-6,69.85-17.84,104.45-29.34C989.49,25,1113-14.29,1200,52.47V0Z"
-                opacity=".25"
-                class="shape-fill"
-              ></path>
-              <path
-                d="M0,0V15.81C13,36.92,27.64,56.86,47.69,72.05,99.41,111.27,165,111,224.58,91.58c31.15-10.15,60.09-26.07,89.67-39.8,40.92-19,84.73-46,130.83-49.67,36.26-2.85,70.9,9.42,98.6,31.56,31.77,25.39,62.32,62,103.63,73,40.44,10.79,81.35-6.69,119.13-24.28s75.16-39,116.92-43.05c59.73-5.85,113.28,22.88,168.9,38.84,30.2,8.66,59,6.17,87.09-7.5,22.43-10.89,48-26.93,60.65-49.24V0Z"
-                opacity=".5"
-                class="shape-fill"
-              ></path>
-              <path
-                d="M0,0V5.63C149.93,59,314.09,71.32,475.83,42.57c43-7.64,84.23-20.12,127.61-26.46,59-8.63,112.48,12.24,165.56,35.4C827.93,77.22,886,95.24,951.2,90c86.53-7,172.46-45.71,248.8-84.81V0Z"
-                class="shape-fill"
-              ></path>
-            </svg>
-          </div>
-        </div>
-      </div>
+      <banner [titulo]="'te llevo'"></banner>
 
       <!-- Contenido -->
       <div
-        class="mt-64 rounded-none py-8 px-10 min-[400px]:p-8 min-[400px]:px-12 max-w-2xl mx-auto"
+        class="mt-36 min-[380px]:mt-52 py-8 px-10 min-[380px]:px-12 max-w-2xl mx-auto"
       >
-        <!-- PATENTE -->
-        <div class="mb-6 lg:mb-16">
-          <label
-            for="patente"
-            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
-            >PATENTE:</label
-          >
-          <input
-            id="patente"
-            [(ngModel)]="nuevoVehiculo.patente"
-            type="text"
-            class="h-14 border-0 pl-5 shadow-sm font-semibold bg-white text-zinc-500 placeholder-zinc-300 text-sm rounded-3xl focus:ring-rosado-tla block w-full p-2.5 dark:bg-zinc-700 dark:placeholder-zinc-400 dark:text-white"
-            placeholder="Ingresa la patente de tu vehículo"
-            required
-          />
+        <div class="mt-8 mb-8 min-[380px]:mb-14">
+          <titulo
+            [titulo]="'Registro'"
+            [subtitulo]="'Ingresa los datos de tu vehículo'"
+          ></titulo>
         </div>
-        <!-- TIPOVEHÍCULO -->
-        <div class="mb-6 lg:mb-16">
-          <label
-            for="tipoVehiculo"
-            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
-            >TIPO VEHÍCULO:</label
-          >
+
+        <div class="grid grid-cols-1 gap-8">
+          <!-- PATENTE -->
+          <campo-texto
+            [placeholder]="'Ingresa la patente de tu vehículo'"
+            [tipo]="'text'"
+            [(valor)]="nuevoVehiculo.patente"
+          ></campo-texto>
+
+          <!-- TIPOVEHÍCULO -->
           <ion-select
             required
             id="tipoVehiculo"
@@ -89,46 +50,22 @@
             <ion-select-option value="SUV">SUV</ion-select-option>
             <ion-select-option value="Compacto">Compacto</ion-select-option>
           </ion-select>
-        </div>
-        <!-- MARCA -->
-        <div class="mb-6 lg:mb-16">
-          <label
-            for="marca"
-            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
-            >MARCA:</label
-          >
-          <input
-            id="marca"
-            [(ngModel)]="nuevoVehiculo.marca"
-            type="text"
-            class="h-14 border-0 pl-5 shadow-sm font-semibold bg-white text-zinc-500 placeholder-zinc-300 text-sm rounded-3xl focus:ring-rosado-tla block w-full p-2.5 dark:bg-zinc-700 dark:placeholder-zinc-400 dark:text-white"
-            placeholder="Ingresa la marca"
-            required
-          />
-        </div>
-        <!-- MODELO -->
-        <div class="mb-6 lg:mb-16">
-          <label
-            for="modelo"
-            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
-            >MODELO :</label
-          >
-          <input
-            id="modelo"
-            [(ngModel)]="nuevoVehiculo.modelo"
-            type="text"
-            class="h-14 border-0 pl-5 shadow-sm font-semibold bg-white text-zinc-500 placeholder-zinc-300 text-sm rounded-3xl focus:ring-rosado-tla block w-full p-2.5 dark:bg-zinc-700 dark:placeholder-zinc-400 dark:text-white"
-            placeholder="Ingresa el modelo"
-            required
-          />
-        </div>
-        <!-- COLOR -->
-        <div class="mb-6 lg:mb-16">
-          <label
-            for="color"
-            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
-            >COLOR:</label
-          >
+
+          <!-- MARCA -->
+          <campo-texto
+            [placeholder]="'Ingresa la marca'"
+            [tipo]="'text'"
+            [(valor)]="nuevoVehiculo.marca"
+          ></campo-texto>
+
+          <!-- MODELO -->
+          <campo-texto
+            [placeholder]="'Ingresa el modelo'"
+            [tipo]="'text'"
+            [(valor)]="nuevoVehiculo.modelo"
+          ></campo-texto>
+
+          <!-- COLOR -->
           <ion-select
             required
             id="color"
@@ -150,19 +87,13 @@
             <ion-select-option value="Morado">Morado</ion-select-option>->
             <ion-select-option value="Rosado">Rosado</ion-select-option>->
           </ion-select>
-        </div>
-        <!-- CANTIDAD ASIENTOS -->
-        <div class="mb-6 lg:mb-16">
-          <label
-            for="cantidadAsientos"
-            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
-            >CANTIDAD DE ASIENTOS:</label
-          >
+
+          <!-- CANTIDAD ASIENTOS -->
           <ion-select
             required
             id="cantidadAsientos"
             [(ngModel)]="nuevoVehiculo.cantidadAsientos"
-            placeholder="Ingresa la cantidad de asientos del vehículo"
+            placeholder="Ingresa la cantidad de asientos"
             class="h-14 pt-0 border-0 pl-5 bg-white text-zinc-500 text-sm rounded-3xl placeholder-zinc-300 block w-full p-2.5 shadow-sm font-semibold focus:ring-rosado-tla dark:bg-zinc-700 dark:placeholder-zinc-400 dark:text-white"
           >
             <ion-select-option value="2">2</ion-select-option>->
@@ -173,22 +104,12 @@
             <ion-select-option value="7">7</ion-select-option>->
             <ion-select-option value="8">8</ion-select-option>->
           </ion-select>
-        </div>
-        <!-- BOTÓN REGISTRAR -->
-        <div>
-          <label
-            for="registrarVehiculo"
-            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white invisible"
-          ></label>
-          <button
-            id="registrarVehiculo"
+
+          <!-- BOTÓN REGISTRAR -->
+          <boton-lg
+            [texto]="'Registrar'"
             (click)="registrarVehiculo()"
-            expand="block"
-            size="large"
-            class="w-full h-14 uppercase focus:outline-none text-white gradiente hover:saturate-150 focus:ring-4 focus:ring-rosado-tla font-bold rounded-3xl text-xl px-5 py-2.5 mr-2 mb-2"
-          >
-            REGISTRAR
-          </button>
+          ></boton-lg>
         </div>
       </div>
     </div>

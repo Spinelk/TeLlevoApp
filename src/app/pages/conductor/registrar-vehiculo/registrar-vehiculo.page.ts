@@ -1,19 +1,18 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Usuario } from 'src/app/models/usuario';
-import { Vehiculo } from 'src/app/models/vehiculo';
-import { HelperService } from 'src/app/services/global/helper.service';
-import { NavController } from '@ionic/angular';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+
 import { StorageService } from 'src/app/services/global/storage.service';
+import { HelperService } from 'src/app/services/global/helper.service';
+
+import { Vehiculo } from 'src/app/models/vehiculo';
 
 @Component({
   selector: 'app-registrar-vehiculo',
   templateUrl: './registrar-vehiculo.page.html',
   styleUrls: ['./registrar-vehiculo.page.scss'],
 })
-export class RegistrarVehiculoPage implements OnInit {
-  // Se llena automaticamente durante la inicialización del componente.
+export class RegistrarVehiculoPage {
 
   nuevoVehiculo: Vehiculo = {
     patente: "",
@@ -29,20 +28,8 @@ export class RegistrarVehiculoPage implements OnInit {
     private router: Router,
     private helperService: HelperService,
     private storageService: StorageService,
-    private navController: NavController,
     private auth: AngularFireAuth,
   ) { }
-
-  ngOnInit() {
-
-  }
-
-
-
-  irAPrincipal() {
-    this.navController.setDirection('back');
-    this.router.navigate(['/principal']);
-  }
 
   async registrarVehiculo() {
     if (this.nuevoVehiculo.patente == "") {
@@ -90,17 +77,17 @@ export class RegistrarVehiculoPage implements OnInit {
     if (vehiculo.length == 0) {
       try {
         var vehicle =
-        [
-          {
-            patente: this.nuevoVehiculo.patente,
-            tipoVehiculo: this.nuevoVehiculo.tipoVehiculo,
-            marca: this.nuevoVehiculo.marca,
-            modelo: this.nuevoVehiculo.modelo,
-            color: this.nuevoVehiculo.color,
-            cantidadAsientos: this.nuevoVehiculo.cantidadAsientos,
-            conductor: this.nuevoVehiculo.conductor
-          }
-        ]
+          [
+            {
+              patente: this.nuevoVehiculo.patente,
+              tipoVehiculo: this.nuevoVehiculo.tipoVehiculo,
+              marca: this.nuevoVehiculo.marca,
+              modelo: this.nuevoVehiculo.modelo,
+              color: this.nuevoVehiculo.color,
+              cantidadAsientos: this.nuevoVehiculo.cantidadAsientos,
+              conductor: this.nuevoVehiculo.conductor
+            }
+          ]
         this.storageService.agregarVehiculo(vehicle);
         await this.router.navigateByUrl('principal');
       }
@@ -115,5 +102,4 @@ export class RegistrarVehiculoPage implements OnInit {
       }, 1000);
     }
   }
-
 }
