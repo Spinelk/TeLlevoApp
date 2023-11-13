@@ -6,12 +6,14 @@ import { BannerComponent } from 'src/app/components/compartidos/banner/banner.co
 import { TituloComponent } from 'src/app/components/compartidos/titulo/titulo.component';
 import { CampoTextoComponent } from 'src/app/components/compartidos/campo-texto/campo-texto.component';
 import { FormsModule } from '@angular/forms';
+import { BotonMdComponent } from 'src/app/components/compartidos/boton-md/boton-md.component';
 
 
 
 @NgModule({
   declarations: [
     BotonComponent,
+    BotonMdComponent,
     BannerComponent,
     TituloComponent,
     CampoTextoComponent,
@@ -23,6 +25,7 @@ import { FormsModule } from '@angular/forms';
   ],
   exports: [
     BotonComponent,
+    BotonMdComponent,
     BannerComponent,
     TituloComponent,
     CampoTextoComponent,
