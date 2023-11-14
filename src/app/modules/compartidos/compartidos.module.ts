@@ -7,6 +7,7 @@ import { TituloComponent } from 'src/app/components/compartidos/titulo/titulo.co
 import { CampoTextoComponent } from 'src/app/components/compartidos/campo-texto/campo-texto.component';
 import { FormsModule } from '@angular/forms';
 import { BotonMdComponent } from 'src/app/components/compartidos/boton-md/boton-md.component';
+import { BotonLgComponent } from 'src/app/components/compartidos/boton-lg/boton-lg.component';
 
 
 
@@ -14,6 +15,7 @@ import { BotonMdComponent } from 'src/app/components/compartidos/boton-md/boton-
   declarations: [
     BotonComponent,
     BotonMdComponent,
+    BotonLgComponent,
     BannerComponent,
     TituloComponent,
     CampoTextoComponent,
@@ -26,6 +28,7 @@ import { BotonMdComponent } from 'src/app/components/compartidos/boton-md/boton-
   exports: [
     BotonComponent,
     BotonMdComponent,
+    BotonLgComponent,
     BannerComponent,
     TituloComponent,
     CampoTextoComponent,
