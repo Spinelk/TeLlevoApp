@@ -27,119 +27,54 @@
       </div>
 
       <div class="py-5">
-        <!-- CREAR FUNCIÓN -->
         <ion-menu-toggle>
-          <ion-item (click)="modalPerfil()" button lines="none" color="gris">
-            <ion-icon
-              color="danger"
-              slot="start"
-              name="person-sharp"
-              class="pl-2"
-            ></ion-icon>
-            <ion-label> Perfil </ion-label>
-          </ion-item>
+          <menu-item
+            [texto]="'Perfil'"
+            [icono]="'person-sharp'"
+            [activado]="true"
+            (click)="modalPerfil()"
+          ></menu-item>
         </ion-menu-toggle>
+        <menu-item [texto]="'Mis viajes'" [icono]="'reader'"></menu-item>
+        <menu-item [texto]="'Mi billetera'" [icono]="'wallet'"></menu-item>
 
         <!-- Opciones de los conductores -->
         <div class="cursor-pointer" *ngIf="usuario.esConductor == true">
-          <ion-item class="text-gray-500" button lines="none" color="gris">
-            <ion-icon
-              color="medium"
-              slot="start"
-              name="reader"
-              class="pl-2"
-            ></ion-icon>
-            <ion-label> Mis viajes </ion-label>
-          </ion-item>
-          <ion-item class="text-gray-500" button lines="none" color="gris">
-            <ion-icon
-              color="medium"
-              slot="start"
-              name="wallet"
-              class="pl-2"
-            ></ion-icon>
-            <ion-label> Mi billetera </ion-label>
-          </ion-item>
           <ion-menu-toggle>
-            <ion-item button lines="none" (click)="irAVehiculo()" color="gris">
-              <ion-icon
-                color="danger"
-                slot="start"
-                name="car"
-                class="pl-2"
-              ></ion-icon>
-              <ion-label> Vehiculo </ion-label>
-            </ion-item>
+            <menu-item
+              [texto]="'Vehículo'"
+              [icono]="'car'"
+              [activado]="true"
+              (click)="irAVehiculo()"
+            ></menu-item>
           </ion-menu-toggle>
         </div>
 
         <!-- Opciones de los viajeros -->
         <div class="cursor-pointer" *ngIf="usuario.esConductor == false">
-          <ion-item class="text-gray-500" button lines="none" color="gris">
-            <ion-icon
-              color="medium"
-              slot="start"
-              name="reader"
-              class="pl-2"
-            ></ion-icon>
-            <ion-label> Mis viajes </ion-label>
-          </ion-item>
-          <ion-item class="text-gray-500" button lines="none" color="gris">
-            <ion-icon
-              color="medium"
-              slot="start"
-              name="wallet"
-              class="pl-2"
-            ></ion-icon>
-            <ion-label> Mi billetera </ion-label>
-          </ion-item>
           <ion-menu-toggle>
-            <ion-item
-              button
-              lines="none"
+            <menu-item
+              [texto]="'Ser conductor'"
+              [icono]="'car'"
+              [activado]="true"
               [routerLink]="['/registrar-conductor']"
-              color="gris"
-            >
-              <ion-icon
-                color="danger"
-                slot="start"
-                name="car-sport-sharp"
-                class="pl-2"
-              ></ion-icon>
-              <ion-label> Ser conductor </ion-label>
-            </ion-item>
+            ></menu-item>
           </ion-menu-toggle>
         </div>
 
         <!-- Opciones de todos los usuarios -->
         <div class="cursor-pointer mt-5">
-          <ion-item class="text-gray-500" button lines="none" color="gris">
-            <ion-icon
-              color="medium"
-              slot="start"
-              name="help-circle"
-              class="pl-2"
-            ></ion-icon>
-            <ion-label> Ayuda en línea </ion-label>
-          </ion-item>
-          <ion-item class="text-gray-500" button lines="none" color="gris">
-            <ion-icon
-              color="medium"
-              slot="start"
-              name="settings"
-              class="pl-2"
-            ></ion-icon>
-            <ion-label> Configuración </ion-label>
-          </ion-item>
-          <ion-item button lines="none" (click)="cerrarSesion()" color="gris">
-            <ion-icon
-              color="danger"
-              slot="start"
-              name="chevron-back-circle"
-              class="pl-2"
-            ></ion-icon>
-            <ion-label> Cerrar Sesión </ion-label>
-          </ion-item>
+          <menu-item
+            [texto]="'Ayuda en linea'"
+            [icono]="'help-circle'"
+          ></menu-item>
+          <menu-item [texto]="'Configuración'" [icono]="'settings'"></menu-item>
+          <menu-item
+            [texto]="'Cerrar Sesión'"
+            [icono]="'chevron-back-circle'"
+            [activado]="true"
+            (click)="cerrarSesion()"
+          ></menu-item>
         </div>
       </div>
     </div>
