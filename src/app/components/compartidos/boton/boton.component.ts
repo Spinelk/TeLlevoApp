@@ -1,7 +1,7 @@
 import { Component, Input, OnInit } from '@angular/core';
 
 @Component({
-  selector: 'boton-lg',
+  selector: 'boton',
   templateUrl: './boton.component.html',
   styleUrls: ['./boton.component.scss'],
 })
