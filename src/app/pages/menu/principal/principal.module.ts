@@ -8,17 +8,21 @@ import { PrincipalPageRoutingModule } from './principal-routing.module';
 
 import { PrincipalPage } from './principal.page';
 import { MenuLateralComponent } from 'src/app/components/menu-lateral/menu-lateral.component';
+import { CompartidosModule } from 'src/app/modules/compartidos/compartidos.module';
+import { MenuItemComponent } from 'src/app/components/menu-lateral/menu-item/menu-item.component';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    PrincipalPageRoutingModule
+    PrincipalPageRoutingModule,
+    CompartidosModule,
   ],
   declarations: [
     PrincipalPage,
-    MenuLateralComponent
+    MenuLateralComponent,
+    MenuItemComponent
   ]
 })
 export class PrincipalPageModule {}

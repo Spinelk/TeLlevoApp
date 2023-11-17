@@ -7,12 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { SolicitarViajePageRoutingModule } from './solicitar-viaje-routing.module';
 
 import { SolicitarViajePage } from './solicitar-viaje.page';
+import { CompartidosModule } from 'src/app/modules/compartidos/compartidos.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    CompartidosModule,
     SolicitarViajePageRoutingModule
   ],
   declarations: [SolicitarViajePage]

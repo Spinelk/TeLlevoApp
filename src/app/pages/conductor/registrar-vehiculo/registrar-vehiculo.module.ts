@@ -7,12 +7,14 @@ import { IonicModule } from '@ionic/angular';
 import { RegistrarVehiculoPageRoutingModule } from './registrar-vehiculo-routing.module';
 
 import { RegistrarVehiculoPage } from './registrar-vehiculo.page';
+import { CompartidosModule } from 'src/app/modules/compartidos/compartidos.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
+    CompartidosModule,
     RegistrarVehiculoPageRoutingModule
   ],
   declarations: [RegistrarVehiculoPage]

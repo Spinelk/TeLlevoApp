@@ -1,7 +1,7 @@
 // Angular/Ionic
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, Input } from '@angular/core';
 import { Router } from '@angular/router';
-import { MenuController, Platform } from '@ionic/angular';
+import { MenuController } from '@ionic/angular';
 
 // Servicios
 import { AutenticacionService } from 'src/app/services/autenticacion/autenticacion.service';
@@ -15,7 +15,7 @@ import { VehiculoPage } from 'src/app/components/modals/vehiculo/vehiculo.page';
 import { PerfilPage } from 'src/app/components/modals/perfil/perfil.page';
 
 @Component({
-  selector: 'app-menu-lateral',
+  selector: 'menu-lateral',
   templateUrl: './menu-lateral.component.html',
   styleUrls: ['./menu-lateral.component.scss'],
 })
@@ -29,33 +29,26 @@ export class MenuLateralComponent {
     apellido: "",
     correo: "",
     esConductor: false
-  };
-
-  // Utilizado para agregar/elimar clases de CSS dependiendo de la plataforma
-  // Se actuliza en el constructor
-  plataformaNoEsIos: boolean = true;
+  }
 
   constructor(
     private router: Router,
-    private platform: Platform,
     private menuCtrl: MenuController,
     private storageService: StorageService,
     private servicioAutenticacion: AutenticacionService,
     private vehiculoPage: VehiculoPage,
     private perfilPage: PerfilPage,
   ) {
-    this.plataformaNoEsIos = !this.platform.is('ios');
   }
 
   ionViewDidLeave() {
     this.menuCtrl.close('menu-lateral');
   }
 
-
-
   async modalPerfil() { // Perfil
     this.perfilPage.mostrarModal();
   }
+
 
   // Mis Viajes
 
@@ -80,16 +73,7 @@ export class MenuLateralComponent {
     if (vehiculo != null) {
       this.modalVehiculo();
     } else {
-      this.irARegistrarVehiculo();
+      this.router.navigate(['/registrar-vehiculo']);
     }
-  }
-
-
-  // Navegación. Puede ser reemplazada por un botón en el HTML
-  irARegistrarVehiculo() {
-    this.router.navigate(['/registrar-vehiculo']);
-  }
-  irAConductor() {
-    this.router.navigate(['/registrar-conductor']);
   }
 }

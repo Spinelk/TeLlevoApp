@@ -1,126 +1,72 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-
-    <ion-title>Registro</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <div class="h-full flex flex-col justify-between">
-    <div class="">
+  <ion-fab
+    slot="fixed"
+    vertical="top"
+    horizontal="start"
+    class="p-2"
+    [routerLink]="['/inicio']"
+    routerDirection="back"
+  >
+    <ion-icon name="arrow-back-outline" color="light" size="large"></ion-icon>
+  </ion-fab>
+
+  <div
+    class="min-h-full flex flex-col justify-between bg-neutral-100 dark:bg-zinc-800"
+  >
+    <div>
+      <banner [titulo]="'te llevo'"></banner>
+
+      <!-- Contenido -->
       <div
-        class="text-center py-16 min-[400px]:py-20 px-8 min-[400px]:px-12 gradiente"
+        class="mt-36 min-[380px]:mt-52 py-8 px-10 min-[380px]:px-12 max-w-2xl mx-auto"
       >
-        <h1 class="font-bold text-3xl mb-4 uppercase text-white">ÚNETE</h1>
-        <h3 class="text-lg text-white" >
-          Forma parte de la comunidad
-          <span class="font-bold cursor-pointer"
-            >Te Llevo</span
-          >
-        </h3>
-      </div>
-      <div
-        class="m-0 rounded-none p-8 min-[400px]:p-8 min-[400px]:px-12 max-w-2xl mx-auto"
-      >
-        <!-- NOMBRE -->
-        <div class="mb-6 lg:mb-16">
-          <label
-            for="nombre"
-            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
-            >NOMBRE:</label
-          >
-          <input
-            id="nombre"
-            [(ngModel)]="nuevoUsuario.nombre"
-            type="text"
-            class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
-            placeholder="Ingresa tu nombre"
-            required
-          />
+        <div class="mt-8 mb-8 min-[380px]:mb-14">
+          <titulo
+            [titulo]="'Registro'"
+            [subtitulo]="'Únete a la comunidad de te llevo app'"
+          ></titulo>
         </div>
-        <!-- APELLIDO -->
-        <div class="mb-6 lg:mb-16">
-          <label
-            for="apellido"
-            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
-            >APELLIDO:</label
-          >
-          <input
-            id="apellido"
-            [(ngModel)]="nuevoUsuario.apellido"
-            type="text"
-            class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
-            placeholder="Ingresa tu apellido"
-            required
-          />
-        </div>
-        <!-- CORREO -->
-        <div class="mb-6 lg:mb-16">
-          <label
-            for="email"
-            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
-            >CORREO INSTITUCIONAL:</label
-          >
-          <input
-            id="email"
-            [(ngModel)]="nuevoUsuario.correo"
-            type="email"
-            class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
-            placeholder="Ingresa tu correo Duoc UC"
-            required
-          />
-        </div>
-        <!-- CONTRASEÑA -->
-        <div class="mb-6 lg:mb-16">
-          <label
-            for="password"
-            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
-            >CONTRASEÑA:</label
-          >
-          <input
-            id="password"
-            [(ngModel)]="nuevoUsuario.contrasena"
-            type="password"
-            class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
-            placeholder="Ingresa tu contraseña"
-            required
-          />
-        </div>
-        <!-- CONTRASEÑA 2-->
-        <div class="mb-6 lg:mb-16">
-          <label
-            for="password2"
-            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
-            >VERIFICAR CONTRASEÑA:</label
-          >
-          <input
-            id="password2"
-            [(ngModel)]="verificadorContrasena"
-            type="password"
-            class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
-            placeholder="Verifica tu contraseña"
-            required
-          />
-        </div>
-        <!-- BOTÓN REGISTRAR -->
-        <div>
-          <label
-            for="registrar"
-            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white invisible"
-            >INGRESAR:</label
-          >
-          <button
-            id="registrar"
-            (click)="registrar()"
-            expand="block"
-            size="large"
-            class="w-full h-14 uppercase focus:outline-none text-white bg-rose-400 hover:bg-rose-500 focus:ring-4 focus:ring-rose-500 font-bold rounded-3xl text-xl px-5 py-2.5 mr-2 mb-2 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600"
-          >
-            REGISTRAR
-          </button>
+
+        <div class="w-full grid grid-cols-1 gap-8">
+          <!-- NOMBRE -->
+          <campo-texto
+            [placeholder]="'Ingresa tu nombre'"
+            [tipo]="'text'"
+            [(valor)]="nuevoUsuario.nombre"
+          ></campo-texto>
+
+          <!-- APELLIDO -->
+          <campo-texto
+            [placeholder]="'Ingresa tu apellido'"
+            [tipo]="'text'"
+            [(valor)]="nuevoUsuario.apellido"
+          ></campo-texto>
+
+          <!-- CORREO -->
+          <campo-texto
+            [placeholder]="'Ingresa tu correo Duoc UC'"
+            [tipo]="'email'"
+            [(valor)]="nuevoUsuario.correo"
+          ></campo-texto>
+
+          <!-- CONTRASEÑA -->
+          <campo-texto
+            [placeholder]="'Ingresa tu contrasena'"
+            [tipo]="'password'"
+            [(valor)]="contrasena"
+          ></campo-texto>
+
+          <!-- CONTRASEÑA 2-->
+          <campo-texto
+            [placeholder]="'Verifica tu contrasena'"
+            [tipo]="'password'"
+            [(valor)]="verificadorContrasena"
+          ></campo-texto>
+
+          <!-- BOTÓN REGISTRAR -->
+          <div class="mt-2 lg:mt-4 flex justify-center">
+            <boton-md [texto]="'Registrar'" (click)="registrar()"></boton-md>
+          </div>
         </div>
       </div>
     </div>

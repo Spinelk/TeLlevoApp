@@ -5,6 +5,10 @@ module.exports = {
     extend: {
       colors: {
         "gris-android": "#1e1e1e",
+        "rosado-tla": "#EA01AF",
+      },
+      fontFamily: {
+        "ubuntu": ["Ubuntu", "sans-serif"],
       },
     },
   },

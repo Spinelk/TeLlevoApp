@@ -1,58 +1,42 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
+<ion-content [fullscreen]="true" [scrollY]="false">
+  <ion-fab
+    slot="fixed"
+    vertical="top"
+    horizontal="start"
+    class="p-2"
+    [routerLink]="['/inicio']"
+    routerDirection="back"
+  >
+    <ion-icon name="arrow-back-outline" color="light" size="large"></ion-icon>
+  </ion-fab>
 
-    <ion-title>Recuperar contraseña </ion-title>
-  </ion-toolbar>
-</ion-header>
+  <div
+    class="min-h-full flex flex-col justify-between bg-neutral-100 dark:bg-zinc-800"
+  >
+    <div>
+      <banner [titulo]="'te llevo'"></banner>
 
-<ion-content [fullscreen]="true">
-  <div class="h-full flex flex-col justify-between">
-    <div class="">
+      <!-- Contenido -->
       <div
-        class="text-center py-16 min-[400px]:py-16 px-8 min-[400px]:px-12 gradiente"
+        class="mt-36 min-[380px]:mt-52 py-8 px-10 min-[380px]:px-12 max-w-2xl mx-auto"
       >
-        <h1 class="font-bold text-2xl mb-4 uppercase text-white">
-          ¿HAS OLVIDADO TU CONTRASEÑA?
-        </h1>
-        <h3 class="text-lg text-white">
-          Te enviaremos un correo para que puedas recuperarla
-        </h3>
-      </div>
-      <div
-        class="m-0 rounded-none p-8 min-[400px]:p-8 min-[400px]:px-12 max-w-2xl mx-auto"
-      >
-        <div class="mb-6 lg:mb-16">
-          <label
-            for="email"
-            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
-            >INGRESA TU CORREO INSTITUCIONAL:</label
-          >
-          <input
-            [(ngModel)]="correo"
-            type="email"
-            class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
-            placeholder="Ingresa tu correo Duoc UC"
-            required
-          />
+        <div class="mt-8 mb-8 min-[380px]:mb-14">
+          <titulo
+            [titulo]="'¿Olvidaste tu contraseña?'"
+            [subtitulo]="'Te enviaremos un correo para que puedas recuperar tu cuenta'"
+          ></titulo>
         </div>
 
-        <div class="mb-6 lg:mb-16">
-          <label
-            for="enviar"
-            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white invisible"
-            >ENVIAR:</label
-          >
-          <button
-            (click)="enviar()"
-            expand="block"
-            size="large"
-            class="w-full h-14 uppercase focus:outline-none text-white bg-rose-400 hover:bg-rose-500 focus:ring-4 focus:ring-rose-500 font-bold rounded-3xl text-xl px-5 py-2.5 mr-2 mb-2 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600"
-          >
-            ENVIAR
-          </button>
+        <div class="grid grid-cols-1 gap-8">
+          <campo-texto
+            [placeholder]="'Ingresa tu correo Duoc UC'"
+            [tipo]="'email'"
+            [(valor)]="correo"
+          ></campo-texto>
+
+          <div class="mt-2 lg:mt-4 flex justify-center">
+            <boton-md [texto]="'Enviar'" (click)="enviar()"></boton-md>
+          </div>
         </div>
       </div>
     </div>

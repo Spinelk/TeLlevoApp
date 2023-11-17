@@ -1,54 +1,35 @@
-<app-menu-lateral [usuario]="usuario"></app-menu-lateral>
-
+<menu-lateral [usuario]="usuario"></menu-lateral>
 
 <div class="ion-page" id="main-content">
-  <ion-header [translucent]="true">
-    <ion-toolbar>
-      <ion-buttons slot="start">
-        <ion-menu-button></ion-menu-button>
-      </ion-buttons>
+  <ion-content [fullscreen]="true" [scrollY]="false">
+    <ion-fab slot="fixed" vertical="top" horizontal="start" class="p-2">
+      <ion-menu-toggle>
+        <ion-icon name="menu" color="light" size="large"></ion-icon>
+      </ion-menu-toggle>
+    </ion-fab>
 
-      <ion-title>Te Llevo</ion-title>
-    </ion-toolbar>
-  </ion-header>
+    <div
+      class="min-h-full flex flex-col justify-between bg-neutral-100 dark:bg-zinc-800"
+    >
+      <div>
+        <banner [titulo]="'te llevo'"></banner>
 
-  <ion-content [fullscreen]="true">
-    <div class="h-full">
-      <div
-        class="text-center py-16 min-[400px]:py-16 px-8 min-[400px]:px-12 gradiente"
-      >
-        <h1 class="font-bold text-5xl mb-4 uppercase text-white">BIENVENID@</h1>
-        <h1 id="nombreUsuario" class="font-bold text-5xl mb-4 uppercase text-white">{{usuario.nombre}}</h1>
-        <!-- <ion-card id="cardOne" class="bg-transparent border-0 shadow-none">
-          <h3 class="text-3xl text-white">
-            {{ usuario.nombre }} {{ usuario.apellido }}
-          </h3>
-        </ion-card> -->
-      </div>
-      <div
-        class="m-0 rounded-none p-8 min-[400px]:p-8 min-[400px]:px-12 max-w-2xl mx-auto"
-      >
-        <div class="mb-6 lg:mb-16">
-          <a [routerLink]="['/solicitar-viaje']">
-            <button
-              expand="block"
-              size="large"
-              class="w-full h-14 uppercase focus:outline-none text-white bg-rose-400 hover:bg-rose-500 focus:ring-4 focus:ring-rose-500 font-bold rounded-3xl text-xl px-5 py-2.5 mr-2 mb-2 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600"
-            >
-              Solicitar vehículo
-            </button>
-          </a>
-        </div>
-        <div class="mb-6 lg:mb-16">
-          <button
-            *ngIf="usuario.esConductor==true"
-            expand="block"
-            size="large"
-            class="w-full h-14 uppercase focus:outline-none text-white bg-rose-400 hover:bg-rose-500 focus:ring-4 focus:ring-rose-500 font-bold rounded-3xl text-xl px-5 py-2.5 mr-2 mb-2 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600"
-            (click)="disponibilizarVehiculo()"
-          >
-            Disponibilizar vehículo
-          </button>
+        <!-- Contenido -->
+        <div
+          class="mt-36 min-[380px]:mt-52 py-8 px-10 min-[380px]:px-12 max-w-2xl mx-auto"
+        >
+          <div class="mt-8 w-full grid grid-cols-1 gap-8">
+            <boton-lg
+              [texto]="'solicitar viaje'"
+              [ruta]="'/solicitar-viaje'"
+            ></boton-lg>
+
+            <boton-lg
+              *ngIf="usuario.esConductor"
+              [texto]="'Disponer auto'"
+              (click)="disponerVehiculo()"
+            ></boton-lg>
+          </div>
         </div>
       </div>
     </div>

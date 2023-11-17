@@ -1,35 +1,37 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
-
-    <ion-title>Confirmar</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <div class="h-full flex flex-col justify-between">
-    <div class="">
+  <ion-fab
+    slot="fixed"
+    vertical="top"
+    horizontal="start"
+    class="p-2"
+    [routerLink]="['/solicitar-viaje']"
+    routerDirection="back"
+  >
+    <ion-icon name="arrow-back-outline" color="light" size="large"></ion-icon>
+  </ion-fab>
+
+  <div
+    class="min-h-full flex flex-col justify-between bg-neutral-100 dark:bg-zinc-800"
+  >
+    <div>
+      <banner [titulo]="'te llevo'"></banner>
+
+      <!-- Contenido -->
       <div
-        class="text-center py-16 min-[400px]:py-16 px-8 min-[400px]:px-12 gradiente"
+        class="mt-52 py-8 px-10 min-[400px]:p-8 min-[400px]:px-12 max-w-2xl mx-auto"
       >
-        <h1 class="font-bold text-5xl mb-4 uppercase text-white">CONFIRMAR</h1>
-        <h3 class="text-3xl text-white"></h3>
-      </div>
-      <div
-        class="m-0 rounded-none p-8 min-[400px]:p-8 min-[400px]:px-12 max-w-2xl mx-auto cursor-pointer"
-      >
-        <div class="mb-6 lg:mb-16">
-          <div class="w-full border-0 rounded-lg shadow gradiente">
-            <div class="w-full h-48">
+        <div class="mt-8 mb-8 lg:mb-16">
+          <div
+            class="w-full border-0 rounded-2xl shadow gradiente overflow-hidden"
+          >
+            <div class="w-full h-36">
               <ion-thumbnail slot="start" class="w-full h-full">
                 <ion-skeleton-text [animated]="true"></ion-skeleton-text>
               </ion-thumbnail>
             </div>
-            <div class="p-5">
+            <div class="px-5 py-2">
               <h5
-                class="mb-7 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
+                class="mb-3 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
               >
                 <ion-skeleton-text
                   [animated]="true"
@@ -52,26 +54,13 @@
           </div>
         </div>
 
-        <div class="mb-6 lg:mb-16">
-          <button
-            (click)="irAInicio()"
-            expand="block"
-            size="large"
-            class="w-full h-14 uppercase focus:outline-none text-white bg-rose-400 hover:bg-rose-500 focus:ring-4 focus:ring-rose-500 font-bold rounded-3xl text-xl px-5 py-2.5 mr-2 mb-2 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600"
-          >
-            Confirmar
-          </button>
-        </div>
-
-        <div class="mb-6 lg:mb-16">
-          <button
-            (click)="irASolicitar()"
-            expand="block"
-            size="large"
-            class="w-full h-14 uppercase focus:outline-none text-white bg-rose-400 hover:bg-rose-500 focus:ring-4 focus:ring-rose-500 font-bold rounded-3xl text-xl px-5 py-2.5 mr-2 mb-2 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600"
-          >
-            Cancelar
-          </button>
+        <div class="grid grid-cols-1 gap-8">
+          <boton-lg [texto]="'Confirmar'" (click)="confirmar()"></boton-lg>
+          <boton-lg
+            [texto]="'Cancelar'"
+            [routerLink]="['/solicitar-viaje']"
+            routerDirection="back"
+          ></boton-lg>
         </div>
       </div>
     </div>

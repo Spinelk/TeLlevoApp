@@ -1,82 +1,59 @@
-<ion-content [fullscreen]="true">
-
-  <div class="h-full flex flex-col justify-between">
+<ion-content [fullscreen]="true" [scrollY]="false">
+  <div
+    class="min-h-full flex flex-col justify-between bg-neutral-100 dark:bg-zinc-800"
+  >
     <div>
-      <div
-        class="text-center py-16 min-[400px]:py-20 px-8 min-[400px]:px-12 gradiente"
-      >
-        <h1 class="font-bold text-3xl mb-4 uppercase text-white">Te Llevo</h1>
-        <h3 class="text-lg text-white">
-          ¿Aun no tienes cuenta?
-          <span (click)="irARegistro()" class="font-bold cursor-pointer"
-            >Regístrate</span
-          >
-        </h3>
-      </div>
-      <div
-        class="m-0 rounded-none p-8 min-[400px]:p-8 min-[400px]:px-12 max-w-2xl mx-auto"
-      >
-        <div class="mb-6 lg:mb-16">
-          <label
-            for="email"
-            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
-            >CORREO ELECTRÓNICO:</label
-          >
-          <div
-          id="email" class="grid grid-cols-12">
-              <input
-              [(ngModel)]="correo"
-              type="email"
-              class="col-span-10 h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-l-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
-              placeholder="Ingresa tu correo"
-              required
-            />
-            <button class="bg-clipboard rounded-r-3xl col-span-2" (click)="copiarPortapapeles()">
-              <i class="fas fa-clipboard clipboard  "></i>
-            </button>
-          </div>
+      <banner [titulo]="'te llevo'"></banner>
 
+      <!-- Contenido -->
+      <div
+        class="mt-36 min-[380px]:mt-52 py-8 px-10 min-[380px]:px-12 max-w-2xl mx-auto"
+      >
+        <div class="mt-8 mb-8 min-[380px]:mb-14">
+          <titulo
+            [titulo]="'Bienvenido'"
+            [subtitulo]="'Inicia sesión con tu cuenta'"
+          ></titulo>
         </div>
 
-        <div class="mb-6 lg:mb-16">
-          <label
-            for="password"
-            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
-            >CONTRASEÑA:</label
-          >
-          <input
-            [(ngModel)]="contrasena"
-            type="password"
-            class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
-            placeholder="Ingresa tu contraseña"
-            required
-          />
+        <div class="mt-8 w-full grid grid-cols-1 gap-8">
+          <campo-texto
+            [placeholder]="'Ingresa tu correo'"
+            [tipo]="'email'"
+            [(valor)]="correo"
+          ></campo-texto>
+
+          <campo-texto
+            [placeholder]="'Ingresa tu contraseña'"
+            [tipo]="'password'"
+            [(valor)]="contrasena"
+          ></campo-texto>
         </div>
 
         <div>
-          <label
-            for="ingresar"
-            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white invisible"
-            >INGRESAR:</label
+          <p
+            [routerLink]="['/cambiar-contrasena']"
+            class="mt-4 text-end text-[13px] tracking-wider font-semibold text-zinc-400 hover:text-zinc-500 hover:dark:text-zinc-300 cursor-pointer"
           >
-          <button
-            (click)="iniciar()"
-            expand="block"
-            size="large"
-            class="w-full h-14 uppercase focus:outline-none text-white bg-rose-400 hover:bg-rose-500 focus:ring-4 focus:ring-rose-500 font-bold rounded-3xl text-xl px-5 py-2.5 mr-2 mb-2 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600"
-          >
-            INGRESAR
-          </button>
+            ¿Olvidaste tu contraseña?
+          </p>
+        </div>
 
+        <div class="mt-10 lg:mb-16 flex justify-center">
+          <boton-md [texto]="'Ingresar'" (click)="iniciarSesion()"></boton-md>
         </div>
       </div>
     </div>
 
     <div class="pb-6 px-8 min-[400px]:px-12">
-      <p class="text-end text-[13px] tracking-wider">
-        ¿Olvidaste tu contraseña?
-        <span (click)="irACambiarContrasena()" class="font-bold cursor-pointer"
-          >recupérala</span
+      <p
+        class="text-center font-semibold text-[13px] tracking-wider text-zinc-400"
+      >
+        ¿Aun no tienes cuenta?
+        <span
+          [routerLink]="['/registro-usuario']"
+          class="font-bold text-zinc-500 hover:text-zinc-600 dark:text-zinc-300 hover:dark:text-zinc-200 cursor-pointer"
+          >Registrate</span
         >
       </p>
     </div>

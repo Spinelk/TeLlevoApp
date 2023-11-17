@@ -7,13 +7,15 @@ import { IonicModule } from '@ionic/angular';
 import { InicioSesionPageRoutingModule } from './inicio-sesion-routing.module';
 
 import { InicioSesionPage } from './inicio-sesion.page';
+import { CompartidosModule } from 'src/app/modules/compartidos/compartidos.module';
 
 @NgModule({
   imports: [
     CommonModule,
     FormsModule,
     IonicModule,
-    InicioSesionPageRoutingModule
+    InicioSesionPageRoutingModule,
+    CompartidosModule,
   ],
   declarations: [InicioSesionPage]
 })

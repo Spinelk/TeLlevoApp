@@ -1,79 +1,51 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-buttons slot="start">
-      <ion-back-button></ion-back-button>
-    </ion-buttons>
+<ion-content [fullscreen]="true" [scrollY]="false">
+  <ion-fab slot="fixed" vertical="top" horizontal="start" class="p-2">
+    <ion-icon
+      name="arrow-back-outline"
+      color="light"
+      size="large"
+      [routerLink]="['/inicio']"
+      routerDirection="back"
+    ></ion-icon>
+  </ion-fab>
 
-    <ion-title>Registrarse como conductor</ion-title>
-  </ion-toolbar>
-</ion-header>
+  <div
+    class="min-h-full flex flex-col justify-between bg-neutral-100 dark:bg-zinc-800"
+  >
+    <div>
+      <banner [titulo]="'te llevo'"></banner>
 
-<ion-content [fullscreen]="true">
-  <div class="h-full flex flex-col justify-between">
-    <div class="">
+      <!-- Contenido -->
       <div
-        class="text-center py-16 min-[400px]:py-20 px-8 min-[400px]:px-12 gradiente"
+        class="mt-36 min-[380px]:mt-52 py-8 px-10 min-[380px]:px-12 max-w-2xl mx-auto"
       >
-        <h1 class="font-bold text-3xl mb-4 uppercase text-white">ÚNETE</h1>
-        <h3 class="text-lg text-white">
-          Forma parte de la comunidad TeLlevo como
-          <span class="font-bold cursor-pointer"
-            >conductor</span
-          >
-        </h3>
-      </div>
-      <div
-        class="m-0 rounded-none p-8 min-[400px]:p-8 min-[400px]:px-12 max-w-2xl mx-auto"
-      >
-        <!-- RUT -->
-        <div class="mb-6 lg:mb-16">
-          <label
-            for="rut"
-            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
-            >RUT:</label
-          >
-          <input
-            id="rut"
-            [(ngModel)]="conductor.rut"
-            type="text"
-            class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
-            placeholder="Ingresa tu rut"
-            required
-          />
-        </div>
-        <!-- licencia -->
-        <div class="mb-6 lg:mb-16">
-          <label
-            for="licencia"
-            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white tracking-wider"
-            >N° DE LICENCIA:</label
-          >
-          <input
-            id="licencia"
-            [(ngModel)]="conductor.licencia"
-            type="text"
-            class="h-14 border-0 pl-5 bg-gray-200 text-gray-900 text-sm rounded-3xl focus:ring-rose-500 block w-full p-2.5 dark:bg-zinc-800 dark:placeholder-zinc-400 dark:text-white dark:focus:ring-rose-500"
-            placeholder="Ingresa tu número de licencia"
-            required
-          />
+        <div class="mt-8 mb-8 min-[380px]:mb-14">
+          <titulo
+            [titulo]="'Únete'"
+            [subtitulo]="'Registrate como conductor'"
+          ></titulo>
         </div>
 
-        <!-- BOTÓN REGISTRAR -->
-        <div>
-          <label
-            for="registrar"
-            class="block pl-5 font-bold mb-3 text-[13px] uppercase text-gray-600 dark:text-white invisible"
-            >INGRESAR:</label
-          >
-          <button
-            id="registrar"
+        <div class="grid grid-cols-1 gap-8">
+          <!-- RUT -->
+          <campo-texto
+            [placeholder]="'Ingresa tu rut'"
+            [tipo]="'text'"
+            [(valor)]="conductor.rut!"
+          ></campo-texto>
+
+          <!-- licencia -->
+          <campo-texto
+            [placeholder]="'Ingresa tu número de licencia'"
+            [tipo]="'text'"
+            [(valor)]="conductor.licencia!"
+          ></campo-texto>
+
+          <!-- BOTÓN REGISTRAR -->
+          <boton-lg
+            [texto]="'Registrar'"
             (click)="registrarConductor()"
-            expand="block"
-            size="large"
-            class="w-full h-14 uppercase focus:outline-none text-white bg-rose-400 hover:bg-rose-500 focus:ring-4 focus:ring-rose-500 font-bold rounded-3xl text-xl px-5 py-2.5 mr-2 mb-2 dark:bg-rose-500 dark:hover:bg-rose-600 dark:focus:ring-rose-600"
-          >
-            REGISTRARSE
-          </button>
+          ></boton-lg>
         </div>
       </div>
     </div>

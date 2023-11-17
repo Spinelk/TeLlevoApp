@@ -1,24 +1,25 @@
-import { Component, EventEmitter, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
 import { Router } from '@angular/router';
-import { Usuario } from 'src/app/models/usuario';
+
 import { HelperService } from 'src/app/services/global/helper.service';
 import { StorageService } from 'src/app/services/global/storage.service';
+
+import { Usuario } from 'src/app/models/usuario';
 
 @Component({
   selector: 'app-registrar-conductor',
   templateUrl: './registrar-conductor.page.html',
   styleUrls: ['./registrar-conductor.page.scss'],
 })
-export class RegistrarConductorPage implements OnInit {
+export class RegistrarConductorPage {
 
 
-
-  conductor:Usuario = {
-    id:0,
-    nombre:"",
-    apellido:"",
-    correo:"",
+  conductor: Usuario = {
+    id: 0,
+    nombre: "",
+    apellido: "",
+    correo: "",
     esConductor: false,
     urlImagenPerfil: "",
     licencia: "",
@@ -32,10 +33,7 @@ export class RegistrarConductorPage implements OnInit {
     private router: Router,
   ) { }
 
-  ngOnInit() {
-  }
-
-  async registrarConductor(){
+  async registrarConductor() {
     if (this.conductor.rut == "") {
       this.alertService.showAlert("Debe ingresar su rut.", "Ingrese rut");
       return;
@@ -53,9 +51,9 @@ export class RegistrarConductorPage implements OnInit {
       return;
     }
     const user = await this.auth.currentUser;
-    if(user?.email){
+    if (user?.email) {
       const usuario = await this.storageService.obtenerUsuarioPorCorreo(user?.email);
-      if(usuario != null){
+      if (usuario != null) {
         this.conductor.id = usuario.id;
         this.conductor.nombre = usuario.nombre;
         this.conductor.apellido = usuario.apellido;
@@ -69,6 +67,5 @@ export class RegistrarConductorPage implements OnInit {
         this.alertService.showToast("Se ha registrado como conductor");
       }, 1000);
     }
-
   }
 }
