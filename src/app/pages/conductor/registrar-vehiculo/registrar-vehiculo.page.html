@@ -33,10 +33,8 @@
 
           <!-- TIPOVEHÍCULO -->
           <ion-select
-            required
             [(ngModel)]="nuevoVehiculo.tipoVehiculo"
             placeholder="Seleccione el tipo de vehículo"
-            class="input-selector"
           >
             <ion-select-option *ngFor="let tipo of tiposAuto" value="{{tipo}}"
               >{{tipo}}</ion-select-option
@@ -59,10 +57,8 @@
 
           <!-- COLOR -->
           <ion-select
-            required
             [(ngModel)]="nuevoVehiculo.color"
             placeholder="Ingresa el color del vehículo"
-            class="input-selector"
           >
             <ion-select-option *ngFor="let color of colores" value="{{color}}"
               >{{color}}</ion-select-option
@@ -71,10 +67,8 @@
 
           <!-- CANTIDAD ASIENTOS -->
           <ion-select
-            required
             [(ngModel)]="nuevoVehiculo.cantidadAsientos"
             placeholder="Ingresa la cantidad de asientos"
-            class="input-selector"
           >
             <ion-select-option
               *ngFor="let cantidad of [1, 2, 3, 4, 5, 6, 7, 8]"
