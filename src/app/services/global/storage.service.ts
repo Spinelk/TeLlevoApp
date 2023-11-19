@@ -136,6 +136,16 @@ export class StorageService {
     return null;
   }
 
+  async obtenerVehiculoPorPatente(patente: string = '') {
+    const vehiculos = await this.obtenerVehiculos();
+    for (const i of vehiculos) {
+      if (i.patente == patente) {
+        return i;
+      }
+    }
+    return null;
+  }
+
   async agregarVehiculo(vehicles: Vehiculo[]) { //id:number, nombre:string, apellido:string, correo:string, urlImagenPerfil:string, esConductor:boolean
     const vehiculos = await this.obtenerVehiculos();
     for (const i of vehiculos) {
