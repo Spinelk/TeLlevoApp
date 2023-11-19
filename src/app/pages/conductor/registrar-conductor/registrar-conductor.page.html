@@ -1,24 +1,21 @@
 <ion-content [fullscreen]="true" [scrollY]="false">
-  <ion-fab slot="fixed" vertical="top" horizontal="start" class="p-2">
-    <ion-icon
-      name="arrow-back-outline"
-      color="light"
-      size="large"
-      [routerLink]="['/inicio']"
-      routerDirection="back"
-    ></ion-icon>
+  <ion-fab
+    slot="fixed"
+    vertical="top"
+    horizontal="start"
+    class="p-2"
+    [routerLink]="['/inicio']"
+    routerDirection="back"
+  >
+    <ion-icon name="arrow-back-outline" color="light" size="large"></ion-icon>
   </ion-fab>
 
-  <div
-    class="min-h-full flex flex-col justify-between bg-neutral-100 dark:bg-zinc-800"
-  >
+  <div class="contenedor-principal">
     <div>
       <banner [titulo]="'te llevo'"></banner>
 
       <!-- Contenido -->
-      <div
-        class="mt-36 min-[380px]:mt-52 py-8 px-10 min-[380px]:px-12 max-w-2xl mx-auto"
-      >
+      <div class="contenido">
         <div class="mt-8 mb-8 min-[380px]:mb-14">
           <titulo
             [titulo]="'Únete'"
