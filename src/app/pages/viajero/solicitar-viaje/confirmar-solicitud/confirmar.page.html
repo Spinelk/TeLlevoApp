@@ -10,45 +10,32 @@
     <ion-icon name="arrow-back-outline" color="light" size="large"></ion-icon>
   </ion-fab>
 
-  <div
-    class="contenedor-principal"
-  >
+  <div class="contenedor-principal">
     <div>
       <banner [titulo]="'te llevo'"></banner>
 
       <!-- Contenido -->
-      <div
-        class="contenido"
-      >
+      <div class="contenido">
         <div class="mt-8 mb-8 lg:mb-16">
           <div
             class="w-full border-0 rounded-2xl shadow gradiente overflow-hidden"
           >
-            <div class="w-full h-36">
-              <ion-thumbnail slot="start" class="w-full h-full">
-                <ion-skeleton-text [animated]="true"></ion-skeleton-text>
-              </ion-thumbnail>
+            <div class="w-full h-fit gradiente py-4 overflow-hidden">
+              <ng-container *ngIf="vehiculo && vehiculo.color">
+                <auto-svg [color]="vehiculo.color"></auto-svg>
+              </ng-container>
             </div>
             <div class="px-5 py-2">
               <h5
                 class="mb-3 text-2xl font-bold tracking-tight text-gray-900 dark:text-white"
               >
-                <ion-skeleton-text
-                  [animated]="true"
-                  style="width: 85%; height: 18px"
-                ></ion-skeleton-text>
+                {{vehiculo.patente}} - {{vehiculo.tipoVehiculo}}
               </h5>
-              <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                <ion-skeleton-text
-                  [animated]="true"
-                  style="width: 65%"
-                ></ion-skeleton-text>
+              <p class="mb-3 font-normal text-gray-900 dark:text-white">
+                {{vehiculo.marca}} {{vehiculo.modelo}}
               </p>
-              <p class="mb-3 font-normal text-gray-700 dark:text-gray-400">
-                <ion-skeleton-text
-                  [animated]="true"
-                  style="width: 70%"
-                ></ion-skeleton-text>
+              <p class="mb-3 font-normal text-gray-900 dark:text-white">
+                {{vehiculo.conductor}}
               </p>
             </div>
           </div>
