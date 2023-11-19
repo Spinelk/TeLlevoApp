@@ -34,17 +34,13 @@
           <!-- TIPOVEHÍCULO -->
           <ion-select
             required
-            id="tipoVehiculo"
             [(ngModel)]="nuevoVehiculo.tipoVehiculo"
             placeholder="Seleccione el tipo de vehículo"
             class="input-selector"
           >
-            <ion-select-option value="Sedan">Sedan</ion-select-option>
-            <ion-select-option value="Pickup">Pickup</ion-select-option>
-            <ion-select-option value="Hatchback">Hatchback</ion-select-option>
-            <ion-select-option value="Wagon">Wagon</ion-select-option>
-            <ion-select-option value="SUV">SUV</ion-select-option>
-            <ion-select-option value="Compacto">Compacto</ion-select-option>
+            <ion-select-option *ngFor="let tipo of tiposAuto" value="{{tipo}}"
+              >{{tipo}}</ion-select-option
+            >
           </ion-select>
 
           <!-- MARCA -->
@@ -64,41 +60,27 @@
           <!-- COLOR -->
           <ion-select
             required
-            id="color"
             [(ngModel)]="nuevoVehiculo.color"
             placeholder="Ingresa el color del vehículo"
             class="input-selector"
           >
-            <ion-select-option value="Blanco">Blanco</ion-select-option>
-            <ion-select-option value="Negro">Negro</ion-select-option>->
-            <ion-select-option value="Gris">Gris</ion-select-option>->
-            <ion-select-option value="Plata">Plata</ion-select-option>->
-            <ion-select-option value="Azul">Azul</ion-select-option>->
-            <ion-select-option value="Rojo">Rojo</ion-select-option>->
-            <ion-select-option value="Marron">Marron</ion-select-option>->
-            <ion-select-option value="Verde">Verde</ion-select-option>->
-            <ion-select-option value="Amarillo">Amarillo</ion-select-option>->
-            <ion-select-option value="Dorado">Dorado</ion-select-option>->
-            <ion-select-option value="Naranja">Naranja</ion-select-option>->
-            <ion-select-option value="Morado">Morado</ion-select-option>->
-            <ion-select-option value="Rosado">Rosado</ion-select-option>->
+            <ion-select-option *ngFor="let color of colores" value="{{color}}"
+              >{{color}}</ion-select-option
+            >
           </ion-select>
 
           <!-- CANTIDAD ASIENTOS -->
           <ion-select
             required
-            id="cantidadAsientos"
             [(ngModel)]="nuevoVehiculo.cantidadAsientos"
             placeholder="Ingresa la cantidad de asientos"
             class="input-selector"
           >
-            <ion-select-option value="2">2</ion-select-option>->
-            <ion-select-option value="3">3</ion-select-option>->
-            <ion-select-option value="4">4</ion-select-option>->
-            <ion-select-option value="5">5</ion-select-option>->
-            <ion-select-option value="6">6</ion-select-option>->
-            <ion-select-option value="7">7</ion-select-option>->
-            <ion-select-option value="8">8</ion-select-option>->
+            <ion-select-option
+              *ngFor="let cantidad of [1, 2, 3, 4, 5, 6, 7, 8]"
+              value="{{cantidad}}"
+              >{{cantidad}}</ion-select-option
+            >
           </ion-select>
 
           <!-- BOTÓN REGISTRAR -->

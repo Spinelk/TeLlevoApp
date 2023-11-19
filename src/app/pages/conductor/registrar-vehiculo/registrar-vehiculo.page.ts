@@ -14,6 +14,34 @@ import { Vehiculo } from 'src/app/models/vehiculo';
 })
 export class RegistrarVehiculoPage {
 
+  tiposAuto = [
+    "Sedan",
+    "Pickup",
+    "Hatchback",
+    "Wagon",
+    "SUV",
+    "Coupe",
+    "Convertible",
+    "Minivan",
+    "Van",
+    "Compacto",
+  ];
+
+  colores = [
+    "Blanco",
+    "Negro",
+    "Gris",
+    "Plata",
+    "Azul",
+    "Rojo",
+    "Verde",
+    "Amarillo",
+    "Dorado",
+    "Naranja",
+    "Morado",
+    "Rosado",
+  ];
+
   nuevoVehiculo: Vehiculo = {
     patente: "",
     tipoVehiculo: "",
