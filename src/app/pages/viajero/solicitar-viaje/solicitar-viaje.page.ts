@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { StorageService } from 'src/app/services/global/storage.service';
 
 @Component({
   selector: 'app-solicitar-viaje',
@@ -7,5 +8,14 @@ import { Component } from '@angular/core';
 })
 export class SolicitarViajePage {
 
-  constructor() { }
+  vehiculos: any[] = [];
+
+  constructor(
+    private storageService: StorageService,
+  ) {
+    // obtener todos los autos del local storage
+    this.storageService.obtenerVehiculos().then((vehiculos) => {
+      this.vehiculos = vehiculos;
+    });
+  }
 }
