@@ -16,7 +16,7 @@ module.exports = function (config) {
       jasmine: {
         // you can add configuration options for Jasmine here
         // the possible options are listed at https://jasmine.github.io/api/edge/Configuration.html
-        // for example, you can disable the random execution with `random: false`
+        random: false
         // or set a specific seed with `seed: 4321`
       },
       clearContext: false // leave Jasmine Spec Runner output visible in browser
@@ -32,6 +32,10 @@ module.exports = function (config) {
         { type: 'text-summary' }
       ]
     },
+    files: [
+      'src/app/services/global/storage.service.spec.ts',
+      // ...otros archivos necesarios...
+    ],
     reporters: ['progress', 'kjhtml'],
     port: 9876,
     colors: true,
