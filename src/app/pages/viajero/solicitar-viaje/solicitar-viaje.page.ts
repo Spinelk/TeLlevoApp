@@ -22,6 +22,10 @@ export class SolicitarViajePage {
   }
 
   ngOnInit() {
+
+  }
+
+  ionViewDidEnter() {
     this.verificarExistenciaDeVehiculos();
   }
 
