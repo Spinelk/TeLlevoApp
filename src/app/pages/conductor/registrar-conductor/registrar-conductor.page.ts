@@ -39,7 +39,7 @@ export class RegistrarConductorPage {
       return;
     }
     if (this.conductor.rut && this.conductor.rut.length < 8) {
-      this.alertService.showAlert("El rut debe tener al menos 8.", "Ingrese nombre");
+      this.alertService.showAlert("El rut debe tener al menos 8.", "Ingrese rut");
       return;
     }
     if (this.conductor.licencia == "") {

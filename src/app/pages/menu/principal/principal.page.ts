@@ -2,8 +2,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Usuario } from 'src/app/models/usuario';
-import { IonCard, AnimationController } from '@ionic/angular';
-import type { Animation } from '@ionic/angular';
+import { Device } from '@capacitor/device';
 
 // Servicios
 import { HelperService } from 'src/app/services/global/helper.service';
@@ -21,6 +20,7 @@ import { VehiculoPage } from '../../../components/modals/vehiculo/vehiculo.page'
   styleUrls: ['./principal.page.scss'],
 })
 export class PrincipalPage implements OnInit {
+  animarTexto = true;
 
   usuario: Usuario = {
     id: 0,
@@ -43,14 +43,11 @@ export class PrincipalPage implements OnInit {
     conductor: '',
   }
 
-  @ViewChild(IonCard, { read: ElementRef }) card!: ElementRef<HTMLIonCardElement>;
-  private animacionNombre!: Animation;
 
   constructor(
     private router: Router,
     private storageService: StorageService,
     private helper: HelperService,
-    private animationCtrl: AnimationController,
   ) {
 
   }
@@ -62,8 +59,15 @@ export class PrincipalPage implements OnInit {
     this.storageService.conductorActualizado.subscribe(() => {
       // Lógica para actualizar el componente, por ejemplo, cargar el botón
       this.cargarUsuario();
-    });
 
+    });
+    this.dispositivo();
+
+  }
+
+  async dispositivo(){
+    const device = await   Device.getInfo();
+    await this.helper.showToast("Su dispositivo es: " + device.model);
   }
 
   async cargarUsuario() {
@@ -109,16 +113,4 @@ export class PrincipalPage implements OnInit {
   }
 
 
-  // Eliminar o remplazar esta animación
-  ngAfterViewInit() {
-    this.animacionNombre = this.animationCtrl
-      .create()
-      .addElement(document.querySelectorAll("#nombreUsuario"))
-      .duration(7000)
-      .iterations(Infinity)
-      .fromTo('transform', 'translateX(350px)', 'translateX(-350px)')
-      .fromTo('opacity', '1', '0.2');
-
-    this.animacionNombre.play();
-  }
 }
