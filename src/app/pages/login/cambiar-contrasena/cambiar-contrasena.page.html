@@ -1,4 +1,4 @@
-<ion-content [fullscreen]="true" [scrollY]="false">
+<ion-content [fullscreen]="true">
   <ion-fab
     slot="fixed"
     vertical="top"
@@ -31,7 +31,7 @@
           ></campo-texto>
 
           <div class="mt-2 lg:mt-4 flex justify-center">
-            <boton-md [texto]="'Enviar'" (click)="enviar()"></boton-md>
+            <boton-md [routerLink]="['/cambiar-contrasena']" [texto]="'Enviar'" (click)="enviar()"></boton-md>
           </div>
         </div>
       </div>

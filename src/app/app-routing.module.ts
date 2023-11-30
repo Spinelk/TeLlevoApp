@@ -12,23 +12,18 @@ const routes: Routes = [
     pathMatch: 'full'
   },
 
+
   {
-    path: '',
-    canActivate: [AngularFireAuthGuard], data: { authGuardPipe: redireccionarPrincipal },
-    children: [
-      {
-        path: 'inicio-sesion',
-        loadChildren: () => import('./pages/login/inicio-sesion/inicio-sesion.module').then(m => m.InicioSesionPageModule)
-      },
-      {
-        path: 'registro-usuario',
-        loadChildren: () => import('./pages/login/registro-usuario/registro-usuario.module').then(m => m.RegistroUsuarioPageModule)
-      },
-      {
-        path: 'cambiar-contrasena',
-        loadChildren: () => import('./pages/login/cambiar-contrasena/cambiar-contrasena.module').then(m => m.CambiarContrasenaPageModule)
-      },
-    ]
+    path: 'inicio-sesion',
+    loadChildren: () => import('./pages/login/inicio-sesion/inicio-sesion.module').then(m => m.InicioSesionPageModule)
+  },
+  {
+    path: 'registro-usuario',
+    loadChildren: () => import('./pages/login/registro-usuario/registro-usuario.module').then(m => m.RegistroUsuarioPageModule)
+  },
+  {
+    path: 'cambiar-contrasena',
+    loadChildren: () => import('./pages/login/cambiar-contrasena/cambiar-contrasena.module').then(m => m.CambiarContrasenaPageModule)
   },
 
   {
