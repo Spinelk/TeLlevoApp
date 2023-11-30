@@ -4,8 +4,8 @@ import { Preferences } from '@capacitor/preferences';
 import { Usuario } from 'src/app/models/usuario';
 import { Vehiculo } from 'src/app/models/vehiculo';
 
-  const storageUsuario = 'usuarioData';
-  const storageVehiculo= 'vehiculoData';
+const storageUsuario = 'usuarioData';
+const storageVehiculo = 'vehiculoData';
 
 @Injectable({
   providedIn: 'root'
@@ -16,35 +16,35 @@ export class StorageService {
     private auth: AngularFireAuth
   ) { }
 
-  async getItem(llave:string):Promise<string | null>{
+  async getItem(llave: string): Promise<string | null> {
     //obj = await localStorage.getItem(llave); PREGUNTAR
-    const obj = await Preferences.get({key: llave});
+    const obj = await Preferences.get({ key: llave });
     return obj.value;
   }
 
-  async setItem(llave:string, valor:string){
-    await Preferences.set({key:llave, value:valor})
+  async setItem(llave: string, valor: string) {
+    await Preferences.set({ key: llave, value: valor })
   }
 
   //storage USUARIOS
 
   //obtener un array de usuarios
-  async obtenerUsuarios(){
+  async obtenerUsuarios() {
     const storageData = await this.getItem(storageUsuario);
     if (storageData == null) {
       return [];
     }
 
-    const data:Usuario[] = JSON.parse(storageData);
+    const data: Usuario[] = JSON.parse(storageData);
     if (data) {
       return data;
-    }else{
+    } else {
       return [];
     }
   }
 
   //obtener un usuario por su correo
-  async obtenerUsuarioPorCorreo(correo: string=''){
+  async obtenerUsuarioPorCorreo(correo: string = '') {
     const usuarios = await this.obtenerUsuarios();
     for (const i of usuarios) {
       if (i.correo == correo) {
@@ -55,7 +55,7 @@ export class StorageService {
   }
 
   //Recibe un array dentro del que se encuentra el usuario a agregar y agrega los ya guardados
-  async agregarUsuario(users:Usuario[]){ //id:number, nombre:string, apellido:string, correo:string, urlImagenPerfil:string, esConductor:boolean
+  async agregarUsuario(users: Usuario[]) { //id:number, nombre:string, apellido:string, correo:string, urlImagenPerfil:string, esConductor:boolean
     const usuarios = await this.obtenerUsuarios();
     for (const i of usuarios) {
       if (i) {
@@ -63,70 +63,70 @@ export class StorageService {
       }
     }
 
-    this.setItem(storageUsuario,JSON.stringify(users));
+    this.setItem(storageUsuario, JSON.stringify(users));
   }
 
 
-  async eliminarUsuario(correo: string){ //id:number, nombre:string, apellido:string, correo:string, urlImagenPerfil:string, esConductor:boolean
-      const usuarios = await this.obtenerUsuarios();
-      for (const i of usuarios) {
-        if (i.correo == correo) {
-          usuarios.splice(usuarios.indexOf(i));
-        }
+  async eliminarUsuario(correo: string) { //id:number, nombre:string, apellido:string, correo:string, urlImagenPerfil:string, esConductor:boolean
+    const usuarios = await this.obtenerUsuarios();
+    for (const i of usuarios) {
+      if (i.correo == correo) {
+        usuarios.splice(usuarios.indexOf(i));
       }
-      this.setItem(storageUsuario,JSON.stringify(usuarios));
     }
+    this.setItem(storageUsuario, JSON.stringify(usuarios));
+  }
 
-    async modificarUsuario(user: Usuario){ //id:number, nombre:string, apellido:string, correo:string, urlImagenPerfil:string, esConductor:boolean
-      await this.eliminarUsuario(user.correo);
-      var usuario = [
-        {
-          id: user.id,
-          nombre: user.nombre,
-          apellido: user.apellido,
-          correo: user.correo,
-          esConductor: user.esConductor,
-          urlImagenPerfil: user.urlImagenPerfil,
-          licencia: user.licencia,
-          rut: user.rut
-        }
-      ]
-      await this.agregarUsuario(usuario);
-      this.conductorActualizado.emit();
+  async modificarUsuario(user: Usuario) { //id:number, nombre:string, apellido:string, correo:string, urlImagenPerfil:string, esConductor:boolean
+    await this.eliminarUsuario(user.correo);
+    var usuario = [
+      {
+        id: user.id,
+        nombre: user.nombre,
+        apellido: user.apellido,
+        correo: user.correo,
+        esConductor: user.esConductor,
+        urlImagenPerfil: user.urlImagenPerfil,
+        licencia: user.licencia,
+        rut: user.rut
+      }
+    ]
+    await this.agregarUsuario(usuario);
+    this.conductorActualizado.emit();
+  }
+
+  async cargarUsuario() {
+    const user = await this.auth.currentUser;
+    if (user?.email) {
+      const usuario = await this.obtenerUsuarioPorCorreo(user.email);
+      if (usuario != null) {
+        return usuario;
+      } else {
+        return null;
+      }
+    } else {
+      return null;
     }
+  }
 
-    async cargarUsuario(){
-      const user = await this.auth.currentUser;
-        if (user?.email) {
-          const usuario = await this.obtenerUsuarioPorCorreo(user.email);
-          if (usuario != null) {
-            return usuario;
-          } else {
-            return null;
-          }
-        } else {
-          return null;
-        }
-    }
-
-    //storage VEHICULOS
+  //storage VEHICULOS
 
   //obtener un array de usuarios
-  async obtenerVehiculos(){
+  async obtenerVehiculos() {
     const storageData = await this.getItem(storageVehiculo);
     if (storageData == null) {
       return [];
     }
 
-    const data:Vehiculo[] = JSON.parse(storageData);
+    const data: Vehiculo[] = JSON.parse(storageData);
     if (data) {
       return data;
-    }else{
+    } else {
       return [];
     }
   }
 
-  async obtenerVehiculoPorCorreo(correo: string=''){
+  async obtenerVehiculoPorCorreo(correo: string = '') {
     const vehiculos = await this.obtenerVehiculos();
     for (const i of vehiculos) {
       if (i.conductor == correo) {
@@ -136,7 +136,17 @@ export class StorageService {
     return null;
   }
 
-  async agregarVehiculo(vehicles:Vehiculo[]){ //id:number, nombre:string, apellido:string, correo:string, urlImagenPerfil:string, esConductor:boolean
+  async obtenerVehiculoPorPatente(patente: string = '') {
+    const vehiculos = await this.obtenerVehiculos();
+    for (const i of vehiculos) {
+      if (i.patente == patente) {
+        return i;
+      }
+    }
+    return null;
+  }
+
+  async agregarVehiculo(vehicles: Vehiculo[]) { //id:number, nombre:string, apellido:string, correo:string, urlImagenPerfil:string, esConductor:boolean
     const vehiculos = await this.obtenerVehiculos();
     for (const i of vehiculos) {
       if (i) {
@@ -144,20 +154,20 @@ export class StorageService {
       }
     }
 
-    this.setItem(storageVehiculo,JSON.stringify(vehicles));
+    this.setItem(storageVehiculo, JSON.stringify(vehicles));
   }
 
-  async cargarVehiculo(){
+  async cargarVehiculo() {
     const user = await this.auth.currentUser;
-      if (user?.email) {
-        const vehiculo = await this.obtenerVehiculoPorCorreo(user.email);
-        if (vehiculo != null) {
-          return vehiculo;
-        } else {
-          return null;
-        }
+    if (user?.email) {
+      const vehiculo = await this.obtenerVehiculoPorCorreo(user.email);
+      if (vehiculo != null) {
+        return vehiculo;
       } else {
         return null;
       }
+    } else {
+      return null;
+    }
   }
 }

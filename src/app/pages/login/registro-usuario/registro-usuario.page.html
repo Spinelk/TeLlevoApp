@@ -10,16 +10,12 @@
     <ion-icon name="arrow-back-outline" color="light" size="large"></ion-icon>
   </ion-fab>
 
-  <div
-    class="min-h-full flex flex-col justify-between bg-neutral-100 dark:bg-zinc-800"
-  >
+  <div class="contenedor-principal">
     <div>
       <banner [titulo]="'te llevo'"></banner>
 
       <!-- Contenido -->
-      <div
-        class="mt-36 min-[380px]:mt-52 py-8 px-10 min-[380px]:px-12 max-w-2xl mx-auto"
-      >
+      <div class="contenido">
         <div class="mt-8 mb-8 min-[380px]:mb-14">
           <titulo
             [titulo]="'Registro'"
@@ -51,21 +47,21 @@
 
           <!-- CONTRASEÑA -->
           <campo-texto
-            [placeholder]="'Ingresa tu contrasena'"
+            [placeholder]="'Ingresa tu contraseña'"
             [tipo]="'password'"
             [(valor)]="contrasena"
           ></campo-texto>
 
           <!-- CONTRASEÑA 2-->
           <campo-texto
-            [placeholder]="'Verifica tu contrasena'"
+            [placeholder]="'Verifica tu contraseña'"
             [tipo]="'password'"
             [(valor)]="verificadorContrasena"
           ></campo-texto>
 
           <!-- BOTÓN REGISTRAR -->
           <div class="mt-2 lg:mt-4 flex justify-center">
-            <boton-md [texto]="'Registrar'" (click)="registrar()"></boton-md>
+            <boton-md [routerLink]="['/registro-usuario']" [texto]="'Registrar'" (click)="registrar()"></boton-md>
           </div>
         </div>
       </div>

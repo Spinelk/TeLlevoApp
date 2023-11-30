@@ -26,7 +26,7 @@ export class AutenticacionService {
   ) { }
 
 
-  
+
   // Iniciar sesión con correo y contraseña
   async iniciarSesion(correo: string, contrasena: string) {
     // Validar que el correo y la contraseña no esten vacios
@@ -49,11 +49,12 @@ export class AutenticacionService {
     // Iniciar sesión
     return this.afAuth.signInWithEmailAndPassword(correo, contrasena).then(async (userCredential) => {
       // Inicio de sesión exitoso
-      localStorage.setItem('correoUsuario', correo);
       const loader = await this.alertService.showLoading("Cargando");
       setTimeout(async () => {
-        await loader.dismiss();
-        await this.alertService.showAlert("Bienvenido a TeLlevoAPP.", "");
+      await loader.dismiss();
+      }, 200);
+      await this.alertService.showAlert("Bienvenido a TeLlevoAPP.", "");
+      setTimeout(async () => {
         await this.router.navigate(['/principal']);
       }, 500);
     }).catch((error) => {
@@ -89,16 +90,15 @@ export class AutenticacionService {
     if (nombre == "") {
       this.alertService.showAlert("Debe ingresar un nombre.", "Ingrese un nombre");
       return;
-    }
-    if (nombre.length < 2) {
+    } else if (nombre.length < 2) {
       this.alertService.showAlert("El nombre debe tener al menos dos caracteres.", "Ingrese un nombre valido");
       return;
     }
+
     if (apellido == "") {
       this.alertService.showAlert("Debe ingresar un apellido.", "Ingrese un apellido")
       return;
-    }
-    if (apellido.length < 2) {
+    } else if (apellido.length < 2) {
       this.alertService.showAlert("El apellido debe tener al menos dos caracteres.", "Ingrese un apellido valido")
       return;
     }
@@ -109,16 +109,14 @@ export class AutenticacionService {
     if (contrasena == "") {
       this.alertService.showAlert("Debe ingresar una contraseña.", "Ingrese una contraseña")
       return;
-    }
-    if (contrasena && contrasena.length < 6) {
+    } else if (contrasena && contrasena.length < 6) {
       this.alertService.showAlert("La contraseña debe tener al menos 6 caracteres.", "Ingrese una contraseña")
       return;
     }
     if (verificadorContrasena == "") {
       this.alertService.showAlert("Debe ingresar la contraseña nuevamente.", "Verifique la contraseña")
       return;
-    }
-    if (contrasena !== verificadorContrasena) {
+    } else if (contrasena !== verificadorContrasena) {
       this.alertService.showAlert("Las contraseñas no coinciden.", "Error al verificar contraseña");
       return;
     }

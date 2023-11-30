@@ -9,14 +9,14 @@
     </ion-fab>
 
     <div
-      class="min-h-full flex flex-col justify-between bg-neutral-100 dark:bg-zinc-800"
+      class="contenedor-principal"
     >
       <div>
-        <banner [titulo]="'te llevo'"></banner>
+        <banner [titulo]="'Bienvenid@ ' + usuario.nombre" [animarTexto]="animarTexto"></banner>
 
         <!-- Contenido -->
         <div
-          class="mt-36 min-[380px]:mt-52 py-8 px-10 min-[380px]:px-12 max-w-2xl mx-auto"
+          class="contenido"
         >
           <div class="mt-8 w-full grid grid-cols-1 gap-8">
             <boton-lg

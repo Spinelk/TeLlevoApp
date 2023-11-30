@@ -8,7 +8,7 @@ import { Component, Input, OnInit } from '@angular/core';
 export class BotonMdComponent  implements OnInit {
 
   @Input() texto: string = "";
-  @Input() ruta: string = "";
+  @Input() ruta?: string = "";
 
   constructor() { }
 

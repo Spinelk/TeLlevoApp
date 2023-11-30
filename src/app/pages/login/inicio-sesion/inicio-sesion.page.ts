@@ -20,7 +20,6 @@ export class InicioSesionPage {
   ) { }
 
   iniciarSesion() {
-    console.log(this.correo, this.contrasena)
     this.servicioAutenticacion.iniciarSesion(this.correo, this.contrasena)
   }
 }

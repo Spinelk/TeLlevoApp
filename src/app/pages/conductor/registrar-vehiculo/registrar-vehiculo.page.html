@@ -10,16 +10,12 @@
     <ion-icon name="arrow-back-outline" color="light" size="large"></ion-icon>
   </ion-fab>
 
-  <div
-    class="min-h-full flex flex-col justify-between bg-neutral-100 dark:bg-zinc-800"
-  >
+  <div class="contenedor-principal">
     <div>
       <banner [titulo]="'te llevo'"></banner>
 
       <!-- Contenido -->
-      <div
-        class="mt-36 min-[380px]:mt-52 py-8 px-10 min-[380px]:px-12 max-w-2xl mx-auto"
-      >
+      <div class="contenido">
         <div class="mt-8 mb-8 min-[380px]:mb-14">
           <titulo
             [titulo]="'Registro'"
@@ -37,18 +33,12 @@
 
           <!-- TIPOVEHÍCULO -->
           <ion-select
-            required
-            id="tipoVehiculo"
             [(ngModel)]="nuevoVehiculo.tipoVehiculo"
-            class="h-14 pt-0 border-0 pl-5 bg-white text-zinc-500 text-sm rounded-3xl placeholder-zinc-300 block w-full p-2.5 shadow-sm font-semibold focus:ring-rosado-tla dark:bg-zinc-700 dark:placeholder-zinc-400 dark:text-white"
             placeholder="Seleccione el tipo de vehículo"
           >
-            <ion-select-option value="Sedan">Sedan</ion-select-option>
-            <ion-select-option value="Pickup">Pickup</ion-select-option>
-            <ion-select-option value="Hatchback">Hatchback</ion-select-option>
-            <ion-select-option value="Wagon">Wagon</ion-select-option>
-            <ion-select-option value="SUV">SUV</ion-select-option>
-            <ion-select-option value="Compacto">Compacto</ion-select-option>
+            <ion-select-option *ngFor="let tipo of tiposAuto" value="{{tipo}}"
+              >{{tipo}}</ion-select-option
+            >
           </ion-select>
 
           <!-- MARCA -->
@@ -67,49 +57,34 @@
 
           <!-- COLOR -->
           <ion-select
-            required
-            id="color"
             [(ngModel)]="nuevoVehiculo.color"
             placeholder="Ingresa el color del vehículo"
-            class="h-14 pt-0 border-0 pl-5 bg-white text-zinc-500 text-sm rounded-3xl placeholder-zinc-300 block w-full p-2.5 shadow-sm font-semibold focus:ring-rosado-tla dark:bg-zinc-700 dark:placeholder-zinc-400 dark:text-white"
           >
-            <ion-select-option value="Blanco">Blanco</ion-select-option>
-            <ion-select-option value="Negro">Negro</ion-select-option>->
-            <ion-select-option value="Gris">Gris</ion-select-option>->
-            <ion-select-option value="Plata">Plata</ion-select-option>->
-            <ion-select-option value="Azul">Azul</ion-select-option>->
-            <ion-select-option value="Rojo">Rojo</ion-select-option>->
-            <ion-select-option value="Marron">Marron</ion-select-option>->
-            <ion-select-option value="Verde">Verde</ion-select-option>->
-            <ion-select-option value="Amarillo">Amarillo</ion-select-option>->
-            <ion-select-option value="Dorado">Dorado</ion-select-option>->
-            <ion-select-option value="Naranja">Naranja</ion-select-option>->
-            <ion-select-option value="Morado">Morado</ion-select-option>->
-            <ion-select-option value="Rosado">Rosado</ion-select-option>->
+            <ion-select-option *ngFor="let color of colores" value="{{color}}"
+              >{{color}}</ion-select-option
+            >
           </ion-select>
 
           <!-- CANTIDAD ASIENTOS -->
           <ion-select
-            required
-            id="cantidadAsientos"
             [(ngModel)]="nuevoVehiculo.cantidadAsientos"
             placeholder="Ingresa la cantidad de asientos"
-            class="h-14 pt-0 border-0 pl-5 bg-white text-zinc-500 text-sm rounded-3xl placeholder-zinc-300 block w-full p-2.5 shadow-sm font-semibold focus:ring-rosado-tla dark:bg-zinc-700 dark:placeholder-zinc-400 dark:text-white"
           >
-            <ion-select-option value="2">2</ion-select-option>->
-            <ion-select-option value="3">3</ion-select-option>->
-            <ion-select-option value="4">4</ion-select-option>->
-            <ion-select-option value="5">5</ion-select-option>->
-            <ion-select-option value="6">6</ion-select-option>->
-            <ion-select-option value="7">7</ion-select-option>->
-            <ion-select-option value="8">8</ion-select-option>->
+            <ion-select-option
+              *ngFor="let cantidad of [1, 2, 3, 4, 5, 6, 7, 8]"
+              value="{{cantidad}}"
+              >{{cantidad}}</ion-select-option
+            >
           </ion-select>
 
           <!-- BOTÓN REGISTRAR -->
-          <boton-lg
-            [texto]="'Registrar'"
-            (click)="registrarVehiculo()"
-          ></boton-lg>
+          <div class="mt-2 lg:mt-4 flex justify-center">
+            <boton-md
+              [routerLink]="['/registrar-vehiculo']"
+              [texto]="'Registrar'"
+              (click)="registrarVehiculo()"
+            ></boton-md>
+          </div>
         </div>
       </div>
     </div>

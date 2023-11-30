@@ -10,16 +10,12 @@
     <ion-icon name="arrow-back-outline" color="light" size="large"></ion-icon>
   </ion-fab>
 
-  <div
-    class="min-h-full flex flex-col justify-between bg-neutral-100 dark:bg-zinc-800"
-  >
+  <div class="contenedor-principal">
     <div>
       <banner [titulo]="'te llevo'"></banner>
 
       <!-- Contenido -->
-      <div
-        class="mt-52 py-8 min-[400px]:p-8 px-10 min-[400px]:px-12 max-w-2xl mx-auto"
-      >
+      <div class="contenido">
         <div class="mt-8 mb-6 lg:mb-16">
           <campo-texto
             [placeholder]="'Ingresa tu destino'"
@@ -32,10 +28,10 @@
         </div>
 
         <div
-          *ngFor="let id of [1, 2, 3, 4, 5, 6]"
-          id="{{id}}"
+          *ngFor="let vehiculo of vehiculos"
+          id="{{vehiculo.patente}}"
           class="mb-6 lg:mb-16 cursor-pointer"
-          [routerLink]="['/confirmar-solicitud/' + id]"
+          [routerLink]="['/confirmar-solicitud/' + vehiculo.patente]"
         >
           <div
             class="grid grid-cols-[50px_1fr] gap-x-8 gradiente p-5 rounded-2xl"
@@ -48,25 +44,9 @@
                 ></ion-skeleton-text>
               </ion-thumbnail>
             </div>
-            <div class="w-full">
-              <h3>
-                <ion-skeleton-text
-                  [animated]="true"
-                  style="width: 80%"
-                ></ion-skeleton-text>
-              </h3>
-              <p>
-                <ion-skeleton-text
-                  [animated]="true"
-                  style="width: 60%"
-                ></ion-skeleton-text>
-              </p>
-              <p>
-                <ion-skeleton-text
-                  [animated]="true"
-                  style="width: 30%"
-                ></ion-skeleton-text>
-              </p>
+            <div class="w-full px-2 rounded-lg ">
+              <h3 class=" text-pink-100  text-opacity-90 text-lg font-bold">{{ vehiculo.marca }} {{ vehiculo.modelo }}</h3>
+              <p class="text-pink-100 text-opacity-75">{{ vehiculo.tipoVehiculo }}</p>
             </div>
           </div>
         </div>

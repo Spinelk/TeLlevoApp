@@ -8,6 +8,7 @@ import { CampoTextoComponent } from 'src/app/components/compartidos/campo-texto/
 import { FormsModule } from '@angular/forms';
 import { BotonMdComponent } from 'src/app/components/compartidos/boton-md/boton-md.component';
 import { BotonLgComponent } from 'src/app/components/compartidos/boton-lg/boton-lg.component';
+import { AutoSvgComponent } from 'src/app/components/compartidos/auto-svg/auto-svg.component';
 
 
 
@@ -19,6 +20,7 @@ import { BotonLgComponent } from 'src/app/components/compartidos/boton-lg/boton-
     BannerComponent,
     TituloComponent,
     CampoTextoComponent,
+    AutoSvgComponent,
   ],
   imports: [
     FormsModule,
@@ -32,6 +34,7 @@ import { BotonLgComponent } from 'src/app/components/compartidos/boton-lg/boton-
     BannerComponent,
     TituloComponent,
     CampoTextoComponent,
+    AutoSvgComponent,
   ],
 })
 export class CompartidosModule { }
